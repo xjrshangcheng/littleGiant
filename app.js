@@ -28,8 +28,8 @@ app.get('/', function(req, res) {
     res.render('index', {});
 });
 
-app.get("/classify", function(req, res) {
-    res.render("classify");
+app.get("/category", function(req, res) {
+    res.render("category");
 });
 
 app.get('/register', function(req, res) {
