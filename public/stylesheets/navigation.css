@@ -1,0 +1,44 @@
+#navgation {
+    position: absolute;
+    z-index: 2;
+    height: 385px;
+    width: 100px;
+    float: left;
+}
+#navgation ul a {
+    font-family: '微软雅黑';
+    font-size: 14px;
+    color: white;
+    margin-left: -100px;
+    text-decoration: none;
+}
+#navgation ul a:hover {
+    color: #b61d1d;
+    text-decoration: none;
+}
+#navgation ul li {
+    width: 195px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    position: relative;
+    background: #b61d1d;
+}
+#navgation ul li:hover {
+    background: #ddd;
+}
+#navgation ul {
+    width: 100px;
+    height: auto;
+    position: absolute;
+    list-style: none;
+}
+#navgation ul.navTwo {
+    left: 195px;
+    top: 0;
+    display: none;
+}
+#navgation .navOne .liOne:hover ul.navTwo {
+    display: block;
+    background: #c1c1c1;
+}

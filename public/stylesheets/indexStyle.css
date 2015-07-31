@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.mainInfo {
+    position: relative;
+    height: 385px;
+}
+#board {
+    height: 385px;
+    margin-left: 890px;
+    width: 275px;
+}
+#shoppingBoard {
+    height: 145px;
+    width: 275px;
+    border: 1px solid #c1c1c1;
+}
+#news {
+    height: 235px;
+    margin-top: 5px;
+    width: 275px;
+    border: 1px solid #c1c1c1;
+}
+.titleOne {
+    height: 35px;
+    width: 275px;
+    background-color: #b61d1d;
+    color: white;
+    margin-top: -10px
+}
+h5 {
+    line-height: 35px;
+    margin-left: 12px;
+}
+.boardContent {
+    height: 108px;
+    width: 275px;
+}
+.contentList {
+    margin-left: 25px;
+    margin-top: 10px;
+}
+.newsContent {
+    height: 198px;
+    width: 275px;
+}
+#newProduct {
+    height: 331px;
+    width: 1170px;
+    margin-top: 30px;
+}
+.titleTwo {
+    height: 25px;
+    width: 140px;
+    position: absolute;
+    margin-top: 3px;
+    text-align: center;
+}
+.line {
+    position: absolute;
+    margin-top: 57px;
+    width: 1170px;
+    height: 1px;
+    background-color: #b61d1d;
+}
+.linePro {
+    height: 2px;
+    color: #b61d1d;
+}
+.infoList {
+    height: 250px;
+    width: 1170px;
+    margin-top: 65px;
+    position: absolute;
+}
+#list {
+    height: 240px;
+    width: 235px;
+    display: inline-block;
+    margin: 5px -4px;
+    margin-left: 3px;
+    border: 1px solid #c1c1c1;
+    float: left;
+}
+.picture {
+    height: 135px;
+    width: 140px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+.word {
+    height: 40px;
+    width: 173px;
+    margin-left: 32px;
+    font-family: '微软雅黑';
+    font-size: 16px;
+}
+.price {
+    height: 40px;
+    width: 173px;
+    margin-left: 28px;
+    color:#b61d1d;
+    font-size: 16px;
+}
+#popularProduct {
+    height: 290px;
+    width: 1170px;
+    margin-top: 33px;
+}
