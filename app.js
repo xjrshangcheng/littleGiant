@@ -37,17 +37,12 @@ app.get('/register', function(req, res) {
 })
 
 app.get('/login', function(req, res) {
-        res.render('login');
-    })
-    //
-var User = sequelize.define('user', { //创建模型
-    id: Sequelize.INTEGER,
-    username: Sequelize.STRING,
-    password: Sequelize.STRING,
-    email: Sequelize.STRING
-}, {
-    freezeTableName: true // Model tableName will be the same as the model name
+    res.render('login');
 })
+app.get('/product-details', function(req, res) {
+    res.render('product-details', {});
+});
+
 var server = app.listen(3000, function() {
 
     var host = server.address().address;
