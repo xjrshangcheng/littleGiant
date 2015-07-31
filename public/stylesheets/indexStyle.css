@@ -64,13 +64,9 @@ h5 {
 .line {
     position: absolute;
     margin-top: 57px;
-    width: 1170px;
-    height: 1px;
-    background-color: #b61d1d;
-}
-.linePro {
+    width: 1174px;
     height: 2px;
-    color: #b61d1d;
+    background-color: #b61d1d;
 }
 .infoList {
     height: 250px;
