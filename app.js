@@ -22,6 +22,10 @@ app.use("/static", express.static("public"));
 app.use("/static", express.static("bower_components"));
 
 
+app.get('/register', function(req, res) {
+    res.render('register');
+})
+
 app.get('/login', function(req, res) {
     res.render('login');
 })
@@ -34,7 +38,6 @@ var User = sequelize.define('user', {  //创建模型
   },{
   freezeTableName: true // Model tableName will be the same as the model name
 })
-
 var server = app.listen(3000, function () {
 
   var host = server.address().address;
