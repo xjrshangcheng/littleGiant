@@ -6,7 +6,7 @@
     padding-left: 0px;
     padding-right: 0px;
 }
-.mainInfo {
+.main-info {
     position: relative;
     height: 385px;
 }
@@ -15,7 +15,7 @@
     margin-left: 890px;
     width: 275px;
 }
-#shoppingBoard {
+#shopping-board {
     height: 145px;
     width: 275px;
     border: 1px solid #c1c1c1;
@@ -26,7 +26,7 @@
     width: 275px;
     border: 1px solid #c1c1c1;
 }
-.titleOne {
+.title-one {
     height: 35px;
     width: 275px;
     background-color: #b61d1d;
@@ -37,24 +37,24 @@ h5 {
     line-height: 35px;
     margin-left: 12px;
 }
-.boardContent {
+.board-content {
     height: 108px;
     width: 275px;
 }
-.contentList {
+.content-list {
     margin-left: 25px;
     margin-top: 10px;
 }
-.newsContent {
+.news-content {
     height: 198px;
     width: 275px;
 }
-#newProduct {
+#new-product {
     height: 331px;
     width: 1170px;
     margin-top: 30px;
 }
-.titleTwo {
+.title-two {
     height: 25px;
     width: 140px;
     margin-top: 3px;
@@ -66,7 +66,7 @@ h5 {
     height: 2px;
     background-color: #b61d1d;
 }
-.infoList {
+.info-list {
     height: 250px;
     width: 1170px;
     margin-top: 10px;
@@ -100,7 +100,7 @@ h5 {
     color:#b61d1d;
     font-size: 16px;
 }
-#popularProduct {
+#popular-product {
     height: 330px;
     width: 1170px;
     margin-top: 33px;
