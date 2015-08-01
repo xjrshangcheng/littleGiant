@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
 <title>登陆</title>
 
-<link rel="stylesheet" href="static/stylesheets/style.css">
-<script type="text/javascript" src="static/jquery/dist/jquery.js"></script>
-<script type="text/javascript" src="static/javascripts/easyform.js"></script>
+<link rel="stylesheet" href="./stylesheets/style.css">
+<script type="text/javascript" src="./jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="./javascripts/easyform.js"></script>
 
 </head>
 <body>
@@ -16,7 +16,7 @@
 
         <table>
             <tr>
-                <td><input placeholder="用户名" name="uid" type="text" id="uid" easyform="length:4-16;char-normal;real-time;" message="用户名必须为6—16位的英文字母或数字" easytip="disappear:lost-focus;theme:red;" ajax-message="用户名已存在!">
+                <td><input placeholder="用户名" name="uid" type="text" id="uid" easyform="length:6-16;char-normal;real-time;" message="用户名必须为6—16位的英文字母或数字" easytip="disappear:lost-focus;theme:red;"  data-messgae-ajax="用户名不存在!">
                 </td>
             </tr>
             <tr>
@@ -25,7 +25,7 @@
 
         </table>
 		<div class="buttons">
-			<a href="/"><input value="登 陆" id='submit' type="submit" style="margin-right:20px; margin-top:20px;"></a>
+			<input value="登 陆" id='submit' type="submit" style="margin-right:20px; margin-top:20px;">
 			<a href="/register"><input value="立即注册" id='button' type="button" style="margin-right:45px; margin-top:20px;"></a>
         </div>
 
@@ -39,7 +39,7 @@ $(document).ready(function(){
 });
 </script>
 </div>
-<script type="text/javascript" src='static/javascripts/login.js'>
+<script type="text/javascript" src='./javascripts/login.js'>
 
 </script>
 </body>
