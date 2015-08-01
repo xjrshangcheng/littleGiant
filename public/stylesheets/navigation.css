@@ -33,12 +33,12 @@
     position: absolute;
     list-style: none;
 }
-#navgation ul.navTwo {
+#navgation ul.nav-two {
     left: 195px;
     top: 0;
     display: none;
 }
-#navgation .navOne .liOne:hover ul.navTwo {
+#navgation .nav-one .li-one:hover ul.nav-two {
     display: block;
     background: #c1c1c1;
 }
