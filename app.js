@@ -5,8 +5,8 @@ var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var  Sequelize  =  require('sequelize');
 var jade = require('jade');
-var  sequelize  =  new  Sequelize('web_store',  'root',  'root',   {
-    host: "localhost",
+var  sequelize  =  new  Sequelize('little_giant',  'twer',  'twer',   {
+    host: "192.168.10.110",
     dialect:   "mysql",
     port:     3306,
 });
