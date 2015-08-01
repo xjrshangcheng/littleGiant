@@ -27,6 +27,10 @@ app.get('/', function(req, res) {
     res.render('index', {});
 });
 
+app.get("/car", function(req, res) {
+    res.render("car", {});
+})
+
 app.get("/category", function(req, res) {
     res.render("category");
 });
