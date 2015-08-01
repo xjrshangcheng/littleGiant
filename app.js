@@ -4,8 +4,8 @@ var app = express();
 var jade = require('jade');
 var bodyParser = require('body-parser');
 
-app.set('views', path.join(__dirname, 'views'));
-app.set("view engine", "jade");
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
 
 app.use(bodyParser.urlencoded({
     extended: true
