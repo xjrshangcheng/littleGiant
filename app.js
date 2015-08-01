@@ -1,18 +1,14 @@
 var mysql = require('mysql');
 var express = require('express');
 var app = express();
-var ejs = require('ejs');
 var bodyParser = require('body-parser');
-var  Sequelize  =  require('sequelize');
-var jade = require('jade');
-var  sequelize  =  new  Sequelize('little_giant',  'twer',  'twer',   {
+var Sequelize  =  require('sequelize');
+var sequelize  =  new  Sequelize('little_giant',  'twer',  'twer',   {
     host: "192.168.10.110",
     dialect:   "mysql",
     port:     3306,
 });
 
-// app.engine(".html", ejs.__express);
-// app.set("view engine", "html");
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
