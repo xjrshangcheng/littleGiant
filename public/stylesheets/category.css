@@ -1,67 +1,57 @@
 .no_float {
-    float:none;
+    float: none;
 }
-
 .category {
     border: 1px solid #F2DEDE;
     color: #b61d1d;
     margin: 0 5px 10px 0;
-    font-size:14px;
+    font-size: 14px;
 }
-
+.char-style {
+    font-size: 12px;
+}
+.page-detail {
+    line-height: 34px;
+}
 .border {
     border: 1px solid #F2DEDE;
-}
-
-.margin-top-1 {
     margin-top: 1px;
 }
-
-.margin-top-10 {
-    margin-top:10px;
+.title-margin {
+    margin-top: 10px;
 }
-
-.margin-bottom-20 {
-    margin-bottom:20px;
+.info-margin-bottom {
+    margin-bottom: 20px;
 }
-
-.font-size-12 {
-    font-size:12px;
-}
-
 .info-div {
-    position:relative;
-    line-height:1.4em;
-    height:2.8em;
-    overflow:hidden;
-    color:#b61d1d;
+    position: relative;
+    line-height: 1.4em;
+    height: 2.8em;
+    overflow: hidden;
+    color: #b61d1d;
 }
-
 .ellipsis::after {
-    content:"...";
-    font-weight:bold;
-    position:absolute;
-    bottom:0;
-    right:0;
-    padding:0 20px 1px 45px;
-    background:url(/images/category/ellipsis_bg.png) repeat-y;
+    content: "...";
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0 20px 1px 45px;
+    background: url(/images/category/ellipsis_bg.png) repeat-y;
 }
-
 .img-cursor:hover {
     position: relative;
-    cursor : pointer;
-    top:2px;
-    left:2px;
+    cursor: pointer;
+    top: 2px;
+    left: 2px;
 }
-
 .btn-defaults {
-  color: #b61d1d;
-  background-color: #fff;
-  border-color: #ccc;
+    color: #b61d1d;
+    background-color: #fff;
+    border-color: #ccc;
 }
-
 .text-cursor:hover {
-    cursor : pointer;
-    color : #A757A8;
+    cursor: pointer;
+    color: #A757A8;
     text-decoration: underline;
 }
