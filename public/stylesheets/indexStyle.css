@@ -5,7 +5,6 @@
 .container {
     padding-left: 0px;
     padding-right: 0px;
-    height: 1100px;
 }
 .mainInfo {
     position: relative;
@@ -58,13 +57,11 @@ h5 {
 .titleTwo {
     height: 25px;
     width: 140px;
-    position: absolute;
     margin-top: 3px;
     text-align: center;
 }
 .line {
-    position: absolute;
-    margin-top: 57px;
+    margin-top: 30px;
     width: 1174px;
     height: 2px;
     background-color: #b61d1d;
@@ -72,8 +69,7 @@ h5 {
 .infoList {
     height: 250px;
     width: 1170px;
-    margin-top: 65px;
-    position: absolute;
+    margin-top: 10px;
 }
 #list {
     height: 240px;
@@ -105,7 +101,7 @@ h5 {
     font-size: 16px;
 }
 #popularProduct {
-    height: 290px;
+    height: 330px;
     width: 1170px;
     margin-top: 33px;
 }
