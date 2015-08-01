@@ -1,18 +1,24 @@
 var mysql = require('mysql');
 var express = require('express');
 var app = express();
-var jade = require('jade');
+var ejs = require('ejs');
 var bodyParser = require('body-parser');
+var  Sequelize  =  require('sequelize');
+var  sequelize  =  new  Sequelize('web_store',  'root',  'root',   {
+    host: "localhost",
+          dialect:   "mysql",
+          port:     3306,    
+});
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.engine(".html", ejs.__express);
+app.set("view engine", "html");
 
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(express.static("public"));
 app.use(express.static("bower_components"));
-
+    
 app.get('/', function(req, res) {
     res.render('index', {});
 });
