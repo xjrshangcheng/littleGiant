@@ -3,14 +3,11 @@ var express = require('express');
 var app = express();
 var ejs = require('ejs');
 var bodyParser = require('body-parser');
-var  Sequelize  =  require('sequelize')
+var  Sequelize  =  require('sequelize');
 var  sequelize  =  new  Sequelize('web_store',  'root',  'root',   {
     host: "localhost",
           dialect:   "mysql",
-      // or 'sqlite', 'postgres', 'mariadb'
-          port:     3306,
-      // or 5432 (for postgres)
-        
+          port:     3306,    
 });
 
 app.engine(".html", ejs.__express);
@@ -21,9 +18,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 app.use(express.static("bower_components"));
-app.use("/static", express.static("public"));
-app.use("/static", express.static("bower_components"));
-
+    
 app.get('/', function(req, res) {
     res.render('index', {});
 });
@@ -34,11 +29,11 @@ app.get("/category", function(req, res) {
 
 app.get('/register', function(req, res) {
     res.render('register');
-})
+});
 
 app.get('/login', function(req, res) {
     res.render('login');
-})
+});
 app.get('/product-details', function(req, res) {
     res.render('product-details', {});
 });
