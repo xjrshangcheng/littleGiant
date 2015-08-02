@@ -37,6 +37,10 @@ app.get("/car", function(req, res) {
     res.render("car", {});
 })
 
+app.get("/shoppingCart",function(req, res) {
+    res.render("shoppingCart", {});
+})
+
 app.get("/category", function(req, res) {
     res.render("category");
 });
