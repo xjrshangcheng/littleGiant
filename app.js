@@ -6,7 +6,7 @@ var Sequelize = require('sequelize');
 var categoryJs = require("./control/control_category.js");
 
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
-    host: "localhost",
+    host: "192.168.10.110",
     dialect:"mysql",
     port:3306
 })
@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 app.use(express.static("bower_components"));
 
-var User = sequelize.define('	user', {
+var User = sequelize.define('user', {
     id: Sequelize.INTEGER,
     username: Sequelize.STRING,
     password: Sequelize.STRING,
