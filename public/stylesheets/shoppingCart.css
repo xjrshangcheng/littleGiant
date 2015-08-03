@@ -170,11 +170,14 @@ em {
 }
 .buycart_content_table5 input {
     width: 40px;
-    height: 19px;
+    height: 20px;
     color: #666;
     border: none 0;
     text-align: center;
     line-height: 19px;
+}
+.buycart_content_table5 .changes{
+    width: 20px;
 }
 .buycart_content_table5 * {
     float: left;

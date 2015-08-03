@@ -8,3 +8,19 @@ $(function() {
         $(":input[name=all-check]").prop("checked", allChecked);
     });
 });
+$(function() {
+    $(':input[class = changes]').on('click', function() {
+        var changes = $(this).prop('value');
+        var number = $(':input[class = cart_goods_count]').prop('value')*1;
+        if (changes === '-') {
+            number = number - 1;
+        }
+        if (changes === '+') {
+            number = number + 1;
+        }
+        if (number<=0) {
+            number=1;
+        }
+        $(':input[class = cart_goods_count]').prop('value', number);
+    });
+});
