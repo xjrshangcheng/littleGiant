@@ -5,8 +5,8 @@ var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "192.168.10.110",
-    dialect: "mysql",
-    port: 3306
+    dialect:"mysql",
+    port:3306
 });
 
 app.set('views', __dirname + '/views');
@@ -28,6 +28,17 @@ var User = sequelize.define('user', {
     freezeTableName: true,
     timestamps: false
 });
+
+var Goods = sequelize.define('goods', {
+    goodsId:Sequelize.INTEGER,
+    goodsName:Sequelize.STRING,
+    goodsPrice:Sequelize.STRING,
+    goodsImg:Sequelize.STRING
+}, {
+    freezeTableName: true,
+    timestamps: false
+});
+
 app.get('/', function(req, res) {
     res.render('index', {});
 });
