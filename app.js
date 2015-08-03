@@ -3,12 +3,12 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
-var jade = require('jade');
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "192.168.10.110",
-        dialect:   "mysql",
-        port:     3306,
+    dialect: "mysql",
+    port: 3306
 });
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
@@ -27,8 +27,7 @@ var User = sequelize.define('user', {
 }, {
     freezeTableName: true,
     timestamps: false
-})
-
+});
 app.get('/', function(req, res) {
     res.render('index', {});
 });
