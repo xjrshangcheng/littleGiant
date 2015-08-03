@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="./jquery/dist/jquery.js"></script>
+    <script src="./javascripts/shoppingCart.js"></script>
     <title>shoppingCart</title>
 </head>
 <body>
@@ -15,6 +17,7 @@
                 <div class="buycart_a">
                     <div class="buycart_titlebox">
                         <ul class="buycart_title">
+                            <li class="buy_cart_all"><input type="checkbox" name="all-check" value="">全选<br></li>
                             <li class="buy_cart_goods">商品名称</li>
                             <li class="buy_cart_rmb">价格</li>
                             <li class="buy_cart_number">数量</li>
@@ -29,13 +32,14 @@
                 </div>
                 <ul class="buycart_content cart_goods" goods_id="24124">
                     <li class="buycart_content_table1">
-                        <input type="checkbox" class="add_goods_tobuy_choose_0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124">id="add_goods_tobuy_24124">
-                    </li>
+                        <input type="checkbox" class="add_goods_tobuy_choose_0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124">
                     <li class="buycart_content_table2">
-                        <img src="./images/goods-detail-picture/ym2.jpg" >
+                        <a href="/product-details">
+                            <img src="./images/goods-detail-picture/ym2.jpg" >
+                        </a>
                     </li>
                     <li class="buycart_content_table3">
-                        <a href="http://localhost:3000/product-details">
+                        <a href="/product-details">
                             杨幂
                             <em>啦卡</em>
                         </a>
@@ -66,7 +70,7 @@
             </div>
         </div>
         <div class="footer_button">
-            <div class="continue_cart">继续购物</div>
+            <a href="/product-details"><div class="continue_cart">继续购物</div></a>
             <div class="buy_now">去结算</div>
         </div>
     </div>

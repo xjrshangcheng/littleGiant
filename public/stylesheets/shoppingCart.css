@@ -45,8 +45,17 @@
     border-bottom: 1px solid #dddddd;
     font-size: 12px;
 }
+.buycart_a .buycart_titlebox .buycart_title .buy_cart_all {
+    width: 67px;
+    height: 35px;
+    background: #ebebeb;
+    border-right: 1px solid white;
+    line-height: 37px;
+    text-align: center;
+    color: #666;
+}
 .buycart_a .buycart_titlebox .buycart_title .buy_cart_goods {
-    width: 447px;
+    width: 380px;
     height: 35px;
     background: #ebebeb;
     border-right: 1px solid white;
@@ -109,9 +118,9 @@ li {
     margin-top: -10px;
 }
 .buycart_content .buycart_content_table1 {
-    width: 23px;
     overflow: hidden;
-    padding-left: 33px;
+    padding-left: 13px;
+    padding-right: 40px;
     padding-top: 30px;
 }
 .buycart_content li {
@@ -119,10 +128,9 @@ li {
     font-size: 12px;
 }
 .buycart_content .buycart_content_table2 {
-    width: 62px;
+    width: 70px;
     overflow: hidden;
-    padding-top: 10px;
-    padding-left: 10px;
+    padding: 10px;
     position: relative;
 }
 .buycart_content .buycart_content_table2 img {
@@ -135,10 +143,9 @@ img {
     border: none 0;
 }
 .buycart_content .buycart_content_table3 {
-    width: 359px;
-    height: 34px;
-    padding-left: 12px;
-    padding-top: 14px;
+    width: 311px;
+    height: 48px;
+    padding: 14px;
     font-size: 12px;
 }
 .buycart_content .buycart_content_table3 em {
@@ -173,11 +180,11 @@ em {
     float: left;
 }
 .buycart_content .buycart_content_table6 {
-    width: 157px;
+    width: 152px;
     color: #c30000;
     font-weight: bold;
 }
-.buycart_content .buycart_content_table4, .buycart_content .buycart_content_table6 {
+.buycart_content .buycart_content_table4 {
     width: 128px;
     line-height: 77px;
     text-align: center;
