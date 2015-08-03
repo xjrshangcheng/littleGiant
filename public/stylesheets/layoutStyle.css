@@ -1,4 +1,3 @@
-@charset "utf-8";
 * {
     margin: 0;
     padding: 0;
@@ -14,8 +13,8 @@
     display: inline;
 }
 .logo img{
-    position: relative;
-    top: -32px;
+    width: 150px;
+    height: 50px;
 }
 .nav-list{
     display: inline-block;
@@ -59,7 +58,6 @@
     width: 100%;
     height: 2000px;
 }
-
 #foot{
     width: 100%;
     height: 150px;
