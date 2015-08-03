@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
-    host: "192.168.10.110",
+    host: "localhost",
     dialect:"mysql",
     port:3306
 });
@@ -30,7 +30,7 @@ var User = sequelize.define('user', {
 });
 
 var Goods = sequelize.define('goods', {
-    goodsId:Sequelize.INTEGER,
+    id:Sequelize.INTEGER,
     goodsName:Sequelize.STRING,
     goodsPrice:Sequelize.STRING,
     goodsImg:Sequelize.STRING
@@ -41,6 +41,25 @@ var Goods = sequelize.define('goods', {
 
 app.get('/', function(req, res) {
     res.render('index', {});
+});
+
+app.get('/slides-picture', function(req, res) {
+    var picturePath = [];
+    var pictureId = [];
+    Goods.findAll().then(function(good) {
+        for (var i = 0; i < good.length; i++) {
+            picturePath.push(good[i].dataValues.goodsImg);
+            pictureId.push(good[i].dataValues.id);
+        }
+    }).then(function() {
+        res.send({
+            status: 1,
+            dataPath: picturePath,
+            dataId:pictureId,
+            message: 'right'
+        });
+    });
+    res.end();
 });
 
 app.get("/car", function(req, res) {
@@ -119,6 +138,7 @@ app.post('/registerSubmit', function(req, res) {
         data : 'ok'
     });
 });
+
 var server = app.listen(3000, function() {
 
     var host = server.address().address;
