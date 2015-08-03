@@ -3,16 +3,16 @@
     padding: 0;
     list-style-type: none;
 }
-#nav{
+#nav {
     width: 100%;
     height: 50px;
     background: #b61d1d;
 }
-.logo{
+.logo {
     padding-left: 100px;
     display: inline;
 }
-.logo img{
+.logo img {
     width: 150px;
     height: 50px;
 }
@@ -20,21 +20,12 @@
     display: block;
     float: left;
 }
-.nav-list{
+.nav-list {
     display: inline-block;
-    margin-left: 100px;
 }
-.nav-list li{
-    float: left;
-    height: 50px;
-    width: 100px;
-    text-align: center;
+.nav-list li {
+    display: inline-block;
     margin: 0 10px;
-}
-.nav-list li a {
-    color: #fff;
-    text-decoration: none;
-    line-height: 50px;
 }
 .nav-list li:hover {
     color: #fff;
@@ -42,34 +33,39 @@
     line-height: 50px;
     background-color: #a20022;
 }
-
-.nav-user{
-    display: inline-block;
-    float: right;
-}
-.nav-user li{
-    display: inline-block;
-    float: left;
-}
-.nav-user li a{
+.nav-list li a {
     color: #fff;
     text-decoration: none;
     line-height: 50px;
-    margin: 10px;
+    margin: 0 10px;
 }
-
-.content{
+.nav-user {
+    display: inline-block;
+    float: right;
+    line-height: 50px;
+}
+.nav-user li {
+    display: inline-block;
+    float: left;
+}
+.nav-user li a {
+    color: #fff;
+    text-decoration: none;
+    line-height: 50px;
+    margin: 0 10px;
+}
+.content {
     width: 100%;
     height: 2000px;
 }
-#foot{
+#foot {
     width: 100%;
     height: 150px;
     background: #b61d1d;
     padding-top: 30px;
     text-align: center;
 }
-p{
+p {
     color: #fff;
     line-height: 20px;
     display: block;
