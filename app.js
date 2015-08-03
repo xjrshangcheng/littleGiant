@@ -155,6 +155,35 @@ app.post("/categoryProdctInfo", function(req, res) {
     });
 });
 
+var Goods = sequelize.define('goods', {
+    id: Sequelize.INTEGER,
+    goodsName: Sequelize.STRING,
+    goodsInfo: Sequelize.STRING,
+    goodsPrice: Sequelize.STRING,
+    goodsStandardOne: Sequelize.STRING,
+    goodsStandardTwo: Sequelize.STRING,
+    // goodsSales: Sequelize.INTERGER,
+    goodsDetail: Sequelize.STRING,
+    goodsType: Sequelize.STRING,
+    goodsImg: Sequelize.STRING
+}, {
+    freezeTableName: true,
+    timestamps: false
+})
+
+app.post("/shoppingCart", function(req, res){
+    console.log(req.body);
+
+    res.render('shoppingCart', {
+        name : req.body.username,
+        xuehao : req.body.userxuehao,
+        banji : req.body.userbanji,
+        kemu : req.body.userkemu,
+        score : req.body.userscore
+    });
+    res.end();
+});
+
 var server = app.listen(3000, function() {
 
     var host = server.address().address;
