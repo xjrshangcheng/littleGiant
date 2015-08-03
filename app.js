@@ -1,7 +1,6 @@
 var mysql = require('mysql');
 var express = require('express');
 var app = express();
-var ejs = require('ejs');
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var jade = require('jade');
@@ -10,9 +9,6 @@ var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
         dialect:   "mysql",
         port:     3306,
 });
-
-// app.engine(".html", ejs.__express);
-// app.set("view engine", "html");
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
@@ -23,13 +19,13 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 app.use(express.static("bower_components"));
 
-var User = sequelize.define('user', { //创建模型
+var User = sequelize.define('user', {
     id: Sequelize.INTEGER,
     username: Sequelize.STRING,
     password: Sequelize.STRING,
     email: Sequelize.STRING
 }, {
-    freezeTableName: true, // Model tableName will be the same as the model name
+    freezeTableName: true,
     timestamps: false
 })
 
