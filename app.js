@@ -9,6 +9,7 @@ var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "localhost",
     dialect:"mysql",
     port:3306
+})
 
 
 app.set('views', __dirname + '/views');
