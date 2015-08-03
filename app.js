@@ -53,13 +53,12 @@ app.get('/slides-picture', function(req, res) {
         }
     }).then(function() {
         res.send({
-            status: 1,
+            status: 200,
             dataPath: picturePath,
             dataId:pictureId,
             message: 'right'
         });
     });
-    res.end();
 });
 
 app.get("/car", function(req, res) {
