@@ -3,9 +3,9 @@ var express = require('express');
 var app = express();
 var ejs = require('ejs');
 var bodyParser = require('body-parser');
-var  Sequelize  =  require('sequelize');
+var Sequelize = require('sequelize');
 var jade = require('jade');
-var  sequelize  =  new  Sequelize('little_giant',  'twer',  'twer',   {
+var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "192.168.10.110",
         dialect:   "mysql",
         port:     3306,
@@ -104,10 +104,14 @@ app.post('/registerSubmit', function(req, res) {
     var inputEmail = req.body.inputEmail;
     console.log(req.body);
     User.create({
-        username : inputName,
-        password : inputPwd,
-        email : inputEmail
+        username: inputName,
+        password: inputPwd,
+        email: inputEmail
     })
+    res.send({
+        status : 200,
+        data : 'ok'
+    });
 })
 var server = app.listen(3000, function() {
 
