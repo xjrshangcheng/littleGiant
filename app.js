@@ -9,7 +9,7 @@ var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "localhost",
     dialect:"mysql",
     port:3306
-});
+
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
@@ -92,36 +92,33 @@ app.get('/login', function(req, res) {
 app.post('/loginSubmit', function(req, res) {
     var inputName = req.body.inputName;
     var inputPwd = req.body.inputPwd;
-    console.log(req.body);
+    var result;
+    var status;
+
     User.findAll().then(function(e) {
         var exist = false;
         e.forEach(function(n) {
-            if (n.dataValues.username === inputName && n.dataValues.password === inputPwd) {
-                res.send({
-                    status: 200,
-                    data: 'ok'
-                });
+            if(n.dataValues.username === inputName && n.dataValues.password === inputPwd) {
+                result = 'ok';
+                status = 200;
                 exist = true;
-            } else if (n.dataValues.username === inputName && n.dataValues.password !== inputPwd) {
-                res.send({
-                    status: 100,
-                    data: 'pwd_error'
-                });
+            } else if(n.dataValues.username === inputName && n.dataValues.password !== inputPwd) {
+                result = 'pwd_error';
+                status = 100;
                 exist = true;
-
-            } else if (n.dataValues.username !== inputName) {
-                exist = false;
             }
         });
-        if (!exist) {
-            res.send({
-                status: 100,
-                data: 'username_error'
-            });
+        if(!exist) {
+            result = 'username_error';
+            status = 100;
         }
+    }).done(function() {
+        res.send({
+            status : status,
+            data : result
+        })
     });
 });
-
 
 app.post('/registerSubmit', function(req, res) {
 
@@ -169,7 +166,10 @@ var Goods = sequelize.define('goods', {
 }, {
     freezeTableName: true,
     timestamps: false
-})
+
+        })
+
+
 
 app.post("/shoppingCart", function(req, res){
     console.log(req.body);
