@@ -1,8 +1,6 @@
-$(function() {
-    app.get('/slides-picture', function(req, res) {
-        Goods.findAll().then(function() {
-            var picture-path = []
-        });
+function getInfo() {
+    $.get('/slides-picture', function(data) {
+        document.getElementById('slides-picture').src = data.dataPath;
+
     });
-    document.getElementById('slides-picture').src = " ";
-});
+}
