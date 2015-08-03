@@ -96,6 +96,8 @@ input[type="button"], input[type="submit"] {
     border: none;
     color: #FFF;
     box-shadow: 1px 1px 1px rgba(75, 75, 75, 0.3);
+    margin-right:20px;
+    margin-top:20px;
 }
 input[type="button"]:hover, input[type="submit"]:hover {
     background-color: #c9302c;
