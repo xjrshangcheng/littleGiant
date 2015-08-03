@@ -3,6 +3,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
+var categoryJs = require("./control/control_category.js");
+
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "localhost",
     dialect:"mysql",
@@ -19,7 +21,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public"));
 app.use(express.static("bower_components"));
 
-var User = sequelize.define('user', {
+var User = sequelize.define('	user', {
     id: Sequelize.INTEGER,
     username: Sequelize.STRING,
     password: Sequelize.STRING,
@@ -135,6 +137,21 @@ app.post('/registerSubmit', function(req, res) {
     res.send({
         status : 200,
         data : 'ok'
+    });
+})
+
+app.post("/categoryProdctInfo", function(req, res) {
+    var resultArray = [];
+    categoryJs(function(result) {
+        result.forEach(function(n, i) {
+            resultArray.push(n.dataValues);
+        })
+
+        res.send({
+            status : 1,
+            data : resultArray,
+            message : ""
+        });
     });
 });
 
