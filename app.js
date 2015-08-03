@@ -45,11 +45,11 @@ app.get('/', function(req, res) {
 
 app.get("/car", function(req, res) {
     res.render("car", {});
-})
+});
 
 app.get("/shoppingCart", function(req, res) {
     res.render("shoppingCart", {});
-})
+});
 
 
 app.get("/category", function(req, res) {
@@ -67,7 +67,7 @@ app.get('/product-details', function(req, res) {
 
 app.get('/login', function(req, res) {
     res.render('login');
-})
+});
 
 app.post('/loginSubmit', function(req, res) {
     var inputName = req.body.inputName;
@@ -92,15 +92,15 @@ app.post('/loginSubmit', function(req, res) {
             } else if (n.dataValues.username !== inputName) {
                 exist = false;
             }
-        })
+        });
         if (!exist) {
             res.send({
                 status: 100,
                 data: 'username_error'
-            })
+            });
         }
-    })
-})
+    });
+});
 
 
 app.post('/registerSubmit', function(req, res) {
@@ -113,12 +113,12 @@ app.post('/registerSubmit', function(req, res) {
         username: inputName,
         password: inputPwd,
         email: inputEmail
-    })
+    });
     res.send({
         status : 200,
         data : 'ok'
     });
-})
+});
 var server = app.listen(3000, function() {
 
     var host = server.address().address;
