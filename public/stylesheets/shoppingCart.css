@@ -193,7 +193,7 @@ em {
     text-align: center;
     font-size: 12px;
 }
-.price, .subtotal {
+.price, .subtotal, .goods_name {
     width: 80px;
     border: 0px;
     padding: 0px;
@@ -288,4 +288,9 @@ a {
     border-radius: 3px;
     float: right;
     cursor: pointer;
+}
+.total {
+    width: 190px;
+    border: 0px;
+    background-color: #EAEAEA;
 }

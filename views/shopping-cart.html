@@ -30,9 +30,13 @@
                         </ul>
                     </div>
                 </div>
+                <div class="shopping_cart_goods">
+                    sadasfd
+                </div>
                 <ul class="buycart_content cart_goods" goods_id="24124" id="cart_goods">
                     <li class="buycart_content_table1">
                         <input type="checkbox" class="add_goods_tobuy_choose_0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124">
+                    </li>
                     <li class="buycart_content_table2">
                         <a href="/product-details">
                             <img src="./images/goods-detail-picture/ym2.jpg" >
@@ -40,16 +44,15 @@
                     </li>
                     <li class="buycart_content_table3">
                         <a href="/product-details">
-                            杨幂
-                            <em>啦卡</em>
+                            <input class="goods_name" type="text" name="name" value="杨幂啦卡" readonly>
                         </a>
                     </li>
                     <li class="buycart_content_table4">
-                        ￥<input class="price" type="test" name="name" value="33333330" readonly>
+                        ￥<input class="price" type="text" name="price" value="33333330" readonly>
                     </li>
                     <li class="buycart_content_table5">
                         <input class="changes" type="button" name="add" value="-">
-                        <input class="cart_goods_count" type="test" value="1">
+                        <input id="cart_goods_count" class="cart_goods_count" name="number" type="text" value="1">
                         <input class="changes" type="button" name="reduction" value="+">
                     </li>
                     <li class="buycart_content_table6">
@@ -68,7 +71,9 @@
                         <ul style="float:right;">
                             <li>
                                 <span class="amount_title">总计：</span>
-                                <em class="amount">¥ 9.00</em>
+                                <em class="amount">
+                                    ￥<input class="total" type="test" name="name" value="" readonly>
+                                </em>
                             </li>
                         </ul>
                     </li>
