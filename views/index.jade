@@ -19,9 +19,9 @@ html
                             li.li-one
                                 a(href='#') #{i}
                 #slides
-                    each x in picturePath
+                    each x in goods
                         a(href='/product-details')
-                            img(src="#{x}")
+                            img(src="#{x.goodsImg}")
                 #board
                     #shopping-board
                         .title-one

@@ -50,20 +50,16 @@ var Goods = sequelize.define('goods', {
 })
 
 app.get('/', function(req, res) {
-    var picturePath = [];
-    var pictureId = [];
+    var goods = [];
     Goods.findAll().then(function(good) {
         for (var i = 0; i < good.length; i++) {
             if (good[i].dataValues.recommend === 'true') {
-                picturePath.push(good[i].dataValues.goodsImg);
-                pictureId.push(good[i].dataValues.id);
+                goods.push(good[i].dataValues);
             }
         }
     }).then(function() {
-        console.log(picturePath);
         res.render('index', {
-            pictureId : pictureId,
-            picturePath : picturePath,
+            goods : goods,
             navgation : ['图书音像','家电通讯','电脑用品','家具家装','服饰鞋帽','个护化妆','彩票充值','运动健康','母婴用品','汽车用品','食品饮料']
         });
     });
