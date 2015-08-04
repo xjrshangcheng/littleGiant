@@ -52,7 +52,7 @@ app.get('/', function(req, res) {
     res.render('index', {});
 });
 
-app.get('/slides-picture', function(req, res) {
+app.get('/slidesPicture', function(req, res) {
     var picturePath = [];
     var pictureId = [];
     Goods.findAll().then(function(good) {
