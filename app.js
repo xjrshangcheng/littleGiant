@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var categoryJs = require("./control/control_category.js");
 
-var sequelize = new Sequelize('little_giant', 'root', 'root', {
+var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "localhost",
     dialect:"mysql",
     port:3306
