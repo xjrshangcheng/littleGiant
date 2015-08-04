@@ -7,8 +7,7 @@ $(function() {
         var allChecked = $(":input[name=add_goods_tobuy_choose_0]:checked").length === $('input[name=add_goods_tobuy_choose_0]').length;
         $(":input[name=all-check]").prop("checked", allChecked);
     });
-});
-$(function() {
+
     $(':input[class = changes]').on('click', function() {
         var changes = $(this).prop('value');
         var number = $(':input[class = cart_goods_count]').prop('value')*1;
@@ -22,5 +21,18 @@ $(function() {
             number=1;
         }
         $(':input[class = cart_goods_count]').prop('value', number);
+        var price = $(':input[class=price]').prop('value');
+        var subtotal = price *number;
+        $(':input[class = subtotal]').prop('value', subtotal);
     });
+
+    $(':input[class=cart_goods_count]').on('input propertychange',function() {
+        var price = $(':input[class=price]').prop('value');
+        var number = $(':input[class=cart_goods_count]').prop('value');
+        var subtotal = price * number;
+        $(':input[class = subtotal]').prop('value', subtotal);
+        console.log(number);
+    });
+
+
 });

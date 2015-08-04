@@ -193,6 +193,12 @@ em {
     text-align: center;
     font-size: 12px;
 }
+.price, .subtotal {
+    width: 80px;
+    border: 0px;
+    padding: 0px;
+    background-color:  #F7F7F7;
+}
 .buycart_content .buycart_content_table7 {
     width: 90px;
     height: 77px;
