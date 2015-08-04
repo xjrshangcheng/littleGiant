@@ -4,15 +4,15 @@ var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var categoryJs = require("./control/control-category.js");
-
+//var ejs = require("ejs");
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "localhost",
     dialect:"mysql",
     port:3306
 })
 
+//app.engine(".html", ejs.__express);
 
-app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 app.use(bodyParser.urlencoded({
@@ -60,21 +60,8 @@ var user_shopping_cart = sequelize.define('user_shopping_cart',{
     timestamps : false
 })
 
-app.get('/', function(req, res) {
-    var goods = [];
-    Goods.findAll().then(function(good) {
-        for (var i = 0; i < good.length; i++) {
-            if (good[i].dataValues.recommend === 'true') {
-                goods.push(good[i].dataValues);
-            }
-        }
-    }).then(function() {
-        res.render('index', {
-            goods : goods,
-            navgation : ['图书音像','家电通讯','电脑用品','家具家装','服饰鞋帽','个护化妆','彩票充值','运动健康','母婴用品','汽车用品','食品饮料']
-        });
-    });
-});
+var index = require("./router/index");
+app.get('/', index);
 
 app.get("/car", function(req, res) {
     res.render("car", {});
