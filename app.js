@@ -136,16 +136,18 @@ app.post('/registerSubmit', function(req, res) {
 })
 
 app.post("/category-info", function(req, res) {
-    var resultArray = [];
-    categoryJs(function(result) {
-        result.forEach(function(n, i) {
-            resultArray.push(n.dataValues);
-        })
+    Goods.findAll().then(function(e) {
+        var resultArray = [];
+        categoryJs(function(result) {
+            result.forEach(function(n, i) {
+                resultArray.push(n.dataValues);
+            })
 
-        res.send({
-            status : 1,
-            data : resultArray,
-            message : ""
+            res.send({
+                status : 1,
+                data : resultArray,
+                message : ""
+            });
         });
     });
 });
