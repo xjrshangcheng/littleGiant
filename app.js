@@ -34,15 +34,15 @@ var User = sequelize.define('user', {
 
 var Goods = sequelize.define('goods', {
     id: Sequelize.INTEGER,
-    goodsName: Sequelize.STRING,
-    goodsInfo: Sequelize.STRING,
-    goodsPrice: Sequelize.STRING,
-    goodsStandardOne: Sequelize.STRING,
-    goodsStandardTwo: Sequelize.STRING,
-    // goodsSales: Sequelize.INTERGER,
-    goodsDetail: Sequelize.STRING,
-    goodsType: Sequelize.STRING,
-    goodsImg: Sequelize.STRING,
+    name: Sequelize.STRING,
+    info: Sequelize.STRING,
+    price: Sequelize.STRING,
+    standard_one: Sequelize.STRING,
+    standard_two: Sequelize.STRING,
+    sales: Sequelize.STRING,
+    detall: Sequelize.INTEGER,
+    type: Sequelize.STRING,
+    img: Sequelize.STRING,
     recommend: Sequelize.STRING
 }, {
     freezeTableName: true,
@@ -52,9 +52,9 @@ var Goods = sequelize.define('goods', {
 var user_shopping_cart = sequelize.define('user_shopping_cart',{
     id : Sequelize.INTEGER,
     username : Sequelize.STRING,
-    goodsNumber : Sequelize.INTEGER,
-    goodsName : Sequelize.STRING,
-    goodsPrice : Sequelize.STRING
+    number : Sequelize.INTEGER,
+    name : Sequelize.STRING,
+    price : Sequelize.STRING
 }, {
     freezeTableName : true,
     timestamps : false
