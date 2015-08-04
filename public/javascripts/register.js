@@ -20,3 +20,6 @@ $(function() {
         })
     })
 })
+function test(p) {
+    $("#uid").trigger("easyform-ajax", false);
+}
