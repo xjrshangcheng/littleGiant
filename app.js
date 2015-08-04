@@ -9,7 +9,7 @@ var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     dialect:"mysql",
     port:3306
 })
-var routes = require('./routes/user-shopping-cart');
+var shoppingCart = require('./router/user-shopping-cart');
 
 app.set('view engine', 'jade');
 
@@ -150,24 +150,26 @@ app.post("/category-info", function(req, res) {
     });
 });
 
-app.post("/add_user_shopping_cart",function(req,res) {
-    var id = req.body.id;
-    var username = req.body.username;
-    var number = req.body.number;
-    var name = req.body.name;
-    var price = req.body.price;
-    console.log(req.body);
+app.use('/add_user_shopping_cart', shoppingCart)
 
-    user_shopping_cart.create({
-        id : id,
-        username : username,
-        number : number,
-        name : name,
-        price : price
-    }).then(function() {
-        res.end();
-    })
-})
+// app.post("/add_user_shopping_cart",function(req,res) {
+//     var id = req.body.id;
+//     var username = req.body.username;
+//     var number = req.body.number;
+//     var name = req.body.name;
+//     var price = req.body.price;
+//     console.log(req.body);
+//
+//     user_shopping_cart.create({
+//         id : id,
+//         username : username,
+//         number : number,
+//         name : name,
+//         price : price
+//     }).then(function() {
+//         res.end();
+//     })
+// })
 
 var server = app.listen(3000, function() {
 
