@@ -1,4 +1,5 @@
 $(function() {
+    $('#reg-form').easyform();
     $('#register').on('click', function() {
         var inputName = $('#uid').prop('value');
         var inputPwd = $('#psw1').prop('value');
