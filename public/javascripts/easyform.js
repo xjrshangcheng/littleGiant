@@ -1,16 +1,14 @@
 /*
  * 表单验证插件 easyform
- * Author:LeeLanfei
- * 2014-11-5
  * 用于表单验证
- * 只要在需要验证的控件上添加easyform属性即可，多个属性用[;]连接
+ * 只要在需要验证的控件上添加easyform属性即可，多个属性用[;]连接，语法类似css
  * 属性列表：
  *      null
  *      email
  *      char-normal         英文、数字、下划线
  *      char-chinese        中文、英文、数字、下划线、中文标点符号
  *      char-english        英文、数字、下划线、英文标点符号
- *      length:1-10 / length:4
+ *      length:1 10 / length:4      能够识别汉字等宽字符长度
  *      equal:xxx                               等于某个对象的值，冒号后是jq选择器语法
  *      ajax:fun()
  *      real-time                               实时检查
@@ -18,28 +16,61 @@
  *      time                    10:30:00
  *      datetime            2014-10-31 10:30:00
  *      money               正数，两位小数
- *      uint :1                 正整数 , 参数为起始值
- *
- *
- *  ------ requirement list ----------------------------------------------------
- * 1. 2014-11-18 没有排除隐藏起来的input和hidden类型的input
- * 2. 2014-11-18 需要支持有条件的提示信息。
- * 3. 2014-11-19 ajax不支持异步
- * 4. 2014-11-19 没有考虑file类型等特殊类型的判断
- * 5. 2014-11-20 当网页载入时有隐藏的控件，之后控件显示出来后，其关联的easytip不能正确显示位置
- * 6. 2014-11-21 目前不支持属性继承
- * 7. 2014-11-21 实时检查的时候，弹出的easytip有时候会导致弹出信息的消息出错
- *
- *
- * ------ change list -------------------------------------------------
- * 1. 2014-11-18 requirement list 1 完成
- * 2. 2014-11-18 支持实时检查
- * 3. 2014-11-18 requirement list 2 完成
- * 4. 2014-11-20 requirement list 3支持了ajax异步验证方式。
- * 5. 2014-11-21 requirement list 5完成
- *
+ *      uint :1 100                 正整数 , 参数为起始值和最大值
+ *      number              不限长度的数字字符串
+ *      float:7 2
+ *      regex:"^(\\d{4})-(\\d{2})-(\\d{2})$"
  * */
 ;
+
+//TODO 缺少执行完毕事件，不能判断是否执行失败，因为error执行了多次
+//TODO real-time条件下，easytip有可能出现显示不同步
+/**
+ * 读取一个控件的指定data属性，并通过：和；来分割成key/value值对
+ * @id string 控件id
+ * @name string 属性名称
+ **/
+if (typeof(easy_load_options) == "undefined")
+{
+    function easy_load_options(id, name)
+    {
+        var options = $("#" + id).data(name);
+
+        //将字符串用；分割
+        options = (!!options ? options.split(";") : undefined);
+
+        var data = Object();
+
+        if (!!options)
+        {
+            var index;
+            for (index in options)
+            {
+                var temps = options[index];
+                var p = temps.indexOf(":");
+
+                var temp = [];
+                if (-1 == p)
+                {
+                    temp[0] = temps;
+                    temp[1] = "";
+                }
+                else
+                {
+                    temp[0] = temps.substring(0, p);
+                    temp[1] = temps.substring(p + 1);
+                }
+
+                if (temp[0].length > 0)
+                    data[temp[0]] = temp[1];
+            }
+        }
+
+        return data;
+    }
+}
+
+//easyform
 (function ($, window, document, undefined)
 {
     /*
@@ -49,20 +80,27 @@
     {
         this.form = ele;
 
+        if (0 == this.form.length && "form" != this.form[0].localName)
+        {
+            throw new Error("easyform need a form !");
+        }
+
         this.defaults = {
-            easytip: true
+            easytip: true   //是否显示easytip，可以关闭后，使用自定义的提示信息
         };
+
         this.options = $.extend({}, this.defaults, opt);
 
         this.result = [];
         this.inputs = [];
 
         this.counter = 0;   //已经判断成功的input计数
-        this.is_submit = true;
+        this.is_submit = true;  //是否提交，如果为false，即使验证成功也不会执行提交
 
         //事件定义
         this.success = null;
         this.error = null;
+        this.per_validation = null;     //在所有验证之前执行
     };
 
     //方法
@@ -70,8 +108,8 @@
 
         init: function ()
         {
-            var ei = this;
-            ei._load();
+            var $this = this;
+            $this._load();
 
             //改写 submit 的属性，便于控制
             this.submit_button = this.form.find("input:submit");
@@ -83,7 +121,7 @@
                 //提交前判断
                 button.click(function ()
                 {
-                    ei.submit(true);
+                    $this.submit(true);
                 });
             });
 
@@ -92,43 +130,64 @@
 
         _load: function ()
         {
-            this.inputs.splice(0, this.inputs.length);
-            var ev = this;
-
-            this.form.find("input:visible").each(function (index, input)
+            //析构旧的easyinput，防止real-time条件下的重复验证。
+            for (var i in this.inputs)
             {
-                //排除 hidden、button、submit、checkbox、radio、file
-                if (input.type != "hidden" && input.type != "button" && input.type != "submit" && input.type != "checkbox" && input.type != "radio" && input.type != "file")
+                this.inputs[i].destructor();
+            }
+
+            this.inputs.splice(0, this.inputs.length);
+
+            var $this = this;
+
+            this.form.find("input:visible, textarea:visible").each(function (index, input)
+            {
+                //排除 hidden、button、submit、file
+                if (input.type != "hidden" && input.type != "button" && input.type != "submit"
+                    && input.type != "file")
                 {
-                    var checker = $(input).easyinput({easytip: ev.easytip});
-
-                    checker.error = function (e)
+                    if (input.type == "radio" || input.type == "checkbox")
                     {
-                        ev.is_submit = false;
-                        ev.result.push(e);
+                        var name = input.name;
 
-                        if (!!ev.error)    //失败事件
-                            ev.error(e);
+                        for (index in  $this.inputs)
+                        {
+                            if (name == $this.inputs[index].input[0].name)
+                            {
+                                return;
+                            }
+                        }
+                    }
+
+                    var checker = $(input).easyinput({easytip: $this.options.easytip});
+
+                    checker.error = function (e, r)
+                    {
+                        $this.is_submit = false;
+                        $this.result.push(e);
+
+                        if (!!$this.error)    //失败事件
+                            $this.error($this, e, r);
                     };
 
                     checker.success = function (e)
                     {
-                        ev.counter++;
-                        if (ev.counter == ev.inputs.length)
+                        $this.counter++;
+                        if ($this.counter == $this.inputs.length)
                         {
-                            ev.counter = 0;
+                            $this.counter = 0;
 
-                            if (!!ev.success)    //成功事件
-                                ev.success();
+                            if (!!$this.success)    //成功事件
+                                $this.success($this);
 
-                            if (!!ev.is_submit)
+                            if (!!$this.is_submit)
                             {
-                                ev.form.submit();
+                                $this.form.submit();
                             }
                         }
                     };
 
-                    ev.inputs.push(checker);
+                    $this.inputs.push(checker);
                 }
             });
         },
@@ -139,11 +198,29 @@
          * */
         submit: function (submit)
         {
-            this._load();                                               //重新载入控件
-            this.result.splice(0, this.result.length);     //清空前一次的结果
+            this._load();                                                   //重新载入控件
+            this.result.splice(0, this.result.length);       //清空前一次的结果
 
             this.counter = 0;
             this.is_submit = submit;
+
+            //执行per_validation事件
+            if (this.per_validation)
+            {
+                this.is_submit = this.per_validation(this);
+            }
+
+            //如果没有需要判断的控件
+            if (this.inputs.length == 0)
+            {
+                if (!!this.success)    //成功事件
+                    this.success();
+
+                if (this.is_submit)
+                {
+                    this.form.submit();
+                }
+            }
 
             var index;
             for (index in this.inputs)
@@ -162,32 +239,58 @@
         return validation.init();
     };
 
-
 })(jQuery, window, document);
 
+//easyinput
 (function ($, window, document, undefined)
 {
     //单个input的检查器构造函数
     var _easyinput = function (input, opt)
     {
-        this.input = input;
-        this.rules = [];
+        if (0 == input.length)
+        {
+            throw new Error("easyform need a input object !");
+        }
 
-        this.message = $(input).attr("message");
-        this.message = (!!this.message ? this.message : "格式错误!");
+        this.input = input;     //绑定的控件
+        this.rules = [];            //规则
 
         //事件
         this.error = null;
         this.success = null;
 
         this.defaults = {
-            easytip: true   //是否显示easytip
+            "easytip": true,   //是否显示easytip
+            "real-time": false
         };
-        this.options = $.extend({}, this.defaults, opt);
+
+        this.tip = null;    //关联的tip
+
+        //读取 data-easyform属性
+        this.rules = easy_load_options(input[0].id, "easyform");
+
+        //处理data-easyform中的配置属性
+        var o = Object();
+        for (var index in this.rules)
+        {
+            if (index == "easytip")
+            {
+                o["easytip"] = this.rules[index];
+            }
+            else if (index == "real-time")
+            {
+                o["real-time"] = true;
+            }
+        }
+
+        delete this.rules["easytip"];
+        delete this.rules["real-time"];
+
+        this.options = $.extend({}, this.defaults, opt, o);
 
         this.counter = 0;   //计数器，记录已经有多少个条件成功
 
-        this.is_error = false;
+        this.is_error = false;      //错误标志
     };
 
     //单个input的检查器
@@ -196,52 +299,23 @@
         init: function ()
         {
             //初始化easytip
-            this._init_easytip();
+            if (true === this.options.easytip)
+            {
+                this.tip = $(this.input).easytip();
+            }
+
+            var $this = this;
 
             //是否实时检查
-            var easyinput = this;
-            var rule = this.input.attr("easyform");
-            if (!!rule && -1 != rule.indexOf("real-time"))
+            if (!!this.rules && this.options["real-time"])
             {
-                this.input.blur(function ()
+                this.input.on("blur", function ()
                 {
-                    easyinput.validation();
+                    $this.validation();
                 });
             }
 
             return this;
-        },
-
-        //初始化easytip
-        _init_easytip: function ()
-        {
-            if (!!this.options.easytip)
-            {
-                var tipoptions = $(this.input).attr("easytip");
-
-                tipoptions = (!!tipoptions ? tipoptions.split(";") : undefined);
-
-                if (!!tipoptions)
-                {
-                    var options = Object();
-                    var index;
-                    for (index in tipoptions)
-                    {
-                        var temps = tipoptions[index];
-                        var p = temps.indexOf(":");
-
-                        if (-1 == p)continue;
-
-                        var temp = [];
-                        temp[0] = temps.substring(0, p);
-                        temp[1] = temps.substring(p + 1);
-
-                        options[temp[0]] = temp[1];
-                    }
-                }
-
-                this.options.easytip = $(this.input).easytip(options);
-            }
         },
 
         /**
@@ -251,62 +325,53 @@
         {
             this.value = this.input.val();
             this.counter = 0;   //计数器清零
-            this.rule = this.input.attr("easyform");
-
             this.is_error = false;
 
-            this._parse(this.rule);
-
-            this._null(this, this.value, this.rule);
-
-            for (var i = 0; i < this.rules.length; i++)
+            if (this.input.attr("type") == "radio" || this.input.attr("type") == "checkbox")
             {
-                //调用条件函数
-                if (!!this.judge[this.rules[i].rule])
-                    this.judge[this.rules[i].rule](this, this.value, this.rules[i].param);
-            }
-        },
+                var name = this.input.attr("name");
 
-        //easyform 解析函数
-        _parse: function (str)
-        {
-            this.rules = [];
+                var v = $('input[name="' + name + '"]:checked').val();
 
-            var strs = !!str ? str.split(";") : {};
-
-            for (var i = 0; i < strs.length; i++)
-            {
-                var s = strs[i];
-                var rule = s;
-                var param = "";
-
-                //有：号
-                var p = s.indexOf(":");
-                if (-1 != p)
+                if (false == this._null(this, v, this.rules))
                 {
-                    rule = s.substr(0, p);
-                    param = s.substr(p + 1);
+                    this._success();
+                }
+            }
+            else if (false == this._null(this, this.value, this.rules))
+            {
+                for (var index in this.rules)
+                {
+                    //调用条件函数
+                    if (!!this.judge[index])
+                        this.judge[index](this, this.value, this.rules[index]);
                 }
 
-                if (!!this.judge[rule])
-                    this.rules.push({rule: rule, param: param});
+                //如果没有写任何规则
+                if (Object.keys(this.rules).length == 0)
+                {
+                    this._success();
+                }
             }
         },
 
         _error: function (rule)
         {
             if (!!this.error)
-                this.error(this.input, rule);
+                this.error(this.input[0], rule);
 
             if (false == this.is_error)
             {
-                var msg = this.input.attr(rule + "-message");
+                var msg = $(this.input).data("message-" + rule);
 
-                var msg = !msg ? this.message : msg;
+                if (!msg)
+                    msg = $(this.input).data("message");
 
-                if (!!this.options.easytip)
+                msg = !msg ? "格式错误" : msg;
+
+                if (true === this.options.easytip)
                 {
-                    this.options.easytip.show(msg);
+                    this.tip.show(msg);
                 }
 
                 this.is_error = true;
@@ -327,7 +392,7 @@
         {
             this.counter += 1;
 
-            if (this.counter == this.rules.length)
+            if (this.counter == Object.keys(this.rules).length)
                 this._success();
 
             return true;
@@ -337,14 +402,19 @@
         {
             if (!v)
             {
-                if (!!r && -1 != r.indexOf("null")) //rule不为空并且含有null
+                //rule不为空并且含有null
+                if (!!r && typeof(r["null"]) != "undefined")
                 {
                     return ei._success();
                 }
                 else
                 {
-                    return ei._error("require");
+                    return ei._error("null");
                 }
+            }
+            else
+            {
+                return false;
             }
         },
 
@@ -363,7 +433,7 @@
 
             "char-chinese": function (ei, v, p)
             {
-                if (false == /^([\w]|[\u4e00-\u9fa5]|[ 。，、？￥“‘！：【】《》（）——+-])+$/.test(v))
+                if (false == /^([\w]|[\u4e00-\u9fa5]|[ 。，、？￥“”‘’！：【】《》（）——.,?!$'":+-])+$/.test(v))
                     return ei._error("char-chinese");
                 else
                     return ei._success_rule("char-chinese");
@@ -387,12 +457,14 @@
 
             "length": function (ei, v, p)
             {
-                var range = p.split("-");
+                var range = p.split(" ");
 
                 //如果长度设置为 length:6 这样的格式
                 if (range.length == 1) range[1] = range[0];
 
-                if (v.length < range[0] || v.length > range[1])
+                var len = v.replace(/[^\x00-\xff]/g, "aa").length;
+
+                if (len < range[0] || len > range[1])
                     return ei._error("length");
                 else
                     return ei._success_rule("length");
@@ -410,11 +482,11 @@
             "ajax": function (ei, v, p)
             {
                 // 为ajax处理注册自定义事件
-                // HTML中执行相关的AJAX时，需要发送事件 easyinput-ajax 来通知 easyinput
+                // HTML中执行相关的AJAX时，需要发送事件 easyform-ajax 来通知 easyinput
                 // 该事件只有一个bool参数，easyinput 会根据这个值判断ajax验证是否成功
-                ei.input.delegate("", "easyinput-ajax", function (e, p)
+                ei.input.delegate("", "easyform-ajax", function (e, p)
                 {
-                    ei.input.unbind("easyinput-ajax");
+                    ei.input.unbind("easyform-ajax");
 
                     if (false == p)
                         return ei._error("ajax");
@@ -451,22 +523,92 @@
 
             "money": function (ei, v, p)
             {
-                if (false == /^([1-9][\d]{0,7}|0)(\.[\d]{1,2})?$/.test(v))
+                if (false == /^([1-9][\d]{0,10}|0)(\.[\d]{1,2})?$/.test(v))
                     return ei._error("money");
                 else
                     return ei._success_rule("money");
             },
 
+            "number": function (ei, v, p)
+            {
+                if (false == /^\d{1,}$/.test(v))
+                    return ei._error("number");
+                else
+                    return ei._success_rule("number");
+            },
+
+            "float": function (ei, v, p)
+            {
+                var range = p.split(" ");
+
+                //如果长度设置为 float:6 这样的格式
+                //必须定义整数和小数的位数
+                if (range.length != 2)
+                {
+                    return ei._error("float");
+                }
+                else if (range[0] + range[1] > 16)
+                {
+                    console.warn("您的" + ei.input.id + "float规则配置可能不正确!请保证整数位数+小数位数 < 16");
+                }
+
+                var pattern = new RegExp("^([1-9][\\d]{0," + range[0] + "}|0)(\\.[\\d]{1," + range[1] + "})?$");
+
+                if (false == pattern.test(v))
+                    return ei._error("float");
+
+                else
+                    return ei._success_rule("float");
+            },
+
             "uint": function (ei, v, p)
             {
                 v = parseInt(v);
-                p = parseInt(p);
 
-                if (isNaN(v) || isNaN(p) || v < p || v < 0)
+                var range = p.trim().split(" ");
+
+                if ("" == p.trim())
+                {
+                    console.warn("您的" + ei.input.id + "uint规则，没有设置值域!");
+                    range[0] = 0;
+                }
+
+                if (range.length == 1)
+                {
+                    range[1] = 999999999999999;
+                }
+
+                range[0] = parseInt(range[0]);
+                range[1] = parseInt(range[1]);
+
+                if (isNaN(v) || isNaN(range[0]) || isNaN(range[1]) || v < range[0] || v > range[1] || v < 0)
                     return ei._error("uint");
                 else
                     return ei._success_rule("uint");
+            },
+
+            "regex": function (ei, v, p)
+            {
+                var pattern = new RegExp(p);
+
+                if (false == pattern.test(v))
+                    return ei._error("regex");
+
+                else
+                    return ei._success_rule("regex");
             }
+        },
+
+        destructor: function ()
+        {
+            //重置事件
+            this.error = null;
+            this.success = null;
+
+            //解除实时验证
+            this.input.off("blur");
+
+            delete this;
         }
     };
 
@@ -479,55 +621,37 @@
 
 })(jQuery, window, document);
 
+//easytip
 (function ($, window, document, undefined)
 {
-    var themes = {
-        black: {
-            color: "rgba(238,238,238,1)",
-            "background-color": "rgba(75,75,75,0.8",
-            "border": "1px solid rgba(75,75,75,1)",
-            "border-radius": 5
-        },
-        blue: {
-            color: "rgba(255,255,255,1)",
-            "background-color": "rgba(51,153,204,0.8)",
-            "border": "1px solid rgba(102,153,204,1)",
-            "border-radius": 5
-        },
-        red: {
-            color: "rgba(255,255,255,1)",
-            "background-color": "rgba(255,102,102,0.9)",
-            "border": "1px solid rgba(204,0,51,1)",
-            "border-radius": 5
-        },
-        white: {
-            color: "rgba(102,102,102,1)",
-            "background-color": "rgba(255,255,255,0.9)",
-            "border": "1px solid rgba(153,153,153,1)",
-            "border-radius": 5
-        }
-    };
-
     var _easytip = function (ele, opt)
     {
         this.parent = ele;
+
+        if (0 == this.parent.length)
+        {
+            throw new Error("easytip's is null !");
+        }
+
         this.defaults = {
             left: 0, top: 0,
-            position: "right",
-            disappear: "other",        //self, other, lost-focus, none, N seconds
+            position: "right",           //top, left, bottom, right
+            disappear: "other",       //self, other, lost-focus, none, N seconds
             speed: "fast",
-            theme: "white",
-            arrow: "bottom",        //top, left, bottom, right
-            onshow: null,
-            onclose: null,
-            style: {}
+            class: "easy-white",
+            arrow: "bottom",          //top, left, bottom, right 自动，手动配置无效
+            onshow: null,               //事件
+            onclose: null               //事件
         };
-        this.options = $.extend({}, this.defaults, opt);
-        this.theme = themes[this.options.theme];
 
-        this.padding = 0;
+        this._fun_cache = Object();    //响应函数缓存，用来保存show里面自动添加的click函数，以便于后面的unbind针对性的一个一个删除
 
-        this.id = "easytip-div-main" + ele[0].id;
+        //从控件的 data-easytip中读取配置信息
+        var data = easy_load_options(ele[0].id, "easytip");
+
+        this.options = $.extend({}, this.defaults, opt, data);
+
+        this.id = "easytip-div-main-" + ele[0].id;
     };
 
     _easytip.prototype = {
@@ -536,6 +660,7 @@
         {
             var tip = $("#" + this.id);
 
+            //同一个控件不会多次初始化。
             if (tip.length == 0)
             {
                 $(document.body).append("<div id=\"" + this.id + "\"><div class=\"easytip-text\"></div></div>");
@@ -546,7 +671,8 @@
                 tip.css({
                     "text-align": "left",
                     "display": "none",
-                    "position": "absolute"
+                    "position": "absolute",
+                    "z-index":9000
                 });
 
                 text.css({
@@ -575,7 +701,6 @@
             var parent = this.parent;
             var tip = $("#" + this.id);
 
-
             if (tip.width() > 300)
             {
                 tip.width(300);
@@ -588,14 +713,10 @@
             var text = $("#" + this.id + " .easytip-text");
             var arrow = $("#" + this.id + " .easytip-arrow");
 
-            text.css(this.theme);
+            text.addClass(this.options.class);
 
             arrow.css("border-color", "transparent transparent transparent transparent");
-
-            if (this.options.style != null && typeof(this.options.style) == "object")
-            {
-                text.css(this.options.style);
-            }
+            tip.css("box-sizing", "content-box");
         },
 
         _arrow: function ()
@@ -652,7 +773,8 @@
             {
                 case "top":
 
-                    tip.css("left", offset.left - this.padding);
+                    //tip.css("left", offset.left - this.padding);
+                    tip.css("left", offset.left);
                     tip.css("top", offset.top - tip.outerHeight() - arrow.outerHeight() / 2);
                     this.options.arrow = "bottom";
 
@@ -668,7 +790,8 @@
 
                 case "bottom":
 
-                    tip.css("left", offset.left - this.padding);
+                    //tip.css("left", offset.left - this.padding);
+                    tip.css("left", offset.left);
                     tip.css("top", offset.top + size.height + arrow.outerHeight() / 2);
                     this.options.arrow = "top";
 
@@ -706,43 +829,45 @@
             this._position();
             this._arrow();
 
+            var $this = this;
+
             var onshow = this.options.onshow;
             var onclose = this.options.onclose;
 
             tip.fadeIn(speed, function ()
             {
-                if (!!onshow)    onshow({parent: parent, target: tip[0]});
+                if (!!onshow)    onshow(parent, tip[0]);
 
                 if (!isNaN(disappear))
                 {
+                    //如果disappear是数字，则倒计时disappear毫秒后消失
                     setTimeout(function ()
                     {
-
                         tip.fadeOut(speed, function ()
                         {
-                            if (!!onclose)    onclose({parent: parent, target: tip[0]});
+                            if (!!onclose)    onclose(parent, tip[0]);
                         });
 
                     }, disappear);
                 }
                 else if (disappear == "self" || disappear == "other")
                 {
-                    $(document).click(function (e)
+                    $(document).bind('click', $this._fun_cache[tip[0].id] = function (e)
                     {
                         if (disappear == "self" && e.target == text[0])
                         {
                             tip.fadeOut(speed, function ()
                             {
-                                if (!!onclose)    onclose({parent: parent, target: tip[0]});
-                                $(document).unbind("click");
+                                if (!!onclose)   onclose(parent, tip[0]);
+                                $(document).unbind("click", $this._fun_cache[tip[0].id]);
                             });
                         }
                         else if (disappear == "other" && e.target != tip[0])
                         {
                             tip.fadeOut(speed, function ()
                             {
-                                if (!!onclose)    onclose({parent: parent, target: tip[0]});
-                                $(document).unbind("click");
+                                if (!!onclose)    onclose(parent, tip[0]);
+                                $(document).unbind("click", $this._fun_cache[tip[0].id]);
                             });
                         }
                     });
@@ -753,7 +878,7 @@
                     {
                         tip.fadeOut(speed, function ()
                         {
-                            if (!!onclose)    onclose({parent: parent, target: tip[0]});
+                            if (!!onclose)    onclose(parent, tip[0]);
                             $(parent).unbind("focusout");
                         });
                     });
@@ -769,7 +894,7 @@
 
             tip.fadeOut(this.options.speed, function ()
             {
-                if (!!onclose)    onclose({parent: parent, target: tip[0]});
+                if (!!onclose)    onclose(parent, tip[0]);
             });
         }
     };
