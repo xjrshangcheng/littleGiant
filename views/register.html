@@ -7,9 +7,9 @@
 
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/easyform.css">
-    <script type="text/javascript" src="./jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="./javascripts/jquery-1.11.3.js"></script>
     <script type="text/javascript" src="./javascripts/easyform.js"></script>
-    <script type="text/javascript" src='javascripts/register.js'></script>
+    <script type="text/javascript" src='./javascripts/register.js'></script>
 
 </head>
 
@@ -20,23 +20,27 @@
             <table>
                 <tr>
                     <td>
-                        <input placeholder="用户名" name="uid" type="text" id="uid" data-easyform="length:6 16;char-normal;real-time;ajax:test(1);" data-message="必须为6—16位的英文字母或数字" data-easytip="disappear:lost-focus;class:easy-red;" data-message-ajax="用户名已存在!">
+                        <input placeholder="用户名" name="uid" type="text" id="uid" data-easyform="length:6 16;char-normal;real-time;ajax:test(1);"
+                        data-message="必须为6—16位的英文字母或数字" data-easytip="disappear:lost-focus;class:easy-red;" data-message-ajax="用户名已存在!">
 
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input placeholder="密码" name="psw1" type="password" id="psw1" data-easyform="length:6 16;real-time;" data-message="密码必须为6—16位" data-easytip="disappear:lost-focus;class:easy-red;">
+                        <input placeholder="密码" name="psw1" type="password" id="psw1" data-easyform="length:6 16;real-time;"
+                        data-message="密码必须为6—16位" data-easytip="disappear:lost-focus;class:easy-red;">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input placeholder="确认密码" name="psw2" type="password" id="psw2" data-easyform="length:6 16;equal:#psw1;real-time;" data-message="两次密码输入要一致" data-easytip="disappear:lost-focus;class:easy-red;">
+                        <input placeholder="确认密码" name="psw2" type="password" id="psw2" data-easyform="length:6 16;equal:#psw1;real-time;"
+                        data-message="两次密码输入要一致" data-easytip="disappear:lost-focus;class:easy-red;">
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input placeholder="邮箱" name="email" type="text" id="email" data-easyform="email;real-time;" data-message="Email格式要正确" data-easytip="disappear:lost-focus;class:easy-red;" data-message-ajax="这个Email地址已经被注册过，请换一个吧!">
+                        <input placeholder="邮箱" name="email" type="text" id="email" data-easyform="email;real-time;"
+                        data-message="Email格式要正确" data-easytip="disappear:lost-focus;class:easy-red;" data-message-ajax="这个Email地址已经被注册过，请换一个吧!">
                     </td>
                 </tr>
             </table>
