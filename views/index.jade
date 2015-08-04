@@ -19,14 +19,9 @@ html
                             li.li-one
                                 a(href='#') #{i}
                 #slides
-                    a(href='/product-details')
-                        img(src="./images/example-slide-1.jpg")
-                    a(href='/product-details')
-                        img(src="./images/example-slide-2.jpg")
-                    a(href='/product-details')
-                        img(src="./images/example-slide-3.jpg")
-                    a(href='/product-details')
-                        img(src="./images/example-slide-4.jpg")
+                    each x in picturePath
+                        a(href='/product-details')
+                            img(src="#{x}")
                 #board
                     #shopping-board
                         .title-one

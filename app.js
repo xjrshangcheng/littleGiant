@@ -42,15 +42,30 @@ var Goods = sequelize.define('goods', {
     // goodsSales: Sequelize.INTERGER,
     goodsDetail: Sequelize.STRING,
     goodsType: Sequelize.STRING,
-    goodsImg: Sequelize.STRING
+    goodsImg: Sequelize.STRING,
+    recommend: Sequelize.STRING
 }, {
     freezeTableName: true,
     timestamps: false
 })
 
 app.get('/', function(req, res) {
-    res.render('index', {
-        navgation : ['图书音像','家电通讯','电脑用品','家具家装','服饰鞋帽','个护化妆','彩票充值','运动健康','母婴用品','汽车用品','食品饮料']
+    var picturePath = [];
+    var pictureId = [];
+    Goods.findAll().then(function(good) {
+        for (var i = 0; i < good.length; i++) {
+            if (good[i].dataValues.recommend === 'true') {
+                picturePath.push(good[i].dataValues.goodsImg);
+                pictureId.push(good[i].dataValues.id);
+            }
+        }
+    }).then(function() {
+        console.log(picturePath);
+        res.render('index', {
+            pictureId : pictureId,
+            picturePath : picturePath,
+            navgation : ['图书音像','家电通讯','电脑用品','家具家装','服饰鞋帽','个护化妆','彩票充值','运动健康','母婴用品','汽车用品','食品饮料']
+        });
     });
 });
 
