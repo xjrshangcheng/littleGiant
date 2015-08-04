@@ -37,11 +37,7 @@ module.exports = {
 
         migration.createTable(
             'user_shopping_cart', {
-                id: {
-                    type: DataTypes.INTEGER,
-                    primaryKey: true,
-                    autoIncrement: true
-                },
+                id: DataTypes.INTEGER,
                 username: DataTypes.STRING,
                 number: DataTypes.INTEGER,
                 name: DataTypes.STRING,
