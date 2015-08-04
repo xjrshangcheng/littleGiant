@@ -1,7 +1,7 @@
 function selectSearch(Callback) {
     var result = "x";
     var Sequelize = require("sequelize");
-    var sequelize = new Sequelize('little_giant', 'root', 'root', {
+    var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
         host: "localhost",
         // 192.168.10.184
         dialect: "mysql",

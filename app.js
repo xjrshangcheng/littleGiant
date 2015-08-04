@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
-var categoryJs = require("./control/control_category.js");
+var categoryJs = require("./control/control-category.js");
 
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "localhost",
@@ -144,7 +144,7 @@ app.post('/registerSubmit', function(req, res) {
     });
 })
 
-app.post("/categoryProdctInfo", function(req, res) {
+app.post("/category-info", function(req, res) {
     var resultArray = [];
     categoryJs(function(result) {
         result.forEach(function(n, i) {

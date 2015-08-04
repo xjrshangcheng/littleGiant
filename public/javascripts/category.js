@@ -4,7 +4,6 @@ $(".info-div").each(function(i, n) {
     }
 })
 
-$.post("/categoryProdctInfo", function(result) {
-    // DOTO
+$.post("/category-info", function(result) {
     console.log(result);
 });
