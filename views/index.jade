@@ -15,18 +15,19 @@ html
             .main-info
                 #navgation
                     ul.nav-one
-                        if name !== undefined
+                        if navgation !== undefined
                             for i in navgation
                                 li.li-one
                                     a(href='#') #{i}
                         else
                             li.li-one 目前没有一级类
                 #slides
-                    if name !== undefined
+                    if navgation !== undefined
                         each x in goods
                             a(href='/product-details')
                                 img(src="#{x.goodsImg}")
-                    else 目前没有推荐商品
+                    else
+                        目前没有推荐商品
                 #board
                     #shopping-board
                         .title-one
