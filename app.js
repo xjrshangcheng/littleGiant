@@ -49,6 +49,17 @@ var Goods = sequelize.define('goods', {
     timestamps: false
 })
 
+var user_shopping_cart = sequelize.define('user_shopping_cart',{
+    id : Sequelize.INTEGER,
+    username : Sequelize.STRING,
+    goodsNumber : Sequelize.INTEGER,
+    goodsName : Sequelize.STRING,
+    goodsPrice : Sequelize.STRING
+}, {
+    freezeTableName : true,
+    timestamps : false
+})
+
 app.get('/', function(req, res) {
     var goods = [];
     Goods.findAll().then(function(good) {
@@ -153,6 +164,25 @@ app.post("/category-info", function(req, res) {
         });
     });
 });
+
+app.post("/add_user_shopping_cart",function(req,res) {
+    var id = req.body.id;
+    var username = req.body.username;
+    var goodsNumber = req.body.goodsNumber;
+    var goodsName = req.body.goodsName;
+    var goodsPrice = req.body.goodsPrice;
+    console.log(req.body);
+
+    user_shopping_cart.create({
+        id : id,
+        username : username,
+        goodsNumber : goodsNumber,
+        goodsName : goodsName,
+        goodsPrice : goodsPrice
+    }).then(function() {
+        res.end();
+    })
+})
 
 var server = app.listen(3000, function() {
 

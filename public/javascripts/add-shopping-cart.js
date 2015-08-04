@@ -1,4 +1,20 @@
+$("#add_to_cart").on("click", function() {
+    var id = $("#goods_code").html();
+    var username = "123456";
+    var goodsNumber = $("#goods_number_input").prop("value");
+    var goodsName = $(".buy_content_text_a1").html();
+    var goodsPrice = $("#sales_price").html();
 
+    $.post("/add_user_shopping_cart", {
+        id : id,
+        username : username,
+        goodsNumber : goodsNumber,
+        goodsName : goodsName,
+        goodsPrice : goodsPrice
+    }, function() {
+        alert("添加购物车成功");
+    })
+})
 
 
 $("#goods_number_minus").on("click",function() {
