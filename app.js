@@ -49,7 +49,7 @@ var Goods = sequelize.define('goods', {
 })
 
 app.get('/', function(req, res) {
-    res.render('home-page', {
+    res.render('index', {
         navgation : ['图书音像','家电通讯','电脑用品','家具家装','服饰鞋帽','个护化妆','彩票充值','运动健康','母婴用品','汽车用品','食品饮料']
     });
 });
