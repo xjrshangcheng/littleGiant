@@ -69,24 +69,6 @@ app.get('/', function(req, res) {
     });
 });
 
-app.get('/slidesPicture', function(req, res) {
-    var picturePath = [];
-    var pictureId = [];
-    Goods.findAll().then(function(good) {
-        for (var i = 0; i < good.length; i++) {
-            picturePath.push(good[i].dataValues.goodsImg);
-            pictureId.push(good[i].dataValues.id);
-        }
-    }).then(function() {
-        res.send({
-            status: 200,
-            dataPath: picturePath,
-            dataId:pictureId,
-            message: 'right'
-        });
-    });
-});
-
 app.get("/car", function(req, res) {
     res.render("car", {});
 });
