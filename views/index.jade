@@ -15,13 +15,17 @@ html
             .main-info
                 #navgation
                     ul.nav-one
-                        each i in navgation
+                        for i in navgation
                             li.li-one
                                 a(href='#') #{i}
+                        else
+                            li.li-one 目前没有一级类
                 #slides
                     each x in goods
                         a(href='/product-details')
                             img(src="#{x.goodsImg}")
+                    else
+                        目前没有推荐商品
                 #board
                     #shopping-board
                         .title-one
@@ -129,4 +133,3 @@ html
     script(src="./bootstrap/dist/js/bootstrap.js")
     script(src="./javascripts/jquery.slides.min.js")
     script(src="./javascripts/roll.js")
-    script(src="./javascripts/index.js")
