@@ -74,8 +74,8 @@ app.get("/car", function(req, res) {
     res.render("car", {});
 });
 
-app.get("/shoppingCart", function(req, res) {
-    res.render("shoppingCart", {});
+app.get("/shopping-cart", function(req, res) {
+    res.render("shopping-cart", {});
 });
 
 
