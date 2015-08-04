@@ -4,15 +4,12 @@ var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
 var categoryJs = require("./control/control-category.js");
-//var ejs = require("ejs");
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "localhost",
     dialect:"mysql",
     port:3306
 })
 var routes = require('./routes/user-shopping-cart');
-
-//app.engine(".html", ejs.__express);
 
 app.set('view engine', 'jade');
 
