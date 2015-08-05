@@ -20,16 +20,6 @@ app.use(cookieParser());
 app.use(express.static("public"));
 app.use(express.static("bower_components"));
 
-var User = sequelize.define('user', {
-    id: Sequelize.INTEGER,
-    username: Sequelize.STRING,
-    password: Sequelize.STRING,
-    email: Sequelize.STRING
-}, {
-    freezeTableName: true,
-    timestamps: false
-});
-
 var Goods = sequelize.define('goods', {
     id: Sequelize.INTEGER,
     name: Sequelize.STRING,
@@ -69,13 +59,8 @@ app.get("/shopping-cart", function(req, res) {
     res.render("shopping-cart", {});
 });
 
-
 app.get("/category", function(req, res) {
     res.render("category");
-});
-
-app.get('/register', function(req, res) {
-    res.render('register');
 });
 
 
@@ -86,22 +71,6 @@ app.get('/product-details', function(req, res) {
 var login = require('./router/login');
 app.use('/',login);
 
-app.post('/registerSubmit', function(req, res) {
-
-    var inputName = req.body.inputName;
-    var inputPwd = req.body.inputPwd;
-    var inputEmail = req.body.inputEmail;
-    console.log(req.body);
-    User.create({
-        username: inputName,
-        password: inputPwd,
-        email: inputEmail
-    });
-    res.send({
-        status : 200,
-        data : 'ok'
-    });
-})
 
 app.post("/category-info", function(req, res) {
     Goods.findAll().then(function(e) {
@@ -120,31 +89,8 @@ app.post("/category-info", function(req, res) {
     });
 });
 
-app.post('/name', function(req, res) {
-    var inputName = req.body.inputName;
-    var result;
-    var status;
-
-    User.findAll().then(function(e) {
-        var exist = false;
-        e.forEach(function(n) {
-            if(n.dataValues.username === inputName) {
-                result = 'user_exist';
-                exist = true;
-            }
-        })
-        if(!exist) {
-            result = 'un_exist';
-            status = 100;
-        }
-    }).done(function() {
-        res.send({
-            status : status,
-            data : result
-        })
-    });
-});
-
+var register = require('./router/register');
+app.use('/',register);
 
 app.use('/add_user_shopping_cart', shoppingCart)
 
