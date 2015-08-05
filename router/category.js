@@ -25,6 +25,8 @@ router.get('/category', function(req, res) {
             resultArray.push(n.dataValues);
         })
 
+        console.log(resultArray);
+
         res.render("category", {
             status : 1,
             data : resultArray,

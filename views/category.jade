@@ -1,4 +1,18 @@
-extends ./layout.jade
-
-block content
-    include category.html
+doctype html
+html(lang="en")
+    head
+        title= "goods-detail"
+        link(rel="stylesheet" href="./stylesheets/layoutStyle.css")
+        link(rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" href="./stylesheets/category.css")
+    body
+        include header.html
+        ul
+            for book in data
+                h2= book.id
+                h3 "#{book.img}" for #{book.price} €
+            else
+                li sorry, no books!
+        include footer.html
+        
+        script(src="./jquery/dist/jquery.js")
