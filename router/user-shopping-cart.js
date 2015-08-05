@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Sequelize = require('sequelize');
+// var Sequelize = require('sequelize');
 var db = require('../models/index');
 var sequelize = db.sequelize;
 var Sequelize = db.Sequelize;
@@ -17,7 +17,7 @@ var user_shopping_cart = sequelize.define('user_shopping_cart',{
 })
 
 router.get('/product-details', function(req, res) {
-    res.render('product-details', {});
+    res.render('goods-detail', {});
 });
 
 router.post("/add_user_shopping_cart",function(req,res) {

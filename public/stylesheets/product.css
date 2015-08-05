@@ -101,7 +101,13 @@ em {
     width: 743px;
     padding-left: 23px;
 }
-.buy_content_text .buy_content_text_b {
+.buy_content_text_b {
+    width: 602px;
+    overflow: visible;
+    color: #61605d;
+    float: left;
+}
+.buy_content_text {
     width: 370px;
     overflow: visible;
     color: #61605d;
@@ -121,7 +127,7 @@ ul, ol {
     margin-bottom: 5px;
 }
 .buy_content_state_a {
-    width: 65px;
+    width: 40px;
     overflow: hidden;
     display: block;
     float: left;
@@ -133,7 +139,7 @@ ul, ol {
     text-justify: distribute-all-lines;
 }
 .buy_content_text_b {
-    width: 65px;
+    width: 200px;
     overflow: hidden;
     display: block;
     float: left;
@@ -316,7 +322,9 @@ ul li{
 .jumbotron{
     background-color: white;
 }
-
+.jumbotron p {
+    color: black;
+}
 #shoppingBoard {
    height: 145px;
    width: 240px;

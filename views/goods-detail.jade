@@ -1,7 +1,110 @@
 doctype html
 html(lang="en")
-  head
-    title= pageTitle
-    script(type='text/javascript').
-      if (foo) bar(1 + 5)
-  body
+    head
+        title= "goods-detail"
+        link(rel="stylesheet" href="./stylesheets/layoutStyle.css")
+        link(rel="stylesheet" href="./stylesheets/bootstrap.css")
+        link(rel="stylesheet" href="./stylesheets/product.css")
+    body
+        include header.html
+        .container
+            .buy_content
+                .buy_content_imgbox
+                    .productimgbox
+                        .productbigimg_box
+                            .productbigimg
+                                img(src="./images/goods-detail-picture/ym2.jpg").blockimg
+                                img(src="#{}")
+                        ul.productsmallimg
+                            li.libg
+                                img(src="./images/goods-detail-picture/ym2.jpg")
+                            li
+                                img(src="./images/goods-detail-picture/tang.jpg")
+                            li
+                                img(src="")    
+                            li
+                                img(src="")    
+                            li
+                                img(src="")  
+                .buy_content_text
+                    .buy_content_text_a
+                        - var foo = "杨幂"
+                        h1.buy_content_text_a1= foo
+                        - var foo = "lalalalalala"                
+                        em.buy_content_text_a2= foo
+                    .BuyContent_Box
+                        ul.buy_content_text_b  
+                            li.buy_content_state#goods_property_code
+                                -var foo = "24124"
+                                商品编码：#{foo}
+                            li.buy_content_state1
+                                - var foo = "价    格："
+                                em.buy_content_state_a= foo
+                                .Buy_ContentBox
+                                    -var foo = "33333.0"
+                                    em.buy_content_state_b#sales_price= foo
+                                    em   元
+                            //- li.buy_content_state1
+                            //-     - var foo = "规    格："
+                            //-     em.buy_content_state_a= foo  
+                            //-     .Buy_ContentBox#goods_evaluate_total_show
+                            //-         input(type="radio", value='a')
+                    ul.buy_content_text_c#goods_property_content
+                        li.buy_content_state#buy_goods_num_box
+                            - var foo = "数    量："
+                            em.buy_content_state_a= foo
+                            em
+                                ul.quantitypurchased
+                                    li.quantity 
+                                        a#goods_number_minus -
+                                        input(type="text",id="goods_number_input",name="goods_number_input",value="1")  
+                                        a#goods_number_plus +
+                    .buy_content_arrow
+                        .jiathis_style
+                            a.jiathis_button_qzone
+                            a.jiathis_button_tsina
+                            a.jiathis_button_tqq
+                            a.jiathis_button_weixin
+                            a.jiathis_button_renren
+                            a(href="http://www.jiathis.com/share",target="_blank",class="jiathis jiathis_txt jtico jtico_jiathis")
+                            a.jiathis_counter_style
+                    ul.buy_content_button
+                        li
+                            .button_join_cart.patt_bg_join_cart#add_to_cart   加入购物车     
+            
+            
+            br
+            br
+            .container
+                    .left
+                        #shoppingBoard
+                            .titleOne
+                                h5 商城公告            
+                            .boardContent
+                                ul
+                                    li.contentList  庆祝新店开张，满199减50
+                                    li.contentList  江浙沪地区包邮
+                                    li.contentList  小巨人商城祝您购物愉快。                     
+                    .right
+                        .text                    
+                            ul.nav.nav-tabs
+                                li(role="presentation",class="active")
+                                    a(href="#")  商品详情
+                        .jumbotron
+                            p.
+                                产品名称:杨幂
+                            p.
+                                产品参数:
+                            ul
+                                li 上市时间:2014.02.13
+                                li 品牌:不知道
+                            ul
+                                li 生产编号:
+                                li 厂家联系方式:66666
+                                li生产许可证:c42134    
+                                                              
+        include footer.html
+    script(src="./jquery/dist/jquery.js")
+    script(src="./bootstrap/dist/js/bootstrap.js")
+    script(src="./javascripts/add-shopping-cart.js")
+    script(src=".http://v3.jiathis.com/code/jia.js")    
