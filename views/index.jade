@@ -1,4 +1,133 @@
-extends ./layout.jade
+doctype html
+html
+    head
+        link(rel="stylesheet" href="./stylesheets/layoutStyle.css")
+        link(rel="stylesheet" href="./bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet" href="./stylesheets/indexStyle.css")
+        link(rel="stylesheet" href="./stylesheets/navigation.css")
+        link(rel="stylesheet" href="./stylesheets/roll.css")
+        title 小巨人购物商城
+    body
+        include header.html
+        .container
+            .main-info
+                #navgation
+                    ul.nav-one
+                        if navgation !== undefined
+                            for i in navgation
+                                li.li-one
+                                    a(href='#') #{i}
+                        else
+                            li.li-one 目前没有一级类
+                #slides
+                    if navgation !== undefined
+                        each x in goods
+                            a(href='/product-details')
+                                img(src="#{x.goodsImg}")
+                    else
+                        | 目前没有推荐商品
+                #board
+                    #shopping-board
+                        .title-one
+                            h5 商城公告
+                        .board-content
+                            ul
+                                li.content-list 庆祝新店开张，满199减50
+                                li.content-list 江浙沪地区包邮
+                                li.content-list 小巨人商城祝您购物愉快
+                    #news
+                        .title-one
+                            h5 新闻中心
+                        .news-content
+                            ul
+                                li.content-list 庆祝新店开张，满199减50
+                                li.content-list 江浙沪地区包邮
+                                li.content-list 小巨人商城祝您购物愉快
+            #new-product
+                .title-two
+                    h3 新款产品
+                .line
+                .info-show
+                    ul.info-list
+                        li#list
+                            a(href='/product-details')
+                                img(src="/images/biglist.png").big-list
+                        li#list
+                            .picture
+                                a(href='/product-details')
+                                    img(src="/images/list.png")
+                            .word
+                                a(href='/product-details')
+                                    hello kitty移动电源
+                            .price ￥20.00
+                        li#list
+                            .picture
+                                a(href='/product-details')
+                                    img(src="/images/list.png")
+                            .word
+                                a(href='/product-details')
+                                    hello kitty移动电源
+                            .price ￥20.00
+                        li#list
+                            .picture
+                                a(href='/product-details')
+                                    img(src="/images/list.png")
+                            .word
+                                a(href='/product-details')
+                                    hello kitty移动电源
+                            .price ￥20.00
+                        li#list
+                            .picture
+                                a(href='/product-details')
+                                    img(src="/images/list.png")
+                            .word
+                                a(href='/product-details')
+                                    hello kitty移动电源
+                            .price ￥20.00
+            #popular-product
+                .title-two
+                    h3 热销爆款
+                .line
+                .info-show
+                    ul.info-list
+                        li#list
+                            a(href='/product-details')
+                                img(src="/images/biglist.png").big-list
+                        li#list
+                            .picture
+                                a(href='/product-details')
+                                    img(src="/images/list.png")
+                            .word
+                                a(href='/product-details')
+                                    hello kitty移动电源
+                            .price ￥20.00
+                        li#list
+                            .picture
+                                a(href='/product-details')
+                                    img(src="/images/list.png")
+                            .word
+                                a(href='/product-details')
+                                    hello kitty移动电源
+                            .price ￥20.00
+                        li#list
+                            .picture
+                                a(href='/product-details')
+                                    img(src="/images/list.png")
+                            .word
+                                a(href='/product-details')
+                                    hello kitty移动电源
+                            .price ￥20.00
+                        li#list
+                            .picture
+                                a(href='/product-details')
+                                    img(src="/images/list.png")
+                            .word
+                                a(href='/product-details')
+                                    hello kitty移动电源
+                            .price ￥20.00
+        include footer.html
 
-block content
-    include index.html
+    script(src="./jquery/dist/jquery.js")
+    script(src="./bootstrap/dist/js/bootstrap.js")
+    script(src="./javascripts/jquery.slides.min.js")
+    script(src="./javascripts/roll.js")
