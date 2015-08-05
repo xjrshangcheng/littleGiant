@@ -13,10 +13,10 @@ html
             .main-info
                 #navgation
                     ul.nav-one
-                        if navgation !== undefined
-                            for i in navgation
+                        if navigation.primaryClassification !== undefined
+                            for i in navigation.primaryClassification
                                 li.li-one
-                                    a(href='#') #{i}
+                                    a(href='#') #{i.name}
                         else
                             li.li-one 目前没有一级类
                 #slides

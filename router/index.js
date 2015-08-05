@@ -32,8 +32,8 @@ var category = sequelize.define('category', {
 });
 
 router.get('/', function(req, res) {
-    var navigation = [];
-    var goods = [];
+    var navigation = {};
+    var goods = {};
     category.findAll().then(function(nav) {
         var primaryClassification = [];
         var secondaryClassification = [];
@@ -44,10 +44,8 @@ router.get('/', function(req, res) {
                 secondaryClassification.push(nav[i].dataValues);
             }
         }
-        navigation.push({
-            primaryClassification: primaryClassification,
-            secondaryClassification: secondaryClassification
-        });
+        navigation.primaryClassification = primaryClassification;
+        navigation.secondaryClassification = secondaryClassification;
     }).then(function() {
         Goods.findAll().then(function(good) {
             var roll = [];
@@ -56,9 +54,7 @@ router.get('/', function(req, res) {
                     roll.push(good[i].dataValues);
                 }
             }
-            goods.push({
-                roll: roll
-            });
+            goods.roll = roll;
         }).then(function() {
             res.render('index', {
                 navigation: navigation,
