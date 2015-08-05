@@ -10,7 +10,7 @@ var Goods = sequelize.define('goods', {
     info: Sequelize.STRING,
     price: Sequelize.STRING,
     sales: Sequelize.STRING,
-    detall: Sequelize.INTEGER,
+    detail: Sequelize.STRING,
     type: Sequelize.STRING,
     img: Sequelize.STRING
 },{
@@ -24,8 +24,6 @@ router.get('/category', function(req, res) {
         e.forEach(function(n, i) {
             resultArray.push(n.dataValues);
         })
-
-        console.log(resultArray);
 
         res.render("category", {
             status : 1,
