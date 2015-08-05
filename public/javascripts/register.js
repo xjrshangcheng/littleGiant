@@ -1,4 +1,5 @@
 $(function() {
+
     $('#reg-form').easyform();
     $('#register').on('click', function() {
         var inputName = $('#uid').prop('value');
@@ -20,6 +21,17 @@ $(function() {
         })
     })
 })
+
 function test(p) {
-    $("#uid").trigger("easyform-ajax", false);
+    console.log("123456789");
+    var inputName = $("#uid").val();
+    $.post('/name',{inputName: inputName},function (result) {
+        if (result.data === 'user_exist') {
+            var isExisted = false;
+        } else {
+            var isExisted = true;
+        }
+        $("#uid").trigger("easyform-ajax", isExisted);
+    })
+    
 }

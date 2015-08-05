@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
-var categoryJs = require("./control/control-category.js");
+// var categoryJs = require("./control/control-category.js");
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "localhost",
     dialect:"mysql",
@@ -151,6 +151,36 @@ app.post("/category-info", function(req, res) {
         });
     });
 });
+
+
+
+app.post('/name', function(req, res) {
+    var inputName = req.body.inputName;
+    var result;
+    var status;
+
+    User.findAll().then(function(e) {
+        var exist = false;
+        e.forEach(function(n) {
+            if(n.dataValues.username === inputName) {
+                result = 'user_exist';
+                exist = true;
+            }
+        })
+        if(!exist) {
+            result = 'un_exist';
+            status = 100;
+        }
+    }).done(function() {
+        res.send({
+            status : status,
+            data : result
+        })
+    });
+});
+
+
+
 
 app.use('/add_user_shopping_cart', shoppingCart)
 
