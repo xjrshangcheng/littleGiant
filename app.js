@@ -3,11 +3,13 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
+var categoryJs = require("./control/control-category.js");
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "localhost",
     dialect:"mysql",
     port:3306
 })
+var shoppingCart = require('./router/user-shopping-cart');
 
 app.set('view engine', 'jade');
 
@@ -43,6 +45,17 @@ var Goods = sequelize.define('goods', {
 }, {
     freezeTableName: true,
     timestamps: false
+})
+
+var user_shopping_cart = sequelize.define('user_shopping_cart',{
+    id : Sequelize.INTEGER,
+    username : Sequelize.STRING,
+    number : Sequelize.INTEGER,
+    name : Sequelize.STRING,
+    price : Sequelize.STRING
+}, {
+    freezeTableName : true,
+    timestamps : false
 })
 
 var index = require("./router/index");
@@ -139,39 +152,11 @@ app.post("/category-info", function(req, res) {
     });
 });
 
-
-
-app.post('/name', function(req, res) {
-    var inputName = req.body.inputName;
-    var result;
-    var status;
-
-    User.findAll().then(function(e) {
-        var exist = false;
-        e.forEach(function(n) {
-            if(n.dataValues.username === inputName) {
-                result = 'user_exist';
-                exist = true;
-            }
-        })
-        if(!exist) {
-            result = 'un_exist';
-            status = 100;
-        }
-    }).done(function() {
-        res.send({
-            status : status,
-            data : result
-        })
-    });
-});
-
-
-
-
 app.use('/add_user_shopping_cart', shoppingCart)
-var shoppingCart = require('./router/user-shopping-cart');
-app.use('/', shoppingCart)
+
+app.get('/', function (req, res) {
+  res.render('product-details', {});
+});
 
 var server = app.listen(3000, function() {
 

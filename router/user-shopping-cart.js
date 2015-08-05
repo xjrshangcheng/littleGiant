@@ -17,11 +17,11 @@ var user_shopping_cart = sequelize.define('user_shopping_cart',{
     timestamps : false
 })
 
-router.get('/product-details', function(req, res) {
-    res.render('product-details');
-});
+// router.get('/', function(req, res, next) {
+//   res.render('index', { title: 'Express' });
+// });
 
-router.post("/add_user_shopping_cart",function(req,res) {
+router.post("/",function(req,res) {
     var id = req.body.id;
     var username = req.body.username;
     var number = req.body.number;
