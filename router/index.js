@@ -1,19 +1,21 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../models/index')
+var sequelize = db.sequelize;
+var Sequelize = db.Sequelize;
 
-var Goods = db.sequelize.define('goods', {
-    id: db.Sequelize.INTEGER,
-    name: db.Sequelize.STRING,
-    info: db.Sequelize.STRING,
-    price: db.Sequelize.STRING,
-    standard_one: db.Sequelize.STRING,
-    standard_two: db.Sequelize.STRING,
-    sales: db.Sequelize.STRING,
-    detall: db.Sequelize.INTEGER,
-    type: db.Sequelize.STRING,
-    img: db.Sequelize.STRING,
-    recommend: db.Sequelize.STRING
+var Goods = sequelize.define('goods', {
+    id: Sequelize.INTEGER,
+    name: Sequelize.STRING,
+    info: Sequelize.STRING,
+    price: Sequelize.STRING,
+    standard_one: Sequelize.STRING,
+    standard_two: Sequelize.STRING,
+    sales: Sequelize.STRING,
+    detall: Sequelize.INTEGER,
+    type: Sequelize.STRING,
+    img: Sequelize.STRING,
+    recommend: Sequelize.STRING
 },{
     freezeTableName : true,
     timestamps : false
