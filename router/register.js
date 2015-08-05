@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
-    host: "localhost",
-    dialect:"mysql",
-    port:3306
-})
+var db = require('../models/index');
+var sequelize = db.sequelize;
+var Sequelize = db.Sequelize;
 
 var User = sequelize.define('user', {
     id: Sequelize.INTEGER,
