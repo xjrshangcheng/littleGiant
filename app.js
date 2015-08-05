@@ -2,13 +2,7 @@ var mysql = require('mysql');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var Sequelize = require('sequelize');
 var cookieParser = require('cookie-parser');
-var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
-    host: "localhost",
-    dialect:"mysql",
-    port:3306
-})
 
 app.set('view engine', 'jade');
 
@@ -18,23 +12,6 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static("public"));
 app.use(express.static("bower_components"));
-
-var Goods = sequelize.define('goods', {
-    id: Sequelize.INTEGER,
-    name: Sequelize.STRING,
-    info: Sequelize.STRING,
-    price: Sequelize.STRING,
-    standard_one: Sequelize.STRING,
-    standard_two: Sequelize.STRING,
-    sales: Sequelize.STRING,
-    detall: Sequelize.INTEGER,
-    type: Sequelize.STRING,
-    img: Sequelize.STRING,
-    recommend: Sequelize.STRING
-}, {
-    freezeTableName: true,
-    timestamps: false
-});
 
 var index = require("./router/index");
 app.get('/', index);
