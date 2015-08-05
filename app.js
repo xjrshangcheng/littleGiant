@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
+var cookieParser = require('cookie-parser');
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "localhost",
     dialect:"mysql",
@@ -15,7 +16,7 @@ app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
+app.use(cookieParser());
 app.use(express.static("public"));
 app.use(express.static("bower_components"));
 
