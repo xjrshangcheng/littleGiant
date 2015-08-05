@@ -16,10 +16,6 @@ app.use(express.static("bower_components"));
 var index = require("./router/index");
 app.get('/', index);
 
-app.get("/car", function(req, res) {
-    res.render("car", {});
-});
-
 app.get("/shopping-cart", function(req, res) {
     res.render("shopping-cart", {});
 });
