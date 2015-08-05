@@ -38,61 +38,25 @@ router.post('/register-submit', function(req, res) {
 
 router.post('/name', function(req, res) {
     var inputName = req.body.inputName;
-    var result;
+    var message;
     var status;
 
     User.findAll().then(function(e) {
         var exist = false;
         e.forEach(function(n) {
             if(n.dataValues.username === inputName) {
-                result = 'user_exist';
+                message = 'user_exist';
                 exist = true;
             }
         })
         if(!exist) {
-            result = 'un_exist';
+            message = 'un_exist';
             status = 100;
         }
     }).done(function() {
         res.send({
             status : status,
-            data : result
-        })
-    });
-});
-
-
-router.get('/login', function(req, res) {
-    res.render('login');
-});
-
-router.post('/loginSubmit', function(req, res) {
-    var inputName = req.body.inputName;
-    var inputPwd = req.body.inputPwd;
-    var result;
-    var status;
-
-    User.findAll().then(function(e) {
-        var exist = false;
-        e.forEach(function(n) {
-            if(n.dataValues.username === inputName && n.dataValues.password === inputPwd) {
-                result = 'ok';
-                status = 200;
-                exist = true;
-            } else if(n.dataValues.username === inputName && n.dataValues.password !== inputPwd) {
-                result = 'pwd_error';
-                status = 100;
-                exist = true;
-            }
-        });
-        if(!exist) {
-            result = 'username_error';
-            status = 100;
-        }
-    }).done(function() {
-        res.send({
-            status : status,
-            data : result
+            data : message
         })
     });
 });
