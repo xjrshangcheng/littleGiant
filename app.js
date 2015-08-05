@@ -31,23 +31,8 @@ app.get("/category", function(req, res) {
 var login = require('./router/login');
 app.use('/',login);
 
-
-app.post("/category-info", function(req, res) {
-    Goods.findAll().then(function(e) {
-        var resultArray = [];
-        categoryJs(function(result) {
-            result.forEach(function(n, i) {
-                resultArray.push(n.dataValues);
-            })
-
-            res.send({
-                status : 1,
-                data : resultArray,
-                message : ""
-            });
-        });
-    });
-});
+var categoryInfo = require('./router/category');
+app.use('/',categoryInfo);
 
 var register = require('./router/register');
 app.use('/',register);
