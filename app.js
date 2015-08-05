@@ -154,24 +154,9 @@ app.post("/category-info", function(req, res) {
 
 app.use('/add_user_shopping_cart', shoppingCart)
 
-// app.post("/add_user_shopping_cart",function(req,res) {
-//     var id = req.body.id;
-//     var username = req.body.username;
-//     var number = req.body.number;
-//     var name = req.body.name;
-//     var price = req.body.price;
-//     console.log(req.body);
-//
-//     user_shopping_cart.create({
-//         id : id,
-//         username : username,
-//         number : number,
-//         name : name,
-//         price : price
-//     }).then(function() {
-//         res.end();
-//     })
-// })
+app.get('/', function (req, res) {
+  res.render('product-details', {});
+});
 
 var server = app.listen(3000, function() {
 
