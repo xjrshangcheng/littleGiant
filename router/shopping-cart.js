@@ -22,7 +22,7 @@ var Goods = sequelize.define('goods', {
     standard_one: Sequelize.STRING,
     standard_two: Sequelize.STRING,
     sales: Sequelize.STRING,
-    detall: Sequelize.INTEGER,
+    detail: Sequelize.STRING,
     type: Sequelize.STRING,
     img: Sequelize.STRING,
     recommend: Sequelize.STRING
