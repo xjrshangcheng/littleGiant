@@ -5,7 +5,7 @@ $(function() {
         var inputPwd = $('#psw1').prop('value');
         var inputEmail = $('#email').prop('value');
         $.ajax({
-            url: '/registerSubmit',
+            url: '/register-submit',
             type: 'post',
             data: {
                 inputName: inputName,

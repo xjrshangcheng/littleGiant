@@ -19,7 +19,7 @@ router.get('/register', function(req, res) {
     res.render('register');
 });
 
-router.post('/registerSubmit', function(req, res) {
+router.post('/register-submit', function(req, res) {
 
     var inputName = req.body.inputName;
     var inputPwd = req.body.inputPwd;
