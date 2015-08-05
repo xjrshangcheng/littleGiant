@@ -8,7 +8,6 @@ var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     dialect:"mysql",
     port:3306
 })
-var shoppingCart = require('./router/user-shopping-cart');
 
 app.set('view engine', 'jade');
 
@@ -44,17 +43,6 @@ var Goods = sequelize.define('goods', {
 }, {
     freezeTableName: true,
     timestamps: false
-})
-
-var user_shopping_cart = sequelize.define('user_shopping_cart',{
-    id : Sequelize.INTEGER,
-    username : Sequelize.STRING,
-    number : Sequelize.INTEGER,
-    name : Sequelize.STRING,
-    price : Sequelize.STRING
-}, {
-    freezeTableName : true,
-    timestamps : false
 })
 
 var index = require("./router/index");
@@ -182,10 +170,8 @@ app.post('/name', function(req, res) {
 
 
 app.use('/add_user_shopping_cart', shoppingCart)
-
-app.get('/', function (req, res) {
-  res.render('product-details', {});
-});
+var shoppingCart = require('./router/user-shopping-cart');
+app.use('/', shoppingCart)
 
 var server = app.listen(3000, function() {
 
