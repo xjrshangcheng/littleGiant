@@ -22,7 +22,7 @@ $(function() {
 })
 
 function test(p) {
-    
+
     var inputName = $("#uid").val();
     $.post('/name', {
         inputName: inputName
