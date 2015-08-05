@@ -20,10 +20,10 @@ html
                         else
                             li.li-one 目前没有一级类
                 #slides
-                    if navgation !== undefined
-                        each x in goods
+                    if goods.roll !== undefined
+                        each x in goods.roll
                             a(href='/product-details')
-                                img(src="#{x.goodsImg}")
+                                img(src="#{x.img}")
                     else
                         | 目前没有推荐商品
                 #board

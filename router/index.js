@@ -38,9 +38,9 @@ router.get('/', function(req, res) {
         var primaryClassification = [];
         var secondaryClassification = [];
         for (var i = 0; i < nav.length; i++) {
-            if (nav[i].dataValues.parent_id === 0) {
+            if (nav[i].dataValues.parent_id === 0 && primaryClassification.length < 11) {
                 primaryClassification.push(nav[i].dataValues);
-            } else if (nav[i].dataValues.parent_id === 2) {
+            } else if (nav[i].dataValues.parent_id === 1) {
                 secondaryClassification.push(nav[i].dataValues);
             }
         }
