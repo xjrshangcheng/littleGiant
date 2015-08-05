@@ -1,16 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var Sequelize = require('sequelize');
+var db = require('../models/index');
+var sequelize = db.sequelize;
+var Sequelize = db.Sequelize;
 
-/* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
-    host: "localhost",
-    dialect:"mysql",
-    port:3306
-})
 var User = sequelize.define('user', {
     id: Sequelize.INTEGER,
     username: Sequelize.STRING,
@@ -37,6 +30,8 @@ router.post('/loginSubmit', function(req, res) {
                 result = 'ok';
                 status = 200;
                 exist = true;
+                res.cookie('name', inputName, { expires: new Date(Date.now() + 1000*60*60)});
+                console.log(req.cookies);
             } else if(n.dataValues.username === inputName && n.dataValues.password !== inputPwd) {
                 result = 'pwd_error';
                 status = 100;
