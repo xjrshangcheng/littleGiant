@@ -1,18 +1,52 @@
 doctype html
 html(lang="en")
     head
-        title= "goods-detail"
+        title= "category"
         link(rel="stylesheet" href="./stylesheets/layoutStyle.css")
         link(rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css")
         link(rel="stylesheet" href="./stylesheets/category.css")
+        script(src="./jquery/dist/jquery.js")
     body
         include header.html
+        .container.title-margin
+            .panel.panel-danger
+                .panel-heading
+                    | 所有分类
+                    span.glyphicon.glyphicon-chevron-right.char-style
+                    span.text-cursor 图书音影
+                .panel-body
+                    span.col-md-1.category.text-center.text-cursor 电子书刊
+                    span.col-md-1.category.text-center.text-cursor 图书制品
+                    span.col-md-1.category.text-center.text-cursor 图书
+                    .col-md-3.pull-right
+                        .btn.btn-danger.col-md-4.text-center
+                            span.glyphicon.glyphicon-chevron-left
+                        .col-md-4.text-center.page-detail 23/30
+                        .btn.btn-danger.col-md-4.text-center
+                            span.glyphicon.glyphicon-chevron-right.char-style
+            .panel.panel-danger
+                .panel-body
+                
+                
+                .panel-heading.text-center
+                    a.btn.btn-defaults.color-font 上一页
+                    a.btn.btn-defaults.color-font 1
+                    a.btn.btn-defaults.color-font 2
+                    a.btn.btn-defaults.color-font 3
+                    a.btn.btn-defaults.color-font 4
+                    a.btn.btn-defaults.color-font 5
+                    a.btn.btn-defaults.color-font 6
+                    a.btn.btn-defaults.color-font 7
+                    |···
+                    a.btn.btn-defaults.color-font 下一页
+                    | 共有100页
+                    
         ul
             for book in data
                 h2= book.id
                 h3 "#{book.img}" for #{book.price} €
             else
                 li sorry, no books!
+        //- include category.html
         include footer.html
         
-        script(src="./jquery/dist/jquery.js")
