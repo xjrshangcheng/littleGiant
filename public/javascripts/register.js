@@ -20,6 +20,19 @@ $(function() {
         })
     })
 })
+
 function test(p) {
-    $("#uid").trigger("easyform-ajax", false);
+    
+    var inputName = $("#uid").val();
+    $.post('/name', {
+        inputName: inputName
+    }, function(result) {
+        if (result.data === 'user_exist') {
+            var isExisted = false;
+        } else {
+            var isExisted = true;
+        }
+        $("#uid").trigger("easyform-ajax", isExisted);
+    })
+
 }
