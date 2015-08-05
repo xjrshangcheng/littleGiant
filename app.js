@@ -9,7 +9,6 @@ var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     dialect:"mysql",
     port:3306
 })
-var shoppingCart = require('./router/user-shopping-cart');
 
 app.set('view engine', 'jade');
 
@@ -37,17 +36,6 @@ var Goods = sequelize.define('goods', {
     timestamps: false
 });
 
-var user_shopping_cart = sequelize.define('user_shopping_cart',{
-    id : Sequelize.INTEGER,
-    username : Sequelize.STRING,
-    number : Sequelize.INTEGER,
-    name : Sequelize.STRING,
-    price : Sequelize.STRING
-}, {
-    freezeTableName : true,
-    timestamps : false
-})
-
 var index = require("./router/index");
 app.get('/', index);
 
@@ -61,11 +49,6 @@ app.get("/shopping-cart", function(req, res) {
 
 app.get("/category", function(req, res) {
     res.render("category");
-});
-
-
-app.get('/product-details', function(req, res) {
-    res.render('product-details', {});
 });
 
 var login = require('./router/login');
@@ -92,11 +75,8 @@ app.post("/category-info", function(req, res) {
 var register = require('./router/register');
 app.use('/',register);
 
-app.use('/add_user_shopping_cart', shoppingCart)
-
-app.get('/', function (req, res) {
-  res.render('product-details', {});
-});
+var shoppingCart = require('./router/user-shopping-cart');
+app.use('/', shoppingCart)
 
 var server = app.listen(3000, function() {
 
