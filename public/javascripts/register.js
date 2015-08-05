@@ -13,8 +13,7 @@ $(function() {
                     inputEmail: inputEmail
                 },
                 success: function() {
-                    alert("123");
-                    window.location.href = "/login";
+                    alert("注册成功，马上登陆开始购物吧！");
                     $(location).attr('href','/login');
                 }
             })
