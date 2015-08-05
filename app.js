@@ -24,17 +24,13 @@ app.get("/shopping-cart", function(req, res) {
     res.render("shopping-cart", {});
 });
 
-app.get("/category", function(req, res) {
-    res.render("category");
-});
+var category = require('./router/category')
+app.use('/', category);
 
 var login = require('./router/login');
 app.use('/',login);
 var header = require('./router/header');
 app.use('/',header);
-
-var categoryInfo = require('./router/category');
-app.use('/',categoryInfo);
 
 var register = require('./router/register');
 app.use('/',register);

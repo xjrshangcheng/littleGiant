@@ -4,6 +4,6 @@ $(".info-div").each(function(i, n) {
     }
 })
 
-$.post("/category-info", function(result) {
-    console.log(result);
-});
+// $.post("/category-info", function(result) {
+//     console.log(result);
+// });

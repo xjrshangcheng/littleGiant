@@ -18,14 +18,14 @@ var Goods = sequelize.define('goods', {
     timestamps : false
 });
 
-router.post('/category-info', function(req, res) {
+router.get('/category', function(req, res) {
     Goods.findAll().then(function(e) {
         var resultArray = [];
         e.forEach(function(n, i) {
             resultArray.push(n.dataValues);
         })
 
-        res.send({
+        res.render("category", {
             status : 1,
             data : resultArray,
             message : ""
