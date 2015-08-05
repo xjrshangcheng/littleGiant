@@ -35,8 +35,11 @@ html(lang="en")
                     .BuyContent_Box
                         ul.buy_content_text_b  
                             li.buy_content_state#goods_property_code
-                                -var foo = "24124"
-                                商品编码：#{foo}
+                                -var foo = "商品编码："
+                                em= foo
+                                .But_ContentBox
+                                    - var foo = "24124"
+                                    em.buy_content_state_b#goods_code= foo
                             li.buy_content_state1
                                 - var foo = "价    格："
                                 em.buy_content_state_a= foo
