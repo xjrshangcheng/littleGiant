@@ -82,40 +82,8 @@ app.get('/product-details', function(req, res) {
     res.render('product-details', {});
 });
 
-app.get('/login', function(req, res) {
-    res.render('login');
-});
-
-app.post('/loginSubmit', function(req, res) {
-    var inputName = req.body.inputName;
-    var inputPwd = req.body.inputPwd;
-    var result;
-    var status;
-
-    User.findAll().then(function(e) {
-        var exist = false;
-        e.forEach(function(n) {
-            if(n.dataValues.username === inputName && n.dataValues.password === inputPwd) {
-                result = 'ok';
-                status = 200;
-                exist = true;
-            } else if(n.dataValues.username === inputName && n.dataValues.password !== inputPwd) {
-                result = 'pwd_error';
-                status = 100;
-                exist = true;
-            }
-        });
-        if(!exist) {
-            result = 'username_error';
-            status = 100;
-        }
-    }).done(function() {
-        res.send({
-            status : status,
-            data : result
-        })
-    });
-});
+var login = require('./router/login');
+app.use('/',login);
 
 app.post('/registerSubmit', function(req, res) {
 
