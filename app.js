@@ -3,7 +3,6 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var Sequelize = require('sequelize');
-var categoryJs = require("./control/control-category.js");
 var sequelize = new Sequelize('little_giant', 'twer', 'twer', {
     host: "localhost",
     dialect:"mysql",
@@ -45,7 +44,7 @@ var Goods = sequelize.define('goods', {
 }, {
     freezeTableName: true,
     timestamps: false
-})
+});
 
 var user_shopping_cart = sequelize.define('user_shopping_cart',{
     id : Sequelize.INTEGER,
