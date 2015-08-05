@@ -25,7 +25,7 @@ router.get('/', function(req, res) {
     var goods = [];
     Goods.findAll().then(function(good) {
         for (var i = 0; i < good.length; i++) {
-            if (good[i].dataValues.recommend === 'true') {
+            if (good[i].dataValues.recommend !== 'false') {
                 goods.push(good[i].dataValues);
             }
         }
