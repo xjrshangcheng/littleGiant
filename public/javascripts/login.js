@@ -11,14 +11,10 @@ $(function() {
                     inputPwd : inputPwd
                 },success : function(result) {
                     if(result.data === 'ok') {
-                        // $(location).attr('href','/');
                         window.history.back(-1)?window.history.back(-1):$(location).attr('href','/');
-                       }else if(result.data === 'pwd_error') {
-                           alert('密码错误');
-                       }else if(result.data === 'username_error') {
-                           alert('用户名不存在');
-                        // $("#uid").trigger("easyform-ajax", false);
-                       }
+                    }else{
+                        alert('用户名或密码错误');
+                    }
                 }
             })
         }

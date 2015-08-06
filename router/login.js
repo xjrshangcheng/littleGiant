@@ -23,31 +23,39 @@ router.post('/login-submit', function(req, res) {
     var result;
     var status;
 
-    User.findAll().then(function(e) {
-        var exist = false;
-        e.forEach(function(n) {
-            if(n.dataValues.username === inputName && n.dataValues.password === inputPwd) {
-                result = 'ok';
-                status = 200;
-                exist = true;
-                res.cookie('name', inputName, { expires: new Date(Date.now() + 1000*60*60)});
-            } else if(n.dataValues.username === inputName && n.dataValues.password !== inputPwd) {
-                result = 'pwd_error';
-                status = 100;
-                exist = true;
-            }
-        });
-        if(!exist) {
-            result = 'username_error';
-            status = 100;
+    User.findAll({
+        where : {
+            username : inputName
         }
+    }).then(function(data) {
+        data.length > 0 ? data.forEach(function(val) {
+                (val.dataValues.password === inputPwd) ?
+                (result = 'ok',status = 200,res.cookie('name', inputName, { expires: new Date(Date.now() + 1000*60*60*24*7)})):
+                (result = 'error',status = 100)
+            }) : result = 'error',status = 100;
+        // if(data.length > 0) {
+        //     data.forEach(function(val) {
+        //         if(val.dataValues.password === inputPwd) {
+        //             result = 'ok';
+        //             status = 200;
+        //             // exist = true;
+        //             res.cookie('name', inputName, { expires: new Date(Date.now() + 1000*60*60)});
+        //         }else{
+        //             result = 'error';
+        //             status = 100;
+        //         }
+        //     })
+        // }else{
+        //     result = 'error';
+        //     status = 100;
+        // }
     }).done(function() {
         res.send({
-            status : status,
-            data : result,
-            message : ''
-        })
-    });
+           status : status,
+           data : result,
+           message : ''
+       })
+    })
 });
 
 module.exports = router;
