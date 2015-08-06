@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-// var Sequelize = require('sequelize');
 var db = require('../models/index');
 var sequelize = db.sequelize;
 var Sequelize = db.Sequelize;
@@ -16,24 +15,13 @@ var user_shopping_cart = sequelize.define('user_shopping_cart',{
     timestamps : false
 })
 
-router.get('/product-details', function(req, res) {
-    res.render('goods-detail', {});
-});
-
-router.post("/add_user_shopping_cart",function(req,res) {
-    var id = req.body.id;
-    var username = req.body.username;
-    var number = req.body.number;
-    var name = req.body.name;
-    var price = req.body.price;
-    console.log(req.body);
-
+router.post("/",function(req,res) {
     user_shopping_cart.create({
-        id : id,
-        username : username,
-        number : number,
-        name : name,
-        price : price
+        id : req.body.id,
+        username : req.body.username,
+        number : req.body.number,
+        name : req.body.name,
+        price : req.body.price
     }).then(function() {
         res.end();
     })

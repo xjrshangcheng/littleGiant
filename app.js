@@ -36,7 +36,10 @@ var shopping_cart = require('./router/shopping-cart.js');
 app.use('/',shopping_cart);
 
 var shoppingCart = require('./router/user-shopping-cart');
-app.use('/', shoppingCart)
+app.use('/add-user-shopping-cart', shoppingCart);
+
+var goods = require('./router/goods');
+app.use('/goods',goods);
 
 var server = app.listen(3000, function() {
 

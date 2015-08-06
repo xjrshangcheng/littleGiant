@@ -5,7 +5,7 @@ $("#add_to_cart").on("click", function() {
     var name = $(".buy_content_text_a1").html();
     var price = $("#sales_price").html();
 
-    $.post("/add_user_shopping_cart", {
+    $.post("/add-user-shopping-cart", {
         id : id,
         username : username,
         number : number,
