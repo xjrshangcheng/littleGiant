@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+}
+
+#banner {
+    height: 490px;
+    width: 410px;
+}
+
+#big-picture {
+    height: 410px;
+    width: 410px;
+}
+
+.big-picture {
+    height: 100%;
+    width: 100%;
+}
+
+#picture-list {
+    height:60px;
+    width: 210px;
+    margin-top: 10px;
+}
+
+.list {
+    height: 60px;
+    width: 60px;
+    display: inline-block;
+    margin-right: 3px;
+
+}
+
+.picture {
+    height: 100%;
+    width: 100%;
+}
+li a {
+    display: block;
+    height: 60px;
+    width: 60px;
+}
+li a:hover {
+    border: 1px solid grey;
+    cursor:default;
+}
