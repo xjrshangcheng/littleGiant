@@ -3,7 +3,3 @@ $(".info-div").each(function(i, n) {
         $(n).addClass("ellipsis");
     }
 })
-
-// $.post("/category-info", function(result) {
-//     console.log(result);
-// });

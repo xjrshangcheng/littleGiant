@@ -13,22 +13,19 @@ var Goods = sequelize.define('goods', {
     detail: Sequelize.STRING,
     type: Sequelize.STRING,
     img: Sequelize.STRING
-},{
-    freezeTableName : true,
-    timestamps : false
+}, {
+    freezeTableName: true,
+    timestamps: false
 });
 
 router.get('/category', function(req, res) {
-    Goods.findAll().then(function(e) {
-        var resultArray = [];
-        e.forEach(function(n, i) {
-            resultArray.push(n.dataValues);
+    Goods.findAll().then(function(result) {
+        var resultArray = result.map(function(object) {
+            return object.dataValues;
         })
 
         res.render("category", {
-            status : 1,
-            data : resultArray,
-            message : ""
+            data: resultArray
         });
     });
 });
