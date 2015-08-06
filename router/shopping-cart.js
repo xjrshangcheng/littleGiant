@@ -29,7 +29,7 @@ var Goods = sequelize.define('goods', {
 }, {
     freezeTableName: true,
     timestamps: false
-})
+});
 
 var user_shopping_cart = sequelize.define('user_shopping_cart',{
     id : Sequelize.INTEGER,
@@ -40,21 +40,17 @@ var user_shopping_cart = sequelize.define('user_shopping_cart',{
 }, {
     freezeTableName : true,
     timestamps : false
-})
-
-
-router.get("/shopping-cart", function(req, res) {
-   res.render("shopping-cart");
 });
 
-router.get("/shopping-cart-item", function(req, res) {
+router.get("/shopping-cart", function(req, res) {
    user_shopping_cart.findAll().then(function(data) {
        var array = [];
 
        for (var i = 0; i < data.length; i++) {
            array.push(data[i].dataValues);
        }
-       res.send({data:array});
+
+       res.render("shopping-cart", {data:array});
    });
 });
 
