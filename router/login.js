@@ -17,7 +17,7 @@ router.get('/login', function(req, res) {
     res.render('login');
 });
 
-router.post('/loginSubmit', function(req, res) {
+router.post('/login-submit', function(req, res) {
     var inputName = req.body.inputName;
     var inputPwd = req.body.inputPwd;
     var result;
@@ -45,7 +45,8 @@ router.post('/loginSubmit', function(req, res) {
     }).done(function() {
         res.send({
             status : status,
-            data : result
+            data : result,
+            message : ''
         })
     });
 });

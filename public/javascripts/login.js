@@ -4,7 +4,7 @@ $(function() {
             var inputName = $('#uid').prop('value');
             var inputPwd = $('#psw1').prop('value');
             $.ajax({
-                url : '/loginSubmit',
+                url : '/login-submit',
                 type : 'post',
                 data : {
                     inputName : inputName,
@@ -26,8 +26,10 @@ $(function() {
 
 function checkRequired() {
     var flag = true;
+    var max = 16;
+    var min = 6;
     $("[placeholder]").each(function(key,val) {
-        if(val.value.length > 16 || val.value.length < 6) {
+        if(val.value.length > max || val.value.length < min) {
             flag = false;
         }
     })
