@@ -31,11 +31,6 @@ router.get('/', function(req, res) {
         }
     }).done(function(data) {
         if(data[0] === undefined) {
-            // res.send({
-            //     status : 400,
-            //     data : "",
-            //     message : "no this goods!!!!!"
-            // })
             res.render('error',{})
         } else {
             data.forEach(function(val) {
