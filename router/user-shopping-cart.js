@@ -23,6 +23,11 @@ router.post("/",function(req,res) {
         name : req.body.name,
         price : req.body.price
     }).then(function() {
+        res.send({
+            status : 100,
+            data : "",
+            message : "success"
+        })
         res.end();
     })
 })

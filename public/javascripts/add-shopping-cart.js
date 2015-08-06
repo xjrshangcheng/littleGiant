@@ -16,18 +16,19 @@ $("#add_to_cart").on("click", function() {
 
     if(cookieName === null) {
         $(location).attr('href','/login');
-    }else{
+    } else {
         $.post("/add-user-shopping-cart", {
             id : id,
             username : username,
             number : number,
             name : name,
             price : price
-        }, function() {
-            alert("添加购物车成功");
+        }, function(data) {
+            if(data.message === "success") {
+                alert("添加购物车成功");
+            }
         })
     }
-
 })
 
 
