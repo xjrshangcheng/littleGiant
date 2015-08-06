@@ -34,17 +34,21 @@ var Category = sequelize.define('category', {
 router.get('/', function(req, res) {
     var navigation = {};
     var goods = {};
+
     Category.findAll({
         where: {
             parent_id: [0,1]
         }
     }).then(function(nav) {
+
+        var navigationData = nav.map(function (item) {
+            return item.dataValues;
+        });
+
         var primaryClassification = {};
         var count = 0;
-        nav.filter(function (item) {
+        navigationData.filter(function (item) {
             return item.parent_id === 0;
-        }).map(function (item) {
-            return item.dataValues;
         }).forEach(function (item) {
             if (count < 11) {
                 count ++;
@@ -53,10 +57,8 @@ router.get('/', function(req, res) {
         });
 
         var secondaryClassification = {};
-        nav.filter(function (item) {
+        navigationData.filter(function (item) {
             return item.parent_id === 1;
-        }).map(function (item) {
-            return item.dataValues;
         }).forEach(function (item) {
             secondaryClassification[parseInt(item.path)] = secondaryClassification[parseInt(item.path)] || [];
             secondaryClassification[parseInt(item.path)].push(item.name);
@@ -65,14 +67,31 @@ router.get('/', function(req, res) {
         navigation.primaryClassification = primaryClassification;
         navigation.secondaryClassification = secondaryClassification;
     }).then(function() {
-        Goods.findAll().then(function(good) {
-            var roll = [];
-            for (var i = 0; i < good.length; i++) {
-                if (good[i].dataValues.recommend === 'roll') {
-                    roll.push(good[i].dataValues);
-                }
-                goods.roll = roll;
+        Goods.findAll({
+            where: {
+                recommend: ['roll','popular','new']
             }
+        }).then(function(good) {
+
+            var goodsValues = good.map(function (item) {
+                return item.dataValues;
+            });
+
+            goods.roll = goodsValues.filter(function (item) {
+                return item.recommend === 'roll';
+            });
+
+            var popular = goodsValues.filter(function (item) {
+                return item.recommend === 'popular';
+            });
+            goods.popular = popular;
+
+            var newItem = goodsValues.filter(function (item) {
+                return item.recommend === 'new';
+            });
+            goods.newItem = newItem;
+
+            console.log(goods);
         }).then(function() {
             res.render('index', {
                 navigation: navigation,
