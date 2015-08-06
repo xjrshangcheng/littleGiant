@@ -44,6 +44,7 @@ var print = function() {
     $.get('/shopping-cart-item', function(items_information) {
         $('.shopping_cart_goods').empty();
         items_information.data.forEach(function(value) {
+            console.log(value);
             $('<ul class="buycart_content cart_goods" goods_id="24124" id="cart_goods">'
                     +'<li class="buycart_content_table1">'
                         +'<input type="checkbox" class="add_goods_tobuy_choose_0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124">'
