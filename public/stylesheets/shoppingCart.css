@@ -261,7 +261,6 @@ a {
 }
 .footer_button {
     width: 990px;
-    overflow: hidden;
     margin: 0 auto;
     padding: 9px 0 28px 0;
 }
@@ -274,8 +273,9 @@ a {
     text-align: center;
     line-height: 36px;
     border-radius: 3px;
-    float: left;
     cursor: pointer;
+    margin-left: 20px;
+    margin-top: -68px;
 }
 .buy_now {
     background: rgb(197, 27, 0);
@@ -286,11 +286,16 @@ a {
     text-align: center;
     line-height: 36px;
     border-radius: 3px;
-    float: right;
     cursor: pointer;
+    margin-top:-35px;
+    margin-left: 843px;
 }
 .total {
     width: 190px;
     border: 0px;
     background-color: #EAEAEA;
+}
+.my_total {
+    margin-top: 16px;
+    margin-left: 666px;
 }
