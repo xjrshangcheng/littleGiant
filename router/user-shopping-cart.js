@@ -23,7 +23,7 @@ router.post("/",function(req,res) {
             username : req.body.username
         }
     }).then(function(data) {
-        if(data.length > 0) {
+        if(data[0] === undefined) {
             user_shopping_cart.create({
                id : req.body.id,
                username : req.body.username,
