@@ -26,7 +26,16 @@ html(lang="en")
                             span.glyphicon.glyphicon-chevron-right.char-style
             .panel.panel-danger
                 .panel-body
-                
+                    for goodsInfo in data
+                        .col-md-3.info-margin-bottom
+                            .clearfix
+                                a(href="/goods?id="+ goodsInfo.id)
+                                    img.col-md-12.text-center.img-cursor(src=goodsInfo.img height="224px;")
+                            .col-md-12
+                                .pull-left.col-md-6.text-center.border $#{goodsInfo.price}
+                                .pull-right.col-md-6.text-center.border 销量：#{goodsInfo.sales}
+                                a(href="/goods?id="+ goodsInfo.id)
+                                    .col-md-12.border.info-div.text-cursor #{goodsInfo.info}
                 
                 .panel-heading.text-center
                     a.btn.btn-defaults.color-font 上一页
@@ -40,13 +49,5 @@ html(lang="en")
                     |···
                     a.btn.btn-defaults.color-font 下一页
                     | 共有100页
-                    
-        ul
-            for book in data
-                h2= book.id
-                h3 "#{book.img}" for #{book.price} €
-            else
-                li sorry, no books!
-        //- include category.html
         include footer.html
-        
+        script(src="./javascripts/category.js")

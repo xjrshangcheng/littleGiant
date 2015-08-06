@@ -24,6 +24,8 @@ router.get('/category', function(req, res) {
             return object.dataValues;
         })
 
+        console.log(resultArray);
+
         res.render("category", {
             data: resultArray
         });
