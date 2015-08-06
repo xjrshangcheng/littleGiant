@@ -16,10 +16,6 @@ app.use(express.static("bower_components"));
 var index = require("./router/index");
 app.get('/', index);
 
-app.get("/shopping-cart", function(req, res) {
-    res.render("shopping-cart", {});
-});
-
 var category = require('./router/category')
 app.use('/', category);
 
@@ -32,8 +28,8 @@ app.use('/',header);
 var register = require('./router/register');
 app.use('/',register);
 
-var shopping_cart = require('./router/shopping-cart.js');
-app.use('/',shopping_cart);
+var shoppingTrolley = require('./router/shopping-cart');
+app.use('/',shoppingTrolley);
 
 var shoppingCart = require('./router/user-shopping-cart');
 app.use('/add-user-shopping-cart', shoppingCart);
