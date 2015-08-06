@@ -8,7 +8,7 @@ function getCookie(name) {
 
 $("#add_to_cart").on("click", function() {
     var id = $("#goods_code").html();
-    var username = "123456";
+    var username = getCookie('name');
     var number = $("#goods_number_input").prop("value");
     var name = $(".buy_content_text_a1").html();
     var price = $("#sales_price").html();
@@ -26,6 +26,8 @@ $("#add_to_cart").on("click", function() {
         }, function(data) {
             if(data.message === "success") {
                 alert("添加购物车成功");
+            } else {
+                alert("添加数据失败");
             }
         })
     }
