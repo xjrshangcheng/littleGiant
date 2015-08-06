@@ -1,4 +1,49 @@
-extends ./layout.jade
+doctype html
+html(lang="en")
+    head
+        title= "category"
+        link(rel="stylesheet" href="./stylesheets/layoutStyle.css")
+        link(rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" href="./stylesheets/shoppingCart.css")
+        script(src="./jquery/dist/jquery.js")
+    body
+        include header.html
+        .container
+            .BuyCart_Shops
+                .BuyCar_ShopsName
+                | 商家:
+                .BuyCart_GoodsBox
+                    .buycart_a
+                        .buycart_titlebox
+                            ul.buycart_title
+                                li.buy_cart_all
+                                li.buy_cart_goods　商品名称
+                                li.buy_cart_rmb　价格
+                                li.buy_cart_number　数量
+                                li.buy_cart_total 小计
+                                li.buy_cart_operate 
+                                    ul.buycart_title_leftbg
+                                        li.buycart_title_leftbg2 操作
 
-block content
-    include shopping-cart.html
+                .shopping-cart_goods
+                    ul.buycart_content.cart_goods
+                        li.buycart_content_table1
+                        li.buycart_content_table2
+                        li.buycart_content_table3
+                        li.buycart_content_table4
+                        li.buycart_content_table5
+                        li.buycart_content_table6
+                            input.subtotal
+                        li.buycart_content_table7
+                            a.cart_goods_delete 删除
+                .BuyCart_TotalBox
+                    ul.buycart_content_footer
+                        li.footer_center
+                            ul.my_total
+                                span.amount_title
+                                    em.amount_title
+                                    input.total
+                    .footer_button
+                        .continue_cart 继续购物
+                        .buy_now 去结算
+                include footer.html
