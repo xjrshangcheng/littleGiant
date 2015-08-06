@@ -14,9 +14,14 @@ html
                 #navgation
                     ul.nav-one
                         if navigation.primaryClassification !== undefined
-                            for i in navigation.primaryClassification
+                            each val, index in navigation.primaryClassification
                                 li.li-one
-                                    a(href='#') #{i.name}
+                                    a(href='#') #{val}
+                                    if navigation.secondaryClassification[index] !== undefined
+                                        ul.nav-two
+                                            each ele, x in navigation.secondaryClassification[index]
+                                                li.li-two
+                                                    a(href='#') #{ele}
                         else
                             li.li-one 目前没有一级类
                 #slides

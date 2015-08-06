@@ -39,12 +39,17 @@ router.get('/', function(req, res) {
             parent_id: [0,1]
         }
     }).then(function(nav) {
-        var primaryClassification = nav.filter(function (item) {
+        var primaryClassification = {};
+        var count = 0;
+        nav.filter(function (item) {
             return item.parent_id === 0;
         }).map(function (item) {
-            var temp = {};
-            temp[item.path] = item.name;
-            return temp;
+            return item.dataValues;
+        }).forEach(function (item) {
+            if (count < 11) {
+                count ++;
+                primaryClassification[parseInt(item.path)] = item.name;
+            }
         });
 
         var secondaryClassification = {};
@@ -57,8 +62,8 @@ router.get('/', function(req, res) {
             secondaryClassification[parseInt(item.path)].push(item.name);
         });
 
-        console.log(primaryClassification);
-        
+        navigation.primaryClassification = primaryClassification;
+        navigation.secondaryClassification = secondaryClassification;
     }).then(function() {
         Goods.findAll().then(function(good) {
             var roll = [];
@@ -66,8 +71,8 @@ router.get('/', function(req, res) {
                 if (good[i].dataValues.recommend === 'roll') {
                     roll.push(good[i].dataValues);
                 }
+                goods.roll = roll;
             }
-            goods.roll = roll;
         }).then(function() {
             res.render('index', {
                 navigation: navigation,
