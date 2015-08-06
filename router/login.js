@@ -31,7 +31,6 @@ router.post('/login-submit', function(req, res) {
                 status = 200;
                 exist = true;
                 res.cookie('name', inputName, { expires: new Date(Date.now() + 1000*60*60)});
-                console.log(req.cookies);
             } else if(n.dataValues.username === inputName && n.dataValues.password !== inputPwd) {
                 result = 'pwd_error';
                 status = 100;
