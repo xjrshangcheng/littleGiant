@@ -21,7 +21,7 @@ var Goods = sequelize.define('goods', {
     timestamps: false
 });
 
-var category = sequelize.define('category', {
+var Category = sequelize.define('category', {
     id: Sequelize.INTEGER,
     parent_id: Sequelize.INTEGER,
     name: Sequelize.STRING,
@@ -34,18 +34,31 @@ var category = sequelize.define('category', {
 router.get('/', function(req, res) {
     var navigation = {};
     var goods = {};
-    category.findAll().then(function(nav) {
-        var primaryClassification = [];
-        var secondaryClassification = [];
-        for (var i = 0; i < nav.length; i++) {
-            if (nav[i].dataValues.parent_id === 0 && primaryClassification.length < 11) {
-                primaryClassification.push(nav[i].dataValues);
-            } else if (nav[i].dataValues.parent_id === 1) {
-                secondaryClassification.push(nav[i].dataValues);
-            }
+    Category.findAll({
+        where: {
+            parent_id: [0,1]
         }
-        navigation.primaryClassification = primaryClassification;
-        navigation.secondaryClassification = secondaryClassification;
+    }).then(function(nav) {
+        var primaryClassification = nav.filter(function (item) {
+            return item.parent_id === 0;
+        }).map(function (item) {
+            var temp = {};
+            temp[item.path] = item.name;
+            return temp;
+        });
+
+        var secondaryClassification = {};
+        nav.filter(function (item) {
+            return item.parent_id === 1;
+        }).map(function (item) {
+            return item.dataValues;
+        }).forEach(function (item) {
+            secondaryClassification[parseInt(item.path)] = secondaryClassification[parseInt(item.path)] || [];
+            secondaryClassification[parseInt(item.path)].push(item.name);
+        });
+
+        console.log(primaryClassification);
+        
     }).then(function() {
         Goods.findAll().then(function(good) {
             var roll = [];
