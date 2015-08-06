@@ -34,59 +34,8 @@ app.use('/',shoppingTrolley);
 var shoppingCart = require('./router/user-shopping-cart');
 app.use('/add-user-shopping-cart', shoppingCart);
 
-// var goods = require('./router/goods');
-// app.use('/goods:id',goods);
-
-
-var db = require('./models/index');
-var sequelize = db.sequelize;
-var Sequelize = db.Sequelize;
-
-var Goods = sequelize.define('goods', {
-    id: Sequelize.INTEGER,
-    name: Sequelize.STRING,
-    info: Sequelize.STRING,
-    price: Sequelize.STRING,
-    standard_one: Sequelize.STRING,
-    standard_two: Sequelize.STRING,
-    sales: Sequelize.STRING,
-    detail: Sequelize.STRING,
-    type: Sequelize.STRING,
-    img: Sequelize.STRING,
-    recommend: Sequelize.STRING
-}, {
-    freezeTableName: true,
-    timestamps: false
-});
-
-app.get('/goods', function(req, res) {
-    var id = req.query.id;
-    var goodsData = [];
-
-    Goods.findAll({
-        where : {
-            id : id
-        }
-    }).then(function(data) {
-        if(data[0] === undefined) {
-            res.send({
-                status : 400,
-                data : "",
-                message : "no this goods"
-            })
-        } else {
-            data.forEach(function(val) {
-                goodsData.push(val.dataValues);
-            })
-            res.render('goods', {
-                goodsData : goodsData
-            });
-        }
-    })
-});
-
-
-
+var goods = require('./router/goods');
+app.use('/goods',goods);
 
 var error = require('./router/error');
 app.use('/error',error);

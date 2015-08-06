@@ -1,19 +1,33 @@
+function getCookie(name) {
+    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+    if (arr = document.cookie.match(reg))
+        return unescape(arr[2]);
+    else
+        return null;
+}
+
 $("#add_to_cart").on("click", function() {
     var id = $("#goods_code").html();
     var username = "123456";
     var number = $("#goods_number_input").prop("value");
     var name = $(".buy_content_text_a1").html();
     var price = $("#sales_price").html();
+    var cookieName = getCookie('name');
 
-    $.post("/add-user-shopping-cart", {
-        id : id,
-        username : username,
-        number : number,
-        name : name,
-        price : price
-    }, function() {
-        alert("添加购物车成功");
-    })
+    if(cookieName === null) {
+        $(location).attr('href','/login');
+    }else{
+        $.post("/add-user-shopping-cart", {
+            id : id,
+            username : username,
+            number : number,
+            name : name,
+            price : price
+        }, function() {
+            alert("添加购物车成功");
+        })
+    }
+
 })
 
 

@@ -27,15 +27,16 @@ router.get('/', function(req, res) {
 
     Goods.findAll({
         where : {
-            id : 12
+            id : id
         }
-    }).then(function(data) {
+    }).done(function(data) {
         if(data[0] === undefined) {
-            res.send({
-                status : 400,
-                data : "",
-                message : "no this goods"
-            })
+            // res.send({
+            //     status : 400,
+            //     data : "",
+            //     message : "no this goods!!!!!"
+            // })
+            res.render('error',{})
         } else {
             data.forEach(function(val) {
                 goodsData.push(val.dataValues);
