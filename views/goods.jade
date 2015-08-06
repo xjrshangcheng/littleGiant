@@ -13,27 +13,27 @@ html(lang="en")
                     .productimgbox
                         .productbigimg_box
                             .productbigimg
-                                img(src="./images/goods-detail-picture/ym2.jpg").blockimg
+                                img(src="#{goodsData[0].img}").blockimg
+                                img(src="#{goodsData[0].img}")
                                 img(src="#{}")
-                                img(src="#{}")
-                                img(src="#{}")
-                                img(src="./images/goods-detail-picture/tang.jpg")
+                                img(src="")
+                                img(src="")
                         ul.productsmallimg
                             li.libg
-                                img(src="./images/goods-detail-picture/ym2.jpg")
+                                img(src="#{goodsData[0].img}")
                             li
-                                img(src="./images/goods-detail-picture/tang.jpg")
+                                img(src="#{goodsData[0].img}")
                             li
-                                img(src="./images/goods-detail-picture/tang.jpg")    
+                                img(src="#{goodsData[0].img}")    
                             li
-                                img(src="./images/goods-detail-picture/tang.jpg")    
+                                img(src="#{goodsData[0].img}")    
                             li
-                                img(src="./images/goods-detail-picture/tang.jpg")  
+                                img(src="#{goodsData[0].img}")  
                 .buy_content_text
                     .buy_content_text_a
-                        - var foo = "杨幂"
+                        - var foo = goodsData[0].name
                         h1.buy_content_text_a1= foo
-                        - var foo = "lalalalalala"                
+                        - var foo = goodsData[0].info                
                         em.buy_content_text_a2= foo
                     .BuyContent_Box
                         ul.buy_content_text_b  
@@ -41,13 +41,13 @@ html(lang="en")
                                 -var foo = "商品编码："
                                 em= foo
                                 .But_ContentBox
-                                    - var foo = "24124"
+                                    - var foo = goodsData[0].id
                                     em.buy_content_state_b#goods_code= foo
                             li.buy_content_state1
                                 - var foo = "价    格："
                                 em.buy_content_state_a= foo
                                 .Buy_ContentBox
-                                    -var foo = "33333.0"
+                                    -var foo = goodsData[0].price
                                     em.buy_content_state_b#sales_price= foo
                                     em   元
                             //- li.buy_content_state1
@@ -72,7 +72,7 @@ html(lang="en")
                             a.jiathis_button_tqq
                             a.jiathis_button_weixin
                             a.jiathis_button_renren
-                            a(href="http://www.jiathis.com/share",target="_blank",class="jiathis jiathis_txt jtico jtico_jiathis")
+                            //- a(href="http://www.jiathis.com/share",target="_blank",class="jiathis jiathis_txt jtico jtico_jiathis")
                             a.jiathis_counter_style
                     ul.buy_content_button
                         li
@@ -98,19 +98,18 @@ html(lang="en")
                                     a(href="#")  商品详情
                         .jumbotron
                             p.
-                                产品名称:杨幂
+                                产品名称: #{goodsData[0].name}
                             p.
-                                产品参数:
-                            ul
-                                li 上市时间:2014.02.13
-                                li 品牌:不知道
-                            ul
-                                li 生产编号:
-                                li 厂家联系方式:66666
-                                li 生产许可证:c42134    
+                                #{goodsData[0].detail}
+                            p.
+                                产品类型：#{goodsData[0].type}
+                            p.
+                                产品图片介绍: 
+                            img(src="#{goodsData[0].img}")     
                                                               
         include footer.html
     script(src="./jquery/dist/jquery.js")
     script(src="./bootstrap/dist/js/bootstrap.js")
     script(src="./javascripts/add-shopping-cart.js")
-    script(src=".http://v3.jiathis.com/code/jia.js")    
+    script(src="./javascripts/goods.js")
+    //- script(src=".http://v3.jiathis.com/code/jia.js")    
