@@ -24,7 +24,6 @@ router.post('/register-submit', function(req, res) {
     var inputName = req.body.inputName;
     var inputPwd = req.body.inputPwd;
     var inputEmail = req.body.inputEmail;
-    console.log(req.body);
     User.create({
         username: inputName,
         password: inputPwd,

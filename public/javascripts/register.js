@@ -1,21 +1,14 @@
 $(function() {
-    $('#reg-form').easyform().success = function () {
+    $('#reg-form').easyform().success = function() {
         $('#register').on('click', function() {
-            var inputName = $('#uid').prop('value');
-            var inputPwd = $('#psw1').prop('value');
-            var inputEmail = $('#email').prop('value');
-            $.ajax({
-                url: '/register-submit',
-                type: 'post',
-                data: {
-                    inputName: inputName,
-                    inputPwd: inputPwd,
-                    inputEmail: inputEmail
-                },
-                success: function() {
-                    alert("注册成功，马上登陆开始购物吧！");
-                    $(location).attr('href','/login');
-                }
+
+            $.post('/register-submit', {
+                inputName: $('#uid').prop('value'),
+                inputPwd: $('#psw1').prop('value'),
+                inputEmail: $('#email').prop('value')
+            }, function() {
+                alert('注册成功，赶快登陆开始购物吧！')
+                window.location.href = "/login";
             })
         })
     }
@@ -34,5 +27,4 @@ function validation() {
         }
         $("#uid").trigger("easyform-ajax", isExisted);
     })
-
 }
