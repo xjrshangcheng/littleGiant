@@ -38,7 +38,7 @@ module.exports = {
         );
 
         migration.createTable(
-            'user-shopping-cart', {
+            'cart', {
                 id: DataTypes.INTEGER,
                 username: DataTypes.STRING,
                 number: DataTypes.INTEGER,
