@@ -89,7 +89,7 @@ router.get('/', function(req, res) {
             });
 
         }).then(function() {
-            res.render('index', {
+            res.render('homepage', {
                 navigation: navigation,
                 goods: goods
             });
