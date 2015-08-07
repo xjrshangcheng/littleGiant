@@ -43,34 +43,18 @@ var user_shopping_cart = sequelize.define('user_shopping_cart', {
 });
 
 router.get("/shopping-cart", function(req, res) {
-    user_shopping_cart.findAll().then(function(data) {
-        var array = [];
+    var username = req.cookies.name;
+    var array = [];
 
-        for (var i = 0; i < data.length; i++) {
-            array.push(data[i].dataValues);
-        }
-
-        console.log(array);
-
+    user_shopping_cart.findAll({where : {username : username}}).then(function(val) {
+        val.forEach(function(name) {
+            array.push(name.dataValues);
+        })
+    }).done(function() {
         res.render("shopping-cart", {
             data: array
         });
-    });
-});
-
-// router.delete('/delete', function(req, res) {
-//     var id = req.params.id;
-//     delete.destroy({
-//             where: {
-//                 id: id
-//             }
-//         })
-//         .done(function() {
-//             res.send({
-//                 status: 1,
-//                 message: ''
-//             });
-//         });
-// });
+    })
+})
 
 module.exports = router;
