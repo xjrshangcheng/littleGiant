@@ -24,7 +24,7 @@ router.post("/",function(req,res) {
         }
     }).then(function(data) {
         if(data[0] === undefined) {
-            user_shopping_cart.create({
+            UserCart.create({
                id : req.body.id,
                username : req.body.username,
                number : req.body.number,
