@@ -1,19 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../models/index');
-var sequelize = db.sequelize;
-var Sequelize = db.Sequelize;
-
-var UserCart = sequelize.define('user-shopping-cart',{
-    id : Sequelize.INTEGER,
-    username : Sequelize.STRING,
-    number : Sequelize.INTEGER,
-    name : Sequelize.STRING,
-    price : Sequelize.STRING
-}, {
-    freezeTableName : true,
-    timestamps : false
-})
+var models = require('../models');
+var UserCart = models.UserCart;
 
 router.post("/",function(req,res) {
 
