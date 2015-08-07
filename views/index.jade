@@ -27,7 +27,7 @@ html
                     if goods.roll.length !== 0
                         each x in goods.roll
                             a(href='/goods?id=#{x.id}')
-                                img(src="#{x.img}")
+                                img(src="#{x.special_img}")
                     else
                         | 目前没有推荐商品
                 #board
