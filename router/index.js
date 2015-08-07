@@ -37,29 +37,28 @@ router.get('/', function(req, res) {
 
     Category.findAll({
         where: {
-            parent_id: [0,1]
+            parent_id: [0, 1]
         }
     }).then(function(nav) {
-
-        var navigationData = nav.map(function (item) {
+        var navigationData = nav.map(function(item) {
             return item.dataValues;
         });
 
         var primaryClassification = {};
         var dataCount = 0;
-        navigationData.filter(function (item) {
+        navigationData.filter(function(item) {
             return item.parent_id === 0;
-        }).forEach(function (item) {
+        }).forEach(function(item) {
             if (dataCount < 11) {
-                dataCount ++;
+                dataCount++;
                 primaryClassification[parseInt(item.path)] = item.name;
             }
         });
 
         var secondaryClassification = {};
-        navigationData.filter(function (item) {
+        navigationData.filter(function(item) {
             return item.parent_id === 1;
-        }).forEach(function (item) {
+        }).forEach(function(item) {
             secondaryClassification[parseInt(item.path)] = secondaryClassification[parseInt(item.path)] || [];
             secondaryClassification[parseInt(item.path)].push(item.name);
         });
@@ -69,25 +68,22 @@ router.get('/', function(req, res) {
     }).then(function() {
         Goods.findAll({
             where: {
-                recommend: ['roll','popular','new']
+                recommend: ['roll', 'popular', 'new']
             }
         }).then(function(good) {
-            var goodsValues = good.map(function (item) {
+            var goodsValues = good.map(function(item) {
                 return item.dataValues;
             });
 
-            goods.roll = goodsValues.filter(function (item) {
+            goods.roll = goodsValues.filter(function(item) {
                 return item.recommend === 'roll';
             });
-
-            goods.popular = goodsValues.filter(function (item) {
+            goods.popular = goodsValues.filter(function(item) {
                 return item.recommend === 'popular';
             });
-
-            goods.newItem = goodsValues.filter(function (item) {
+            goods.newItem = goodsValues.filter(function(item) {
                 return item.recommend === 'new';
             });
-
         }).then(function() {
             res.render('homepage', {
                 navigation: navigation,
