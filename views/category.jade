@@ -12,12 +12,12 @@ html(lang="en")
             .panel.panel-danger
                 .panel-heading
                     for category in breadArray
-                        span.text-cursor #{category}
-                        span.glyphicon.glyphicon-chevron-right.char-style
+                        a(href="/category?type="+category).text-cursor #{category}
+                        a.glyphicon.glyphicon-chevron-right.char-style
                 .panel-body
-                    span.col-md-1.category.text-center.text-cursor 电子书刊
-                    span.col-md-1.category.text-center.text-cursor 图书制品
-                    span.col-md-1.category.text-center.text-cursor 图书
+                    for sun in sunCategory
+                        a(href="/category?type="+sun).col-md-1.category.text-center.text-cursor #{sun}
+                        
                     .col-md-3.pull-right
                         .btn.btn-danger.col-md-4.text-center
                             span.glyphicon.glyphicon-chevron-left

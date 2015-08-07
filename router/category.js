@@ -31,9 +31,11 @@ var Category = sequelize.define('category', {
 router.get('/category', function(req, res) {
     var breadArray = [];
     breadArray.push("所有分类");
+    var sunCategory = [];
 
-    if(req.query.type === "所有分类") {
         Category.findAll().then(function(object) {
+            var selectId;
+            var parentId;
             object.forEach(function(data) {
                 if (data.dataValues.name === req.query.type) {
                     data.dataValues.path.split(".").forEach(function(id) {
@@ -44,9 +46,22 @@ router.get('/category', function(req, res) {
                         });
                     });
                 }
+
+                if (data.dataValues.name === req.query.type) {
+                    selectId = data.dataValues.id;
+                    parentId = data.dataValues.parent_id;
+                }
             });
+
+            object.forEach(function(data) {
+                if (data.dataValues.path.indexOf(selectId + ".") !== -1 && data.dataValues.parent_id === parentId + 1) {
+                    sunCategory.push(data.dataValues.name);
+                }else if(req.query.type === "所有分类" && data.dataValues.parent_id === 0){
+                    sunCategory.push(data.dataValues.name);
+                    console.log(data.dataValues.name);
+                }
+            })
         });
-    }
 
     Goods.findAll().then(function(result) {
         var resultArray = result.map(function(object) {
@@ -55,7 +70,8 @@ router.get('/category', function(req, res) {
 
         res.render("category", {
             data: resultArray,
-            breadArray: breadArray
+            breadArray: breadArray,
+            sunCategory: sunCategory
         });
     });
 });
