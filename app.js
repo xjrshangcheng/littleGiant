@@ -34,6 +34,9 @@ app.use('/',shoppingCart);
 var userShoppingCart = require('./router/user-shopping-cart');
 app.use('/add-user-shopping-cart', userShoppingCart);
 
+var pay = require('./router/pay');
+app.use('/pay',pay);
+
 var goods = require('./router/goods');
 app.use('/goods',goods);
 

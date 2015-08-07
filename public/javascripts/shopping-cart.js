@@ -2,6 +2,9 @@ $(function() {
     $('.continue_cart').on('click',function() {
         $(location).attr('href','/')
     })
+    $('.buy_now').on('click',function() {
+        $(location).attr('href','/pay')
+    })
     $(':input[name = all-check]').on('click', function() {
         var checked = $(this).prop('checked');
         $(':input[name=add_goods_tobuy_choose_0]').prop('checked', checked);
