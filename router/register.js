@@ -44,7 +44,8 @@ router.post('/name', function(req, res) {
     }).done(function() {
         res.send({
             status: status,
-            data: message
+            data: '',
+            message: ''
         })
     });
 });
