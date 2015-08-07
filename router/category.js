@@ -18,7 +18,7 @@ var Goods = sequelize.define('goods', {
     timestamps: false
 });
 
-var category = sequelize.define('category', {
+var Category = sequelize.define('category', {
     id: Sequelize.INTEGER,
     parent_id: Sequelize.INTEGER,
     name: Sequelize.STRING,
@@ -29,26 +29,24 @@ var category = sequelize.define('category', {
 });
 
 router.get('/category', function(req, res) {
-    var categoryArray = [];
+    var breadArray = [];
+    breadArray.push("所有分类");
 
-    category.find({
-        where: {
-            name: req.query.type
-        }
-    }).then(function(categoryObj) {
-        categoryObj.dataValues.path.split(".").forEach(function(n) {
-            category.find({
-                where: {
-                    id: n
+    if(req.query.type === "所有分类") {
+        Category.findAll().then(function(object) {
+            object.forEach(function(data) {
+                if (data.dataValues.name === req.query.type) {
+                    data.dataValues.path.split(".").forEach(function(id) {
+                        object.forEach(function(data) {
+                            if (data.dataValues.id == id) {
+                                breadArray.push(data.dataValues.name);
+                            }
+                        });
+                    });
                 }
-            }).then(function(categoryInfoObj) {
-                categoryArray.unshift(categoryInfoObj.dataValues.name);
             });
         });
-    }).done(function() {
-        console.log(categoryArray);
-    });
-
+    }
 
     Goods.findAll().then(function(result) {
         var resultArray = result.map(function(object) {
@@ -56,7 +54,8 @@ router.get('/category', function(req, res) {
         })
 
         res.render("category", {
-            data: resultArray
+            data: resultArray,
+            breadArray: breadArray
         });
     });
 });

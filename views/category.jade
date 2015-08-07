@@ -11,9 +11,9 @@ html(lang="en")
         .container.title-margin
             .panel.panel-danger
                 .panel-heading
-                    | 所有分类
-                    span.glyphicon.glyphicon-chevron-right.char-style
-                    span.text-cursor 图书音影
+                    for category in breadArray
+                        span.text-cursor #{category}
+                        span.glyphicon.glyphicon-chevron-right.char-style
                 .panel-body
                     span.col-md-1.category.text-center.text-cursor 电子书刊
                     span.col-md-1.category.text-center.text-cursor 图书制品
