@@ -11,8 +11,8 @@ module.exports = function(sequelize, DataTypes) {
         sales: DataTypes.STRING,
         detail: DataTypes.INTEGER,
         type: DataTypes.STRING,
-        img: DataTypes.STRING,
         recommend: DataTypes.STRING,
+        img: DataTypes.STRING,
         more_img: DataTypes.STRING,
         special_img: DataTypes.STRING
     }, {
@@ -20,4 +20,4 @@ module.exports = function(sequelize, DataTypes) {
         timestamps: false
     });
     return Goods;
-}
+};
