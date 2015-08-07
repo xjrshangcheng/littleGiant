@@ -62,16 +62,20 @@ $("#cart_goods_count").on("keydown", function(evt) {
 });
 
 
-// $(function() {
-//    getInfo();
-//    $('#table').on('click', function(evt) {
-//        $.ajax({
-//            url: '/student_name',
-//            type: 'delete',
-//            data: {
-//                id: evt.target.id
-//            }
-//        });
-//        getInfo();
-//    });
-// });
+$(function() {
+   $('.cart_goods_delete').on('click', function(evt) {
+       var id = evt.toElement.id;
+       console.log(id);
+       $.ajax({
+           url: '/delete-goods',
+           type: 'delete',
+           data: {
+               id: id
+           }, success : function(data) {
+               if(data.data === 'ok') {
+                   window.location.href=window.location.href;
+               }
+           }
+       });
+   });
+});

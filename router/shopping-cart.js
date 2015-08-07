@@ -10,12 +10,33 @@ router.get("/shopping-cart", function(req, res) {
     Cart.findAll({where : {username : username}}).then(function(val) {
         val.forEach(function(name) {
             array.push(name.dataValues);
-        })
+        });
     }).done(function() {
         res.render("shopping-cart", {
             data: array
         });
-    })
-})
+    });
+});
+
+
+router.delete('/delete-goods', function(req, res) {
+    var username = req.cookies.name;
+    var id = req.body.id;
+    var array = [];
+
+    Cart.destroy({where : {
+        id : id
+    }}).done(function() {
+        Cart.findAll({where : {username : username}}).then(function(val) {
+            val.forEach(function(name) {
+                array.push(name.dataValues);
+            });
+        }).done(function() {
+            res.send({
+                data : 'ok'
+            });
+        });
+    });
+});
 
 module.exports = router;
