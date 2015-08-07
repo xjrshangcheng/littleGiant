@@ -3,20 +3,7 @@ var router = express.Router();
 var models = require('../models');
 var User = models.user;
 var Goods = models.goods;
-var db = require('../models/index');
-var sequelize = db.sequelize;
-var Sequelize = db.Sequelize;
-
-var UserShoppingCart = sequelize.define('user-shopping-cart', {
-    id: Sequelize.INTEGER,
-    username: Sequelize.STRING,
-    number: Sequelize.INTEGER,
-    name: Sequelize.STRING,
-    price: Sequelize.STRING
-}, {
-    freezeTableName: true,
-    timestamps: false
-});
+var UserShoppingCart = models.userShoppingCart;
 
 router.get("/shopping-cart", function(req, res) {
     var username = req.cookies.name;
