@@ -21,7 +21,7 @@
     float: left;
 }
 #cart {
-    margin-left: 350px;
+    margin-left: 300px;
 }
 .nav-list {
     display: inline-block;
@@ -43,7 +43,7 @@
     margin: 0 10px;
 }
 .nav-user {
-    margin-right: 120px;
+    margin-right: 100px;
     display: inline-block;
     float: right;
     line-height: 50px;

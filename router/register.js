@@ -30,8 +30,8 @@ router.post('/register-submit', function(req, res) {
         email: inputEmail
     });
     res.send({
-        status : 200,
-        data : 'ok'
+        status: 200,
+        data: 'ok'
     });
 })
 
@@ -43,19 +43,19 @@ router.post('/name', function(req, res) {
     User.findAll().then(function(e) {
         var exist = false;
         e.forEach(function(n) {
-            if(n.dataValues.username === inputName) {
+            if (n.dataValues.username === inputName) {
                 message = 'user_exist';
                 exist = true;
             }
         })
-        if(!exist) {
+        if (!exist) {
             message = 'un_exist';
             status = 100;
         }
     }).done(function() {
         res.send({
-            status : status,
-            data : message
+            status: status,
+            data: message
         })
     });
 });
