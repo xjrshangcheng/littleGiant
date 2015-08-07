@@ -5,6 +5,8 @@
 <title>登陆</title>
 
 <link rel="stylesheet" href="./stylesheets/style.css">
+<link rel="stylesheet" href="./stylesheets/easyform.css">
+
 <script type="text/javascript" src="./jquery/dist/jquery.js"></script>
 <script type="text/javascript" src="./javascripts/easyform.js"></script>
 
@@ -16,11 +18,14 @@
 
         <table>
             <tr>
-                <td><input placeholder="用户名" name="uid" type="text" id="uid" easyform="length:6-16;char-normal;real-time;" message="用户名必须为6—16位的英文字母或数字" easytip="disappear:lost-focus;theme:red;"  data-messgae-ajax="用户名不存在!">
+                <td>    <input placeholder="用户名" name="uid" type="text" id="uid" data-easyform="length:6 16;char-normal;real-time;"
+                    data-message="必须为6—16位的英文字母或数字" data-easytip="disappear:lost-focus;class:easy-red;" data-message-ajax="用户名或密码错误!">
+
                 </td>
             </tr>
             <tr>
-                <td><input placeholder="密码" name="psw1" type="password" id="psw1" easyform="length:6-16;" message="密码必须为6—16位" easytip="disappear:lost-focus;theme:red;"></td>
+                <td>    <input placeholder="密码" name="psw1" type="password" id="psw1" data-easyform="length:6 16;real-time;"
+                    data-message="密码必须为6—16位" data-easytip="disappear:lost-focus;class:easy-red;"></td>
             </tr>
 
         </table>
