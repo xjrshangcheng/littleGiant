@@ -19,16 +19,19 @@ router.get('/', function(req, res) {
 
         var primaryClassification = {};
         var dataCount = 0;
+        var maxDataCount = 11;
+
         navigationData.filter(function(item) {
             return item.parent_id === 0;
         }).forEach(function(item) {
-            if (dataCount < 11) {
+            if (dataCount < maxDataCount) {
                 dataCount++;
                 primaryClassification[parseInt(item.path)] = item.name;
             }
         });
 
         var secondaryClassification = {};
+
         navigationData.filter(function(item) {
             return item.parent_id === 1;
         }).forEach(function(item) {
