@@ -30,8 +30,8 @@ module.exports = {
                 sales: DataTypes.STRING,
                 detail: DataTypes.STRING,
                 type: DataTypes.STRING,
-                recommend: DataTypes.STRING,
                 img: DataTypes.STRING,
+                recommend: DataTypes.STRING,
                 more_img: DataTypes.STRING,
                 special_img: DataTypes.STRING
             }
