@@ -28,11 +28,11 @@ app.use('/',header);
 var register = require('./router/register');
 app.use('/',register);
 
-var shoppingTrolley = require('./router/shopping-cart');
-app.use('/',shoppingTrolley);
+var shoppingCart = require('./router/shopping-cart');
+app.use('/',shoppingCart);
 
-var shoppingCart = require('./router/user-shopping-cart');
-app.use('/add-user-shopping-cart', shoppingCart);
+var userShoppingCart = require('./router/user-shopping-cart');
+app.use('/add-user-shopping-cart', userShoppingCart);
 
 var goods = require('./router/goods');
 app.use('/goods',goods);

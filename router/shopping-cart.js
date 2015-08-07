@@ -31,27 +31,46 @@ var Goods = sequelize.define('goods', {
     timestamps: false
 });
 
-var user_shopping_cart = sequelize.define('user_shopping_cart',{
-    id : Sequelize.INTEGER,
-    username : Sequelize.STRING,
-    number : Sequelize.INTEGER,
-    name : Sequelize.STRING,
-    price : Sequelize.STRING
+var user_shopping_cart = sequelize.define('user_shopping_cart', {
+    id: Sequelize.INTEGER,
+    username: Sequelize.STRING,
+    number: Sequelize.INTEGER,
+    name: Sequelize.STRING,
+    price: Sequelize.STRING
 }, {
-    freezeTableName : true,
-    timestamps : false
+    freezeTableName: true,
+    timestamps: false
 });
 
 router.get("/shopping-cart", function(req, res) {
-   user_shopping_cart.findAll().then(function(data) {
-       var array = [];
+    user_shopping_cart.findAll().then(function(data) {
+        var array = [];
 
-       for (var i = 0; i < data.length; i++) {
-           array.push(data[i].dataValues);
-       }
+        for (var i = 0; i < data.length; i++) {
+            array.push(data[i].dataValues);
+        }
 
-       res.render("shopping-cart", {data:array});
-   });
+        console.log(array);
+
+        res.render("shopping-cart", {
+            data: array
+        });
+    });
 });
+
+// router.delete('/delete', function(req, res) {
+//     var id = req.params.id;
+//     delete.destroy({
+//             where: {
+//                 id: id
+//             }
+//         })
+//         .done(function() {
+//             res.send({
+//                 status: 1,
+//                 message: ''
+//             });
+//         });
+// });
 
 module.exports = router;

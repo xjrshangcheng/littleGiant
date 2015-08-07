@@ -17,34 +17,35 @@ html(lang="en")
                 .buycart_titlebox
                     ul.buycart_title
                         li.buy_cart_all 全选
+                            input( type="checkbox" class="my_all_check" name="all-check" id="add_goods_tobuy_24124")
                         li.buy_cart_goods 商品名称
                         li.buy_cart_rmb 价格
                         li.buy_cart_number 数量
                         li.buy_cart_total 小计
                         li.buy_cart_operate 
                             ul.buycart_title_leftbg
-                                li.buycart_title_leftbg2 操作
+                                li.buycart_title_leftbg2 操作 
+                                
         .shopping-cart_goods
         for shoppingCartGoods in data
             ul.buycart_content.cart_goods
                 li.buycart_content_table1
+                    input(type="checkbox" class="add-goods-tobuy-choose-0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124")
                 li.buycart_content_table2
                     a(href="/product-details")
                         img.img-cursor(src="./images/goods-detail-picture/ym2.jpg")
                 li.buycart_content_table3
-                    //- input.goods_name
-                    | 范冰冰
+                    = shoppingCartGoods.name
                 li.buycart_content_table4
-                    //- input.price 
-                    #{shoppingCartGoods.price}
+                    = shoppingCartGoods.price
                 li.buycart_content_table5
-                    //- input.cart_goods_count
-                    #{shoppingCartGoods.number}
+                    input(class="changes" type="button" name="add" value="-")
+                    input(id="cart_goods_count" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
+                    input(class="changes" type="button" name="reduction" value="+")
                 li.buycart_content_table6
-                    //- input.subtotal 
-                    #{shoppingCartGoods.price}*#{shoppingCartGoods.number}
+                    = shoppingCartGoods.price * shoppingCartGoods.number
                 li.buycart_content_table7
-                    a.cart_goods_delete 删除
+                    a(class = "cart_goods_delete" id = shoppingCartGoods.id)  删除
         .BuyCart_TotalBox
             ul.buycart_content_footer
                 li.footer_center
@@ -56,3 +57,4 @@ html(lang="en")
                 .continue_cart 继续购物
                 .buy_now 去结算
         include footer.html
+        script(src="./javascripts/shopping-cart.js")
