@@ -1,5 +1,7 @@
 $(function() {
-
+    $('.continue_cart').on('click',function() {
+        $(location).attr('href','/')
+    })
     $(':input[name = all-check]').on('click', function() {
         var checked = $(this).prop('checked');
         $(':input[name=add_goods_tobuy_choose_0]').prop('checked', checked);
@@ -11,8 +13,7 @@ $(function() {
 
     $(':input[class = changes]').on('click', function() {
         var changes = $(this).prop('value');
-        var number = $(':input[class = cart-goods-count]').prop('value')*1;
-        console.log(number);
+        var number = parseInt($("." + $(this).prop("id")).prop('value'));
         if (changes === '-') {
             number = number - 1;
         }
@@ -22,13 +23,11 @@ $(function() {
         if (number<=0) {
             number=1;
         }
-        $(':input[class = cart-goods-count]').prop('value', number);
-        var price = $(':input[class=price]').prop('value');
-        var subtotal = price *number;
-        $(':input[class = subtotal]').prop('value', subtotal);
-        $(':input[class = total]').prop('value', subtotal);
-    });
+        $("." + $(this).prop("id")).prop('value',number)
 
+        $(".buycart_content_table6")
+    });
+})
 
     $(':input[class=cart_goods_count]').on('input propertychange',function() {
         var price = $(':input[class=price]').prop('value');
@@ -41,8 +40,6 @@ $(function() {
         $(':input[class = subtotal]').prop('value', subtotal);
         $(':input[class = total]').prop('value', subtotal);
     });
-});
-
 
 $("#cart_goods_count").on("keydown", function(evt) {
     var NUM1 = 57;
@@ -60,7 +57,6 @@ $("#cart_goods_count").on("keydown", function(evt) {
         evt.preventDefault();
     }
 });
-
 
 $(function() {
    $('.cart_goods_delete').on('click', function(evt) {
