@@ -12,23 +12,23 @@ html(lang="en")
                 .buy_content_imgbox
                     .productimgbox
                         .productbigimg_box
-                            .productbigimg
-                                img(src="#{goodsData[0].img}").blockimg
-                                img(src="#{goodsData[0].img}")
-                                img(src="#{}")
-                                img(src="")
-                                img(src="")
+                            img(src="#{goodsData[0].img}" class="big-picture")
                         ul.productsmallimg
-                            li.libg
-                                img(src="#{goodsData[0].img}")
-                            li
-                                img(src="#{goodsData[0].img}")
-                            li
-                                img(src="#{goodsData[0].img}")    
-                            li
-                                img(src="#{goodsData[0].img}")    
-                            li
-                                img(src="#{goodsData[0].img}")  
+                            li.list
+                                a
+                                    img(src="#{goodsData[0].img}" class="picture")
+                            li.list
+                                a
+                                    img(src="#{goodsData[0].img}" class="picture")
+                            li.list
+                                a
+                                    img(src="#{goodsData[0].img}" class="picture")    
+                            li.list
+                                a
+                                    img(src="#{goodsData[0].img}" class="picture")    
+                            li.list
+                                a
+                                    img(src="#{goodsData[0].img}" class="picture")  
                 .buy_content_text
                     .buy_content_text_a
                         - var foo = goodsData[0].name
@@ -111,5 +111,4 @@ html(lang="en")
     script(src="./jquery/dist/jquery.js")
     script(src="./bootstrap/dist/js/bootstrap.js")
     script(src="./javascripts/add-shopping-cart.js")
-    script(src="./javascripts/goods.js")
     //- script(src=".http://v3.jiathis.com/code/jia.js")    
