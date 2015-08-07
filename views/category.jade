@@ -13,7 +13,7 @@ html(lang="en")
                 .panel-heading
                     for category in breadArray
                         a(href="/category?type="+category).text-cursor #{category}
-                        a.glyphicon.glyphicon-chevron-right.char-style
+                        span.glyphicon.glyphicon-chevron-right.char-style
                 .panel-body
                     for sun in sunCategory
                         a(href="/category?type="+sun).col-md-1.category.text-center.text-cursor #{sun}
@@ -26,17 +26,19 @@ html(lang="en")
                             span.glyphicon.glyphicon-chevron-right.char-style
             .panel.panel-danger
                 .panel-body
-                    for goodsInfo in data
-                        .col-md-3.info-margin-bottom
-                            .clearfix
-                                a(href="/goods?id="+ goodsInfo.id)
-                                    img.col-md-12.text-center.img-cursor(src=goodsInfo.img height="224px;")
-                            .col-md-12
-                                .pull-left.col-md-6.text-center.border $#{goodsInfo.price}
-                                .pull-right.col-md-6.text-center.border 销量：#{goodsInfo.sales}
-                                a(href="/goods?id="+ goodsInfo.id)
-                                    .col-md-12.border.info-div.text-cursor #{goodsInfo.info}
-                
+                    if data.length !== 0
+                        for goodsInfo in data
+                            .col-md-3.info-margin-bottom
+                                .clearfix
+                                    a(href="/goods?id="+ goodsInfo.id)
+                                        img.col-md-12.text-center.img-cursor(src=goodsInfo.img height="224px;")
+                                .col-md-12
+                                    .pull-left.col-md-6.text-center.border $#{goodsInfo.price}
+                                    .pull-right.col-md-6.text-center.border 销量：#{goodsInfo.sales}
+                                    a(href="/goods?id="+ goodsInfo.id)
+                                        .col-md-12.border.info-div.text-cursor #{goodsInfo.info}
+                    else 
+                        |此类无商品
                 .panel-heading.text-center
                     a.btn.btn-defaults.color-font 上一页
                     a.btn.btn-defaults.color-font 1
