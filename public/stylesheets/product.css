@@ -264,6 +264,10 @@ ul, ol {
 }
 .quantity * {
     float: left;
+    border: 0px;
+    padding: 0px;
+    height: 18px;
+    width: 12px;
 }
 .quantity input {
     width: 40px;
