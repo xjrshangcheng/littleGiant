@@ -8,6 +8,7 @@ router.get('/category', function(req, res) {
     var breadArray = [];
     breadArray.push("所有分类");
     var sunCategory = [];
+    req.query.type = req.query.type || "所有分类";
 
         Category.findAll().then(function(object) {
             var selectId;
@@ -34,7 +35,6 @@ router.get('/category', function(req, res) {
                     sunCategory.push(data.dataValues.name);
                 }else if(req.query.type === "所有分类" && data.dataValues.parent_id === 0){
                     sunCategory.push(data.dataValues.name);
-                    console.log(data.dataValues.name);
                 }
             })
         });
