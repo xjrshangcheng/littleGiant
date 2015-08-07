@@ -8,7 +8,7 @@ $(function() {
                 inputEmail: $('#email').prop('value')
             }, function() {
                 alert('注册成功，赶快登陆开始购物吧！')
-                window.location.href = "/";
+                window.history.back(-1);
             })
         })
     }
