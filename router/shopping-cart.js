@@ -4,7 +4,7 @@ var models = require('../models');
 var User = models.user;
 var Goods = models.goods;
 
-var user_shopping_cart = sequelize.define('user_shopping_cart', {
+var UserShoppingCart = sequelize.define('user-shopping-cart', {
     id: Sequelize.INTEGER,
     username: Sequelize.STRING,
     number: Sequelize.INTEGER,
@@ -19,7 +19,7 @@ router.get("/shopping-cart", function(req, res) {
     var username = req.cookies.name;
     var array = [];
 
-    user_shopping_cart.findAll({where : {username : username}}).then(function(val) {
+    UserShoppingCart.findAll({where : {username : username}}).then(function(val) {
         val.forEach(function(name) {
             array.push(name.dataValues);
         })

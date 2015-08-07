@@ -4,7 +4,7 @@ var db = require('../models/index');
 var sequelize = db.sequelize;
 var Sequelize = db.Sequelize;
 
-var user_shopping_cart = sequelize.define('user_shopping_cart',{
+var UserCart = sequelize.define('user-shopping-cart',{
     id : Sequelize.INTEGER,
     username : Sequelize.STRING,
     number : Sequelize.INTEGER,
@@ -17,7 +17,7 @@ var user_shopping_cart = sequelize.define('user_shopping_cart',{
 
 router.post("/",function(req,res) {
 
-    user_shopping_cart.findAll({
+    UserCart.findAll({
         where : {
             id : req.body.id,
             username : req.body.username
