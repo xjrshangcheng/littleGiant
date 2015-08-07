@@ -32,7 +32,7 @@ router.post("/",function(req,res) {
                price : req.body.price
            })
        } else {
-            user_shopping_cart.update({
+            UserCart.update({
                 number : parseInt(data[0].number) + parseInt(req.body.number)
             }, {
                 where : {

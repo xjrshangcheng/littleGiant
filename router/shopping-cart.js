@@ -3,6 +3,9 @@ var router = express.Router();
 var models = require('../models');
 var User = models.user;
 var Goods = models.goods;
+var db = require('../models/index');
+var sequelize = db.sequelize;
+var Sequelize = db.Sequelize;
 
 var UserShoppingCart = sequelize.define('user-shopping-cart', {
     id: Sequelize.INTEGER,
