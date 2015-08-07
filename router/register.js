@@ -19,8 +19,9 @@ router.post('/register-submit', function(req, res) {
     });
     res.send({
         status: 200,
-        data: 'ok'
-    });
+        data: 'ok',
+        message: ''
+    })
 })
 
 router.post('/name', function(req, res) {
