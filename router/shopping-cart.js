@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
-var User = models.user;
-var Goods = models.goods;
 var UserShoppingCart = models.userShoppingCart;
 
 router.get("/shopping-cart", function(req, res) {
