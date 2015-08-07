@@ -1,19 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var Sequelize = require('sequelize');
-var db = require('../models/index');
-var sequelize = db.sequelize;
-var Sequelize = db.Sequelize;
-
-var User = sequelize.define('user', {
-    id: Sequelize.INTEGER,
-    username: Sequelize.STRING,
-    password: Sequelize.STRING,
-    email: Sequelize.STRING
-}, {
-    freezeTableName: true,
-    timestamps: false
-});
+var models = require('../models');
+var User = models.user;
 
 router.get('/register', function(req, res) {
     res.render('register');
