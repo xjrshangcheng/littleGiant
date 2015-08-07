@@ -9,7 +9,7 @@ function getCookie(name) {
 $("#add_to_cart").on("click", function() {
     var id = $("#goods_code").html();
     var username = getCookie('name');
-    var number = $("#goods_number_input").prop("value");
+    var number = parseInt($("#goods_number_input").prop("value")) === 0 ? 1 : $("#goods_number_input").prop("value");
     var name = $(".buy_content_text_a1").html();
     var price = $("#sales_price").html();
     var cookieName = getCookie('name');
