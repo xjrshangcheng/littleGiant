@@ -1,7 +1,7 @@
 var sequelize = require('../db-connection/connection');
 
 module.exports = function(sequelize, DataTypes) {
-    var category = sequelize.define('category', {
+    var Category = sequelize.define('category', {
         id: DataTypes.INTEGER,
         parent_id: DataTypes.INTEGER,
         name: DataTypes.STRING,
@@ -10,5 +10,5 @@ module.exports = function(sequelize, DataTypes) {
         freezeTableName: true,
         timestamps: false
     });
-    return category;
+    return Category;
 }
