@@ -46,12 +46,12 @@ router.get('/', function(req, res) {
         });
 
         var primaryClassification = {};
-        var count = 0;
+        var dataCount = 0;
         navigationData.filter(function (item) {
             return item.parent_id === 0;
         }).forEach(function (item) {
-            if (count < 11) {
-                count ++;
+            if (dataCount < 11) {
+                dataCount ++;
                 primaryClassification[parseInt(item.path)] = item.name;
             }
         });
@@ -72,7 +72,6 @@ router.get('/', function(req, res) {
                 recommend: ['roll','popular','new']
             }
         }).then(function(good) {
-
             var goodsValues = good.map(function (item) {
                 return item.dataValues;
             });
@@ -81,17 +80,14 @@ router.get('/', function(req, res) {
                 return item.recommend === 'roll';
             });
 
-            var popular = goodsValues.filter(function (item) {
+            goods.popular = goodsValues.filter(function (item) {
                 return item.recommend === 'popular';
             });
-            goods.popular = popular;
 
-            var newItem = goodsValues.filter(function (item) {
+            goods.newItem = goodsValues.filter(function (item) {
                 return item.recommend === 'new';
             });
-            goods.newItem = newItem;
 
-            console.log(goods);
         }).then(function() {
             res.render('index', {
                 navigation: navigation,
