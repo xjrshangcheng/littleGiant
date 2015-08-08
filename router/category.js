@@ -4,7 +4,7 @@ var models = require('../models');
 var Goods = models.goods;
 var Category = models.category;
 
-router.get('/category', function(req, res) {
+router.get('/', function(req, res) {
     var breadArray = [];
     var sunCategory = [];
 
@@ -14,7 +14,7 @@ router.get('/category', function(req, res) {
     Category.findAll().then(function(object) {
         var selectId;
         var parentId;
-        
+
         object.forEach(function(data) {
             if (data.dataValues.name === req.query.type) {
                 data.dataValues.path.split(".").forEach(function(id) {

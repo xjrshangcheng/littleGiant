@@ -17,7 +17,7 @@ var index = require("./router/index");
 app.get('/', index);
 
 var category = require('./router/category')
-app.use('/', category);
+app.use('/category', category);
 
 var login = require('./router/login');
 app.use('/',login);
