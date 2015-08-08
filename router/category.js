@@ -6,13 +6,15 @@ var Category = models.category;
 
 router.get('/category', function(req, res) {
     var breadArray = [];
-    breadArray.push("所有分类");
     var sunCategory = [];
+
+    breadArray.push("所有分类");
     req.query.type = req.query.type || "所有分类";
 
     Category.findAll().then(function(object) {
         var selectId;
         var parentId;
+        
         object.forEach(function(data) {
             if (data.dataValues.name === req.query.type) {
                 data.dataValues.path.split(".").forEach(function(id) {
@@ -36,7 +38,7 @@ router.get('/category', function(req, res) {
             } else if (req.query.type === "所有分类" && data.dataValues.parent_id === 0) {
                 sunCategory.push(data.dataValues.name);
             }
-        })
+        });
     });
 
     Goods.findAll({
