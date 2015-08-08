@@ -7,6 +7,7 @@ var Category = models.category;
 router.get('/', function(req, res) {
     var breadArray = [];
     var sunCategory = [];
+    var sunAllCategory = [];
 
     breadArray.push("所有分类");
     req.query.type = req.query.type || "所有分类";
@@ -14,6 +15,7 @@ router.get('/', function(req, res) {
     Category.findAll().then(function(object) {
         var selectId;
         var parentId;
+        var path;
 
         object.forEach(function(data) {
             if (data.dataValues.name === req.query.type) {
@@ -29,6 +31,7 @@ router.get('/', function(req, res) {
             if (data.dataValues.name === req.query.type) {
                 selectId = data.dataValues.id;
                 parentId = data.dataValues.parent_id;
+                path = data.dataValues.path;
             }
         });
 
@@ -39,22 +42,42 @@ router.get('/', function(req, res) {
                 sunCategory.push(data.dataValues.name);
             }
         });
-    });
 
-    Goods.findAll({
-        where: {
-            type: req.query.type
+        object.forEach(function(data) {
+            if (path !== "undefined" && data.dataValues.path.indexOf(path) === 0) {
+                sunAllCategory.push(data.dataValues.name);
+            }
+        });
+    }).then(function() {
+        if (req.query.type !== "所有分类") {
+            Goods.findAll({
+                where: {
+                    type: sunAllCategory
+                }
+            }).then(function(result) {
+                var resultArray = result.map(function(object) {
+                    return object.dataValues;
+                });
+
+                res.render("category", {
+                    data: resultArray,
+                    breadArray: breadArray,
+                    sunCategory: sunCategory
+                });
+            });
+        } else {
+            Goods.findAll().then(function(result) {
+                var resultArray = result.map(function(object) {
+                    return object.dataValues;
+                });
+
+                res.render("category", {
+                    data: resultArray,
+                    breadArray: breadArray,
+                    sunCategory: sunCategory
+                });
+            });
         }
-    }).then(function(result) {
-        var resultArray = result.map(function(object) {
-            return object.dataValues;
-        });
-
-        res.render("category", {
-            data: resultArray,
-            breadArray: breadArray,
-            sunCategory: sunCategory
-        });
     });
 });
 
