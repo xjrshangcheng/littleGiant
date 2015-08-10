@@ -15,8 +15,8 @@ html(lang="en")
                         a(href="/category?type="+category).text-cursor #{category}
                         span.glyphicon.glyphicon-chevron-right.char-style
                 .panel-body
-                    for sun in sunCategory
-                        a(href="/category?type="+sun).col-md-1.category.text-center.text-cursor #{sun}
+                    for sub in subCategory
+                        a(href="/category?type="+sub).col-md-1.category.text-center.text-cursor #{sub}
                         
                     .col-md-3.pull-right
                         .btn.btn-danger.col-md-4.text-center
