@@ -31,8 +31,8 @@ app.use('/',register);
 var shoppingCart = require('./router/shopping-cart');
 app.use('/',shoppingCart);
 
-var userShoppingCart = require('./router/user-shopping-cart');
-app.use('/add-user-shopping-cart', userShoppingCart);
+var userShoppingCart = require('./router/add');
+app.use('/add', userShoppingCart);
 
 var pay = require('./router/pay');
 app.use('/pay',pay);
