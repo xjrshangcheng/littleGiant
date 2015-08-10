@@ -5,77 +5,77 @@ var Goods = models.goods;
 var Category = models.category;
 
 router.get('/', function(req, res) {
-    var breadArray = [];
-    var sunCategory = [];
-    var sunAllCategory = [];
+    var resultGoodsArray = [];
+    var resultBreadArray = [];
+    var resultSunCategoryArray = [];
+    var sunAllCategoryArray = [];
 
-    breadArray.push("所有分类");
+    resultBreadArray.push("所有分类");
     req.query.type = req.query.type || "所有分类";
 
-    Category.findAll().then(function(object) {
-        var selectId;
-        var parentId;
-        var path;
+    Category.findAll().then(function(categoryAllRecord) {
+        var currentCategoryId;
+        var currentCategoryParentId;
+        var currentCategoryPath;
 
-        object.forEach(function(data) {
-            if (data.dataValues.name === req.query.type) {
-                data.dataValues.path.split(".").forEach(function(id) {
-                    object.forEach(function(data) {
-                        if (data.dataValues.id == id) {
-                            breadArray.push(data.dataValues.name);
+        categoryAllRecord.forEach(function(categoryRecordOne) {
+            // 生成resultBreadArray
+            if (categoryRecordOne.dataValues.name === req.query.type) {
+                currentCategoryPath = categoryRecordOne.dataValues.path;
+                currentCategoryPath.split(".").forEach(function(categoryId) {
+                    categoryAllRecord.forEach(function(categoryRecordTwo) {
+                        if (categoryRecordTwo.dataValues.id == categoryId) {
+                            resultBreadArray.push(categoryRecordTwo.dataValues.name);
                         }
                     });
                 });
+
+                // 得到currentCategory信息
+                currentCategoryId = categoryRecordOne.dataValues.id;
+                currentCategoryParentId = categoryRecordOne.dataValues.parent_id;
             }
 
-            if (data.dataValues.name === req.query.type) {
-                selectId = data.dataValues.id;
-                parentId = data.dataValues.parent_id;
-                path = data.dataValues.path;
+            // 生成resultSunCategoryArray
+            if (categoryRecordOne.dataValues.path.indexOf(currentCategoryPath + ".") === 0 &&
+                categoryRecordOne.dataValues.parent_id === currentCategoryParentId + 1) {
+                resultSunCategoryArray.push(categoryRecordOne.dataValues.name);
+            } else if (req.query.type === "所有分类" && categoryRecordOne.dataValues.parent_id === 0) {
+                resultSunCategoryArray.push(categoryRecordOne.dataValues.name);
             }
-        });
 
-        object.forEach(function(data) {
-            if (data.dataValues.path.indexOf(selectId + ".") !== -1 && data.dataValues.parent_id === parentId + 1) {
-                sunCategory.push(data.dataValues.name);
-            } else if (req.query.type === "所有分类" && data.dataValues.parent_id === 0) {
-                sunCategory.push(data.dataValues.name);
-            }
-        });
-
-        object.forEach(function(data) {
-            if (path !== "undefined" && data.dataValues.path.indexOf(path) === 0) {
-                sunAllCategory.push(data.dataValues.name);
+            // 生成sunAllCategoryArray
+            if (currentCategoryPath !== "undefined" && categoryRecordOne.dataValues.path.indexOf(currentCategoryPath) === 0) {
+                sunAllCategoryArray.push(categoryRecordOne.dataValues.name);
             }
         });
     }).then(function() {
         if (req.query.type !== "所有分类") {
             Goods.findAll({
                 where: {
-                    type: sunAllCategory
+                    type: sunAllCategoryArray
                 }
             }).then(function(result) {
-                var resultArray = result.map(function(object) {
-                    return object.dataValues;
+                resultGoodsArray = result.map(function(categoryRecord) {
+                    return categoryRecord.dataValues;
                 });
 
                 res.render("category", {
-                    data: resultArray,
-                    breadArray: breadArray,
-                    sunCategory: sunCategory
-                });
+                    data: resultGoodsArray,
+                    breadArray: resultBreadArray,
+                    sunCategory: resultSunCategoryArray
+                })
             });
         } else {
             Goods.findAll().then(function(result) {
-                var resultArray = result.map(function(object) {
-                    return object.dataValues;
+                resultGoodsArray = result.map(function(categoryRecord) {
+                    return categoryRecord.dataValues;
                 });
-
+                
                 res.render("category", {
-                    data: resultArray,
-                    breadArray: breadArray,
-                    sunCategory: sunCategory
-                });
+                    data: resultGoodsArray,
+                    breadArray: resultBreadArray,
+                    sunCategory: resultSunCategoryArray
+                })
             });
         }
     });
