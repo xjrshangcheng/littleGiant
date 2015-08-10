@@ -15,8 +15,9 @@ html(lang="en")
             .buycart_a
                 .buycart_titlebox
                     ul.buycart_title
-                        li.buy_cart_all 全选
+                        li.buy_cart_all
                             input( type="checkbox" class="my_all_check" name="all-check" id="add_goods_tobuy_24124")
+                            全选
                         li.buy_cart_goods 商品名称
                         li.buy_cart_rmb 价格
                         li.buy_cart_number 数量
@@ -38,9 +39,9 @@ html(lang="en")
                 li.buycart_content_table4
                     input(id="#{shoppingCartGoods.id}" class="price" type="text" name="price" value=shoppingCartGoods.price readonly)
                 li.buycart_content_table5
-                    input(class="changes"  type="button" name="add" value="-")
-                    input(id="cart_goods_count" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
-                    input(class="changes" type="button" name="reduction" value="+")
+                    input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="add" value="-")
+                    input(id="#{shoppingCartGoods.id}" class="#{shoppingCartGoods.id}" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
+                    input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="reduction" value="+")
                 li.buycart_content_table6
                     input(id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
                 li.buycart_content_table7

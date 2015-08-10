@@ -17,7 +17,6 @@ $(function() {
     $(':input[class = changes]').on('click', function() {
         var changes = $(this).prop('value');
         var number = parseInt($("." + $(this).prop("id")).prop('value'));
-        console.log(number);
         if (changes === '-') {
             number = number - 1;
         }
@@ -31,20 +30,18 @@ $(function() {
         price = $(':input[id=' + $(this).prop("id") + ']').prop('value');
         var subtotal = price * number;
         $('#' + $(this).prop("id") + '.subtotal').prop('value', subtotal);
+        console.log(subtotal);
     });
 })
 
-    $(':input[class=cart_goods_count]').on('input propertychange',function() {
+    $('.cart-goods-count').on('input propertychange',function() {
         var price = $('#' + $(this).prop("id") + '.price').prop('value');
-        console.log(price);
-        var number = $(':input[class=cart_goods_count]').prop('value');
+        var number = $('#' + $(this).prop("id") + '.cart-goods-count').prop('value');
         if (number<=0) {
             number=1;
         }
-        $(':input[class = cart_goods_count]').prop('value', number);
         var subtotal = price * number;
-        $(':input[class = subtotal]').prop('value', subtotal);
-        $(':input[class = total]').prop('value', subtotal);
+        $('#' + $(this).prop("id") + '.subtotal').prop('value', subtotal);
     });
 
 $("#cart_goods_count").on("keydown", function(evt) {
