@@ -26,7 +26,7 @@ var header = require('./router/header');
 app.use('/',header);
 
 var register = require('./router/register');
-app.use('/',register);
+app.use('/register',register);
 
 var shoppingCart = require('./router/shopping-cart');
 app.use('/',shoppingCart);
