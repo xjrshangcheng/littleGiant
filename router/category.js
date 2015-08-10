@@ -50,35 +50,31 @@ router.get('/', function(req, res) {
         });
     }).then(function() {
         if (req.query.type !== "所有分类") {
-            Goods.findAll({
+            var whereObj = {
                 where: {
                     type: sunAllCategoryArray
                 }
-            }).then(function(result) {
-                resultGoodsArray = result.map(function(categoryRecord) {
-                    return categoryRecord.dataValues;
-                });
+            };
 
-                res.render("category", {
-                    data: resultGoodsArray,
-                    breadArray: resultBreadArray,
-                    sunCategory: resultSunCategoryArray
-                })
-            });
+            findGoods(res, resultGoodsArray, resultBreadArray, resultSunCategoryArray, whereObj);
         } else {
-            Goods.findAll().then(function(result) {
-                resultGoodsArray = result.map(function(categoryRecord) {
-                    return categoryRecord.dataValues;
-                });
-                
-                res.render("category", {
-                    data: resultGoodsArray,
-                    breadArray: resultBreadArray,
-                    sunCategory: resultSunCategoryArray
-                })
-            });
+            findGoods(res, resultGoodsArray, resultBreadArray, resultSunCategoryArray, undefined);
         }
     });
 });
+
+function findGoods(res, resultGoodsArray, resultBreadArray, resultSunCategoryArray, whereObj) {
+    Goods.findAll(whereObj).then(function(result) {
+        resultGoodsArray = result.map(function(categoryRecord) {
+            return categoryRecord.dataValues;
+        });
+
+        res.render("category", {
+            data: resultGoodsArray,
+            breadArray: resultBreadArray,
+            sunCategory: resultSunCategoryArray
+        })
+    });
+}
 
 module.exports = router;
