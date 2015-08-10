@@ -5,7 +5,6 @@ html(lang="en")
         link(rel="stylesheet" href="./stylesheets/layoutStyle.css")
         link(rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css")
         link(rel="stylesheet" href="./stylesheets/shoppingCart.css")
-        script(src="./jquery/dist/jquery.js")
     body
         include header.html
         .container
@@ -39,9 +38,9 @@ html(lang="en")
                 li.buycart_content_table4
                     = shoppingCartGoods.price
                 li.buycart_content_table5
-                    input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="add" value="-")
-                    input(class="#{shoppingCartGoods.id}" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
-                    input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="reduction" value="+")
+                    input(class="changes"  type="button" name="add" value="-")
+                    input(id="cart_goods_count" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
+                    input(class="changes" type="button" name="reduction" value="+")
                 li.buycart_content_table6
                     = shoppingCartGoods.price * shoppingCartGoods.number
                 li.buycart_content_table7
@@ -58,3 +57,4 @@ html(lang="en")
                 .buy_now 去结算
         include footer.html
         script(src="./javascripts/shopping-cart.js")
+        script(src="./jquery/dist/jquery.js")

@@ -17,6 +17,7 @@ $(function() {
     $(':input[class = changes]').on('click', function() {
         var changes = $(this).prop('value');
         var number = parseInt($("." + $(this).prop("id")).prop('value'));
+        console.log(number);
         if (changes === '-') {
             number = number - 1;
         }

@@ -13,7 +13,9 @@ router.get("/shopping-cart", function(req, res) {
         });
     }).done(function() {
         res.render("shopping-cart", {
-            data: array
+            data: array,
+            status:200,
+            message:''
         });
     });
 });
@@ -33,7 +35,9 @@ router.delete('/delete-goods', function(req, res) {
             });
         }).done(function() {
             res.send({
-                data : 'ok'
+                data : 'ok',
+                status:200,
+                message:''
             });
         });
     });
