@@ -10,7 +10,7 @@ $("#add_to_cart").on("click", function() {
     if (cookieName === null) {
         $(location).attr('href', '/login');
     } else {
-        $.post("/add-user-shopping-cart", {
+        $.post("/add", {
             id: id,
             username: username,
             number: number,
