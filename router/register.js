@@ -7,22 +7,18 @@ router.get('/register', function(req, res) {
     res.render('register');
 });
 
-router.post('/register-submit', function(req, res) {
-
-    var inputName = req.body.inputName;
-    var inputPwd = req.body.inputPwd;
-    var inputEmail = req.body.inputEmail;
+router.post('/register', function(req, res) {
+    var inputName = req.body.uid;
+    var inputPwd = req.body.psw1;
+    var inputEmail = req.body.email;
     User.create({
         username: inputName,
         password: inputPwd,
         email: inputEmail
     });
-    res.send({
-        status: 200,
-        data: 'ok',
-        message: ''
-    })
-})
+
+    res.redirect('login');
+});
 
 router.post('/name', function(req, res) {
     var inputName = req.body.inputName;
