@@ -63,18 +63,21 @@ $("#cart_goods_count").on("keydown", function(evt) {
 
 $(function() {
    $('.cart_goods_delete').on('click', function(evt) {
-       var id = evt.toElement.id;
-       console.log(id);
-       $.ajax({
-           url: '/delete-goods',
-           type: 'delete',
-           data: {
-               id: id
-           }, success : function(data) {
-               if(data.data === 'ok') {
-                   window.location.href=window.location.href;
+
+       if (confirm("你确信要删除此条数据吗？")) {
+           var id = evt.toElement.id;
+
+           $.ajax({
+               url: '/delete-goods',
+               type: 'delete',
+               data: {
+                   id: id
+               }, success : function(data) {
+                   if(data.data === 'ok') {
+                       window.location.href=window.location.href;
+                   }
                }
-           }
-       });
+           });
+        }
    });
 });

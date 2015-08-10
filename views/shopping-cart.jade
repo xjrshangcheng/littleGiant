@@ -27,6 +27,8 @@ html(lang="en")
                                 li.buycart_title_leftbg2 操作
 
         .shopping-cart_goods
+        if data.length === 0
+            ="购物车现在没有商品"
         for shoppingCartGoods in data
             ul.buycart_content.cart_goods
                 li.buycart_content_table1
@@ -59,3 +61,4 @@ html(lang="en")
         include footer.html
         script(src="./javascripts/shopping-cart.js")
         script(src="./jquery/dist/jquery.js")
+                  
