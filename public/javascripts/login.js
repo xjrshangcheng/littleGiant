@@ -1,4 +1,5 @@
 $(function() {
+    $('#reg-form').easyform();
     $('#submit').on('click', function() {
         if(checkRequired()) {
             var inputName = $('#uid').prop('value');

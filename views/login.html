@@ -3,47 +3,40 @@
 <head>
     <meta charset="UTF-8">
 <title>登陆</title>
-
 <link rel="stylesheet" href="./stylesheets/style.css">
 <link rel="stylesheet" href="./stylesheets/easyform.css">
-
-<script type="text/javascript" src="./jquery/dist/jquery.js"></script>
-<script type="text/javascript" src="./javascripts/easyform.js"></script>
-
 </head>
 <body>
 <br>
+<img src="images/banner.png" alt="" id="banner">
 <div class="form-div">
     <form id="reg-form" action="" method="post">
 
         <table>
             <tr>
-                <td>    <input placeholder="用户名" name="uid" type="text" id="uid" data-easyform="length:6 16;char-normal;real-time;"
+                <td>
+                    <input placeholder="用户名" name="uid" type="text" id="uid" data-easyform="length:6 16;char-normal;real-time;"
                     data-message="必须为6—16位的英文字母或数字" data-easytip="disappear:lost-focus;class:easy-red;" data-message-ajax="用户名或密码错误!">
-
                 </td>
             </tr>
             <tr>
-                <td>    <input placeholder="密码" name="psw1" type="password" id="psw1" data-easyform="length:6 16;real-time;"
+                <td>
+                    <input placeholder="密码" name="psw1" type="password" id="psw1" data-easyform="length:6 16;real-time;"
                     data-message="密码必须为6—16位" data-easytip="disappear:lost-focus;class:easy-red;"></td>
             </tr>
-
         </table>
+
 		<div class="buttons">
 			<input value="登 陆" id='submit' type="submit">
 			<a href="/register"><input value="立即注册" id='button' type="button" ></a>
         </div>
-
         <br class="clear">
     </form>
+
 </div>
 
-<script type="text/javascript">
-$(document).ready(function(){
-	$('#reg-form').easyform();
-});
-</script>
-</div>
+<script type="text/javascript" src="./jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="./javascripts/easyform.js"></script>
 <script type="text/javascript" src='./javascripts/login.js'>
 
 </script>
