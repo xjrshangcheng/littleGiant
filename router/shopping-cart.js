@@ -7,15 +7,19 @@ router.get("/shopping-cart", function(req, res) {
     var username = req.cookies.name;
     var array = [];
 
-    Cart.findAll({where : {username : username}}).then(function(val) {
+    Cart.findAll({
+        where: {
+            username: username
+        }
+    }).then(function(val) {
         val.forEach(function(name) {
             array.push(name.dataValues);
         });
     }).done(function() {
         res.render("shopping-cart", {
             data: array,
-            status:200,
-            message:''
+            status: 200,
+            message: ''
         });
     });
 });
@@ -26,18 +30,24 @@ router.delete('/delete-goods', function(req, res) {
     var id = req.body.id;
     var array = [];
 
-    Cart.destroy({where : {
-        id : id
-    }}).done(function() {
-        Cart.findAll({where : {username : username}}).then(function(val) {
+    Cart.destroy({
+        where: {
+            id: id
+        }
+    }).done(function() {
+        Cart.findAll({
+            where: {
+                username: username
+            }
+        }).then(function(val) {
             val.forEach(function(name) {
                 array.push(name.dataValues);
             });
         }).done(function() {
             res.send({
-                data : 'ok',
-                status:200,
-                message:''
+                data: 'ok',
+                status: 200,
+                message: ''
             });
         });
     });
