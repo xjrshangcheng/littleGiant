@@ -12,23 +12,15 @@ html(lang="en")
                 .buy-content-imgbox
                     .product-imgbox
                         .product-bigimg-box
-                            img(src="#{goodsData[0].img}" class="big-picture")
+                            if imgDate.length === 0 
+                                img(src="./images/goods/yang.jpg" class="big-picture")
+                            else 
+                                img(src="#{imgDate[0]}" class="big-picture")
                         ul.product-small-img
-                            li.list
-                                a
-                                    img(src="#{goodsData[0].img}" class="picture")
-                            li.list
-                                a
-                                    img(src="#{goodsData[0].img}" class="picture")
-                            li.list
-                                a
-                                    img(src="./images/goods-detail-picture/tang.jpg" class="picture")
-                            li.list
-                                a
-                                    img(src="#{goodsData[0].img}" class="picture")
-                            li.list
-                                a
-                                    img(src="#{goodsData[0].img}" class="picture")
+                            - for (var x = 0; x < imgDate.length; x++)
+                                li.list
+                                    a
+                                        img(src="#{imgDate[x]}" class="picture")
                 .buy-content-text
                     .buy-content-text-a
                         - var foo = goodsData[0].name
