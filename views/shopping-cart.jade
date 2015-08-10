@@ -21,10 +21,10 @@ html(lang="en")
                         li.buy_cart_rmb 价格
                         li.buy_cart_number 数量
                         li.buy_cart_total 小计
-                        li.buy_cart_operate 
+                        li.buy_cart_operate
                             ul.buycart_title_leftbg
-                                li.buycart_title_leftbg2 操作 
-                                
+                                li.buycart_title_leftbg2 操作
+
         .shopping-cart_goods
         for shoppingCartGoods in data
             ul.buycart_content.cart_goods
@@ -36,13 +36,13 @@ html(lang="en")
                 li.buycart_content_table3
                     = shoppingCartGoods.name
                 li.buycart_content_table4
-                    = shoppingCartGoods.price
+                    input(id="#{shoppingCartGoods.id}" class="price" type="text" name="price" value=shoppingCartGoods.price readonly)
                 li.buycart_content_table5
                     input(class="changes"  type="button" name="add" value="-")
                     input(id="cart_goods_count" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
                     input(class="changes" type="button" name="reduction" value="+")
                 li.buycart_content_table6
-                    = shoppingCartGoods.price * shoppingCartGoods.number
+                    input(id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
                 li.buycart_content_table7
                     a(class = "cart_goods_delete" id = shoppingCartGoods.id)  删除
         .BuyCart_TotalBox

@@ -27,14 +27,16 @@ $(function() {
         if (number<=0) {
             number=1;
         }
-        $("." + $(this).prop("id")).prop('value',number)
-
-        $(".buycart_content_table6")
+        $("." + $(this).prop("id")).prop('value',number);
+        price = $(':input[id=' + $(this).prop("id") + ']').prop('value');
+        var subtotal = price * number;
+        $('#' + $(this).prop("id") + '.subtotal').prop('value', subtotal);
     });
 })
 
     $(':input[class=cart_goods_count]').on('input propertychange',function() {
-        var price = $(':input[class=price]').prop('value');
+        var price = $('#' + $(this).prop("id") + '.price').prop('value');
+        console.log(price);
         var number = $(':input[class=cart_goods_count]').prop('value');
         if (number<=0) {
             number=1;
