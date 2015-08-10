@@ -5,15 +5,13 @@ $(function() {
 function validation() {
 
     var inputName = $("#uid").val();
-    var isExisted;
     $.post('/name', {
         inputName: inputName
-    }, function(message) {
-        if (message.data === 'user_exist') {
-            isExisted = false;
+    }, function(object) {
+        if (object.message === 'user_false') {
+            $("#uid").trigger("easyform-ajax", false);
         } else {
-            isExisted = true;
+            $("#uid").trigger("easyform-ajax", true);
         }
-        $("#uid").trigger("easyform-ajax", isExisted);
     })
 }

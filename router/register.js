@@ -16,7 +16,6 @@ router.post('/register', function(req, res) {
         password: inputPwd,
         email: inputEmail
     });
-
     res.redirect('login');
 });
 
@@ -25,23 +24,19 @@ router.post('/name', function(req, res) {
     var message;
     var status;
 
-    User.findAll().then(function(e) {
-        var exist = false;
-        e.forEach(function(n) {
-            if (n.dataValues.username === inputName) {
-                message = 'user_exist';
-                exist = true;
+    User.findAll().then(function(element) {
+        element.forEach(function(object) {
+            if (object.dataValues.username === inputName) {
+                message = 'user_false';
+            }else {
+                message = 'user_true'
             }
         })
-        if (!exist) {
-            message = 'un_exist';
-            status = 100;
-        }
     }).done(function() {
         res.send({
-            status: status,
+            status: '',
             data: '',
-            message: ''
+            message: message
         })
     });
 });
