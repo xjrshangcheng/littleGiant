@@ -8,12 +8,12 @@ html(lang="en")
     body
         include header.html
         .container
-            .buy_content
-                .buy_content_imgbox
-                    .productimgbox
-                        .productbigimg_box
+            .buy-content
+                .buy-content-imgbox
+                    .product-imgbox
+                        .product-bigimg-box
                             img(src="#{goodsData[0].img}" class="big-picture")
-                        ul.productsmallimg
+                        ul.product-small-img
                             li.list
                                 a
                                     img(src="#{goodsData[0].img}" class="picture")
@@ -22,43 +22,43 @@ html(lang="en")
                                     img(src="#{goodsData[0].img}" class="picture")
                             li.list
                                 a
-                                    img(src="#{goodsData[0].img}" class="picture")    
+                                    img(src="./images/goods-detail-picture/tang.jpg" class="picture")    
                             li.list
                                 a
                                     img(src="#{goodsData[0].img}" class="picture")    
                             li.list
                                 a
                                     img(src="#{goodsData[0].img}" class="picture")  
-                .buy_content_text
-                    .buy_content_text_a
+                .buy-content-text
+                    .buy-content-text-a
                         - var foo = goodsData[0].name
-                        h1.buy_content_text_a1= foo
+                        h1.buy-content-text-a1= foo
                         - var foo = goodsData[0].info                
-                        em.buy_content_text_a2= foo
-                    .BuyContent_Box
-                        ul.buy_content_text_b  
-                            li.buy_content_state#goods_property_code
+                        em.buy-content-text-a2= foo
+                    .buy-content-box
+                        ul.buy-content-text-b
+                            li.buy-content-state
                                 -var foo = "商品编码："
                                 em= foo
-                                .But_ContentBox
+                                .buy-content-box
                                     - var foo = goodsData[0].id
-                                    em.buy_content_state_b#goods_code= foo
-                            li.buy_content_state1
+                                    em.buy-content-state-b#goods-code= foo
+                            li.buy-content-state1
                                 - var foo = "价    格："
-                                em.buy_content_state_a= foo
-                                .Buy_ContentBox
+                                em.buy-content-state-a= foo
+                                .buy-content-price
                                     -var foo = goodsData[0].price
-                                    em.buy_content_state_b#sales_price= foo
+                                    em.buy-content-state-b#sales-price= foo
                                     em   元
-                    ul.buy_content_text_c#goods_property_content
-                        li.buy_content_state#buy_goods_num_box
+                    ul.buy-content-text-c
+                        li.buy_content_state#buy-goods-num-box
                             - var foo = "数    量："
-                            em.buy_content_state_a= foo
+                            em.buy-content-state-a= foo
                             em
-                                ul.quantitypurchased
+                                ul.quantity-purchased
                                     li.quantity 
                                         button#goods_number_minus -
-                                        input(type="text",id="goods_number_input",name="goods_number_input",value="1")  
+                                        input(type="text",id="goods-number-input",name="goods-number-input",value="1")  
                                         button#goods_number_plus +
                     .buy_content_arrow
                         .jiathis_style
@@ -77,14 +77,14 @@ html(lang="en")
             br
             .container
                     .left
-                        #shoppingBoard
+                        #shopping-board
                             .titleOne
                                 h5 商城公告            
-                            .boardContent
+                            .board-ontent
                                 ul
-                                    li.contentList  庆祝新店开张，满199减50
-                                    li.contentList  江浙沪地区包邮
-                                    li.contentList  小巨人商城祝您购物愉快。                     
+                                    li.content-list  庆祝新店开张，满199减50
+                                    li.content-list  江浙沪地区包邮
+                                    li.content-list  小巨人商城祝您购物愉快。                     
                     .right
                         .text                    
                             ul.nav.nav-tabs
