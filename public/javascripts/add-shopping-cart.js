@@ -1,18 +1,11 @@
-function getCookie(name) {
-    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
-    if (arr = document.cookie.match(reg))
-        return unescape(arr[2]);
-    else
-        return null;
-}
 
 $("#add_to_cart").on("click", function() {
     var id = $("#goods-code").html();
-    var username = getCookie('name');
+    var username = Cookie.getCookie('name');
     var number = parseInt($("#goods-number-input").prop("value")) === 0 ? 1 : $("#goods-number-input").prop("value");
     var name = $(".buy-content-text-a1").html();
     var price = $("#sales-price").html();
-    var cookieName = getCookie('name');
+    var cookieName = Cookie.getCookie('name');
 
     if (cookieName === null) {
         $(location).attr('href', '/login');
@@ -32,7 +25,6 @@ $("#add_to_cart").on("click", function() {
         })
     }
 })
-
 
 $("#goods_number_minus").on("click", function() {
     var number = $("#goods-number-input")[0].value;

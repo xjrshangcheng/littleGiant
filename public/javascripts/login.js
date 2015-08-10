@@ -12,7 +12,15 @@ $(function() {
                     inputPwd : inputPwd
                 },success : function(result) {
                     if(result.data === 'ok') {
-                        window.history.back(-1)?window.history.back(-1):$(location).attr('href','/');
+                        var url = Cookie.getCookie('url');
+                        if(url !== null && url.indexOf('register') !== -1) {
+                            $(location).attr('href','/');
+                            Cookie.delCookie('url');
+
+                        }else{
+                            Cookie.delCookie('url');
+                            window.history.back(-1)?window.history.back(-1):$(location).attr('href','/');
+                        }
                     }else{
                         alert('用户名或密码错误');
                     }

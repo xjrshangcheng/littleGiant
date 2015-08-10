@@ -3,7 +3,6 @@ $(function() {
 })
 
 function validation() {
-
     var inputName = $("#uid").val();
     $.post('/name', {
         inputName: inputName
@@ -15,3 +14,6 @@ function validation() {
         }
     })
 }
+
+var url = window.location.href;
+Cookie.setCookie('url',url);

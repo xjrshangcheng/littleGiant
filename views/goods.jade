@@ -22,18 +22,18 @@ html(lang="en")
                                     img(src="#{goodsData[0].img}" class="picture")
                             li.list
                                 a
-                                    img(src="./images/goods-detail-picture/tang.jpg" class="picture")    
+                                    img(src="./images/goods-detail-picture/tang.jpg" class="picture")
                             li.list
                                 a
-                                    img(src="#{goodsData[0].img}" class="picture")    
+                                    img(src="#{goodsData[0].img}" class="picture")
                             li.list
                                 a
-                                    img(src="#{goodsData[0].img}" class="picture")  
+                                    img(src="#{goodsData[0].img}" class="picture")
                 .buy-content-text
                     .buy-content-text-a
                         - var foo = goodsData[0].name
                         h1.buy-content-text-a1= foo
-                        - var foo = goodsData[0].info                
+                        - var foo = goodsData[0].info
                         em.buy-content-text-a2= foo
                     .buy-content-box
                         ul.buy-content-text-b
@@ -56,9 +56,9 @@ html(lang="en")
                             em.buy-content-state-a= foo
                             em
                                 ul.quantity-purchased
-                                    li.quantity 
+                                    li.quantity
                                         button#goods_number_minus -
-                                        input(type="text",id="goods-number-input",name="goods-number-input",value="1")  
+                                        input(type="text",id="goods-number-input",name="goods-number-input",value="1")
                                         button#goods_number_plus +
                     .buy_content_arrow
                         .jiathis_style
@@ -70,23 +70,23 @@ html(lang="en")
                             a.jiathis_counter_style
                     ul.buy_content_button
                         li
-                            .button_join_cart.patt_bg_join_cart#add_to_cart   加入购物车     
-            
-            
+                            .button_join_cart.patt_bg_join_cart#add_to_cart   加入购物车
+
+
             br
             br
             .container
                     .left
                         #shopping-board
                             .titleOne
-                                h5 商城公告            
+                                h5 商城公告
                             .board-ontent
                                 ul
                                     li.content-list  庆祝新店开张，满199减50
                                     li.content-list  江浙沪地区包邮
-                                    li.content-list  小巨人商城祝您购物愉快。                     
+                                    li.content-list  小巨人商城祝您购物愉快。
                     .right
-                        .text                    
+                        .text
                             ul.nav.nav-tabs
                                 li(role="presentation",class="active")
                                     a(href="#")  商品详情
@@ -98,10 +98,11 @@ html(lang="en")
                             p.
                                 产品类型：#{goodsData[0].type}
                             p.
-                                产品图片介绍: 
-                            img(src="#{goodsData[0].img}")     
-                                                              
+                                产品图片介绍:
+                            img(src="#{goodsData[0].img}")
+
         include footer.html
+    script(src="./javascripts/cookie.js")    
     script(src="./jquery/dist/jquery.js")
     script(src="./bootstrap/dist/js/bootstrap.js")
     script(src="./javascripts/add-shopping-cart.js")
