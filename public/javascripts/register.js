@@ -4,7 +4,7 @@ $(function() {
 
 function validation() {
     var inputName = $("#uid").val();
-    $.post('/users', {
+    $.post('/name', {
         inputName: inputName
     }, function(object) {
         if (object.message === 'user_false') {
