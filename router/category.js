@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 
     Category.findAll().then(function(categoryAllRecord) {
         var currentCategoryId;
-        var currentCategoryParentId;
+        var currentCategoryLevel;
         var currentCategoryPath;
 
         categoryAllRecord.forEach(function(categoryRecordOne) {
@@ -34,14 +34,14 @@ router.get('/', function(req, res) {
 
                 // 得到currentCategory信息
                 currentCategoryId = categoryRecordOne.dataValues.id;
-                currentCategoryParentId = categoryRecordOne.dataValues.parent_id;
+                currentCategoryLevel = categoryRecordOne.dataValues.level;
             }
 
             // 生成resultSubCategories
             if (categoryRecordOne.dataValues.path.indexOf(currentCategoryPath + ".") === 0 &&
-                categoryRecordOne.dataValues.parent_id === currentCategoryParentId + 1) {
+                categoryRecordOne.dataValues.level === currentCategoryLevel + 1) {
                 resultSubCategories.push(categoryRecordOne.dataValues.name);
-            } else if (req.query.type === ALL_CATEGORY && categoryRecordOne.dataValues.parent_id === 0) {
+            } else if (req.query.type === ALL_CATEGORY && categoryRecordOne.dataValues.level === 0) {
                 resultSubCategories.push(categoryRecordOne.dataValues.name);
             }
 
