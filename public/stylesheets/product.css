@@ -32,7 +32,7 @@ img {
     width: 58px;
 }
 .product-small-img li a:hover {
-    border: 1px solid grey;
+    border: 1px solid red;
     cursor: default;
 }
 li {
@@ -40,7 +40,7 @@ li {
 }
 .product-small-img li {
     width: 58px;
-    height: 58px;
+    height: 60px;
     float: left;
     margin-right: 9px;
     border: 2px solid #fff;
@@ -253,4 +253,7 @@ h5 {
 .content-list {
    margin-left: 25px;
    margin-top: 10px;
+}
+.select-item{
+    width: 60px;
 }
