@@ -1,5 +1,5 @@
 $(function() {
-    var url = window.location.href;
+    var url = $(location).attr('href');
     Cookie.setCookie('url',url);
     $('#reg-form').easyform();
 })
