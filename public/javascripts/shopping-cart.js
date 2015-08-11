@@ -82,8 +82,7 @@ function changeCount() {
         number = 1;
     }
     $("." + $(this).prop("id")).prop('value', number);
-    price = $(':input[id=' + $(this).prop("id") + ']').prop('value');
+    var price = $(':input[id=' + $(this).prop("id") + ']').prop('value');
     var subtotal = price * number;
     $('#' + $(this).prop("id") + '.subtotal').prop('value', subtotal);
-    console.log(subtotal);
 }
