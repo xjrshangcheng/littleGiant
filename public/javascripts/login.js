@@ -5,7 +5,7 @@ $(function() {
             var inputName = $('#uid').prop('value');
             var inputPwd = $('#psw1').prop('value');
             $.ajax({
-                url : '/login-submit',
+                url : '/login',
                 type : 'post',
                 data : {
                     inputName : inputName,

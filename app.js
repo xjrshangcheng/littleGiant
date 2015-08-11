@@ -20,10 +20,10 @@ var category = require('./router/category')
 app.use('/category', category);
 
 var login = require('./router/login');
-app.use('/',login);
+app.use('/login',login);
 
 var header = require('./router/header');
-app.use('/',header);
+app.use('/quit',header);
 
 var register = require('./router/register');
 app.use('/',register);

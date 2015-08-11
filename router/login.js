@@ -3,11 +3,11 @@ var router = express.Router();
 var models = require('../models');
 var User = models.user;
 
-router.get('/login', function(req, res) {
+router.get('/', function(req, res) {
     res.render('login');
 });
 
-router.post('/login-submit', function(req, res) {
+router.post('/', function(req, res) {
     var inputName = req.body.inputName;
     var inputPwd = req.body.inputPwd;
     var result;
@@ -23,22 +23,6 @@ router.post('/login-submit', function(req, res) {
                 (result = 'ok',status = 200,res.cookie('name', inputName, { expires: new Date(Date.now() + 1000*60*60*24*7)})):
                 (result = 'error',status = 100)
             }) : result = 'error',status = 100;
-        // if(data.length > 0) {
-        //     data.forEach(function(val) {
-        //         if(val.dataValues.password === inputPwd) {
-        //             result = 'ok';
-        //             status = 200;
-        //             // exist = true;
-        //             res.cookie('name', inputName, { expires: new Date(Date.now() + 1000*60*60)});
-        //         }else{
-        //             result = 'error';
-        //             status = 100;
-        //         }
-        //     })
-        // }else{
-        //     result = 'error';
-        //     status = 100;
-        // }
     }).done(function() {
         res.send({
            status : status,
