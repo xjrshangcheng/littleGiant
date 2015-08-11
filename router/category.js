@@ -7,73 +7,94 @@ var Category = models.category;
 var ALL_CATEGORY = "所有分类";
 
 router.get('/', function(req, res) {
-    var resultGoodsArray = [];
-    var resultBreadArray = [];
+    var resultGoods = [];
+    var breadcrumbs = [];
     var resultSubCategories = [];
-    var subAllCategoryArray = [];
+    var subCategories = [];
 
-    resultBreadArray.push(ALL_CATEGORY);
+    breadcrumbs.push(ALL_CATEGORY);
     req.query.type = req.query.type || ALL_CATEGORY;
 
-    Category.findAll().then(function(categoryAllRecord) {
-        var currentCategoryId;
-        var currentCategoryLevel;
-        var currentCategoryPath;
-
-        categoryAllRecord.forEach(function(categoryRecordOne) {
-            // 生成resultBreadArray
-            if (categoryRecordOne.dataValues.name === req.query.type) {
-                currentCategoryPath = categoryRecordOne.dataValues.path;
-                currentCategoryPath.split(".").forEach(function(categoryId) {
-                    categoryAllRecord.forEach(function(categoryRecordTwo) {
-                        if (categoryRecordTwo.dataValues.id == categoryId) {
-                            resultBreadArray.push(categoryRecordTwo.dataValues.name);
-                        }
-                    });
+    // 生成breacrumbs
+    Category.find({
+        where: {
+            name: req.query.type
+        }
+    }).then(function(resultCurrentCategory) {
+        if(resultCurrentCategory !== null){
+            Category.findAll({
+                where: {
+                    id: resultCurrentCategory.dataValues.path.split(".")
+                }
+            }).then(function(resultCategoryIds) {
+                resultCategoryIds.forEach(function(resultCategory) {
+                    breadcrumbs.push(resultCategory.dataValues.name);
                 });
+            });
+        }
+    });
 
-                // 得到currentCategory信息
-                currentCategoryId = categoryRecordOne.dataValues.id;
-                currentCategoryLevel = categoryRecordOne.dataValues.level;
+    // 生成resultSubCategories
+    Category.find({
+        where: {
+            name:req.query.type
+        }
+    }).then(function(resultCurrentCategory) {
+        Category.findAll({
+            where: {
+                path: {
+                    $like: resultCurrentCategory.dataValues.path+"%"
+                },
+                level:resultCurrentCategory.dataValues.level+1
             }
+        }).then(function(resultCategory) {
+            resultCategory.forEach(function(data) {
+                resultSubCategories.push(data.dataValues.name);
+            });
+        });
+    });
 
-            // 生成resultSubCategories
-            if (categoryRecordOne.dataValues.path.indexOf(currentCategoryPath + ".") === 0 &&
-                categoryRecordOne.dataValues.level === currentCategoryLevel + 1) {
-                resultSubCategories.push(categoryRecordOne.dataValues.name);
-            } else if (req.query.type === ALL_CATEGORY && categoryRecordOne.dataValues.level === 0) {
-                resultSubCategories.push(categoryRecordOne.dataValues.name);
+    // 生成subCategories
+    Category.find({
+        where: {
+            name:req.query.type
+        }
+    }).then(function(resultCurrentCategory) {
+        Category.findAll({
+            where: {
+                path: {
+                    $like: resultCurrentCategory.dataValues.path+"%"
+                }
             }
+        }).then(function(resultCategory) {
+            resultCategory.forEach(function(data) {
+                subCategories.push(data.dataValues.name);
+            });
 
-            // 生成subAllCategoryArray
-            if (currentCategoryPath !== "undefined" && categoryRecordOne.dataValues.path.indexOf(currentCategoryPath) === 0) {
-                subAllCategoryArray.push(categoryRecordOne.dataValues.name);
+            if (req.query.type !== ALL_CATEGORY) {
+                var whereObj = {
+                    where: {
+                        type: subCategories
+                    }
+                };
+
+                findGoods(res, resultGoods, breadcrumbs, resultSubCategories, whereObj);
+            } else {
+                findGoods(res, resultGoods, breadcrumbs, resultSubCategories, undefined);
             }
         });
-    }).then(function() {
-        if (req.query.type !== ALL_CATEGORY) {
-            var whereObj = {
-                where: {
-                    type: subAllCategoryArray
-                }
-            };
-
-            findGoods(res, resultGoodsArray, resultBreadArray, resultSubCategories, whereObj);
-        } else {
-            findGoods(res, resultGoodsArray, resultBreadArray, resultSubCategories, undefined);
-        }
     });
 });
 
-function findGoods(res, resultGoodsArray, resultBreadArray, resultSubCategories, whereObj) {
+function findGoods(res, resultGoods, breadcrumbs, resultSubCategories, whereObj) {
     Goods.findAll(whereObj).then(function(result) {
-        resultGoodsArray = result.map(function(categoryRecord) {
+        resultGoods = result.map(function(categoryRecord) {
             return categoryRecord.dataValues;
         });
 
         res.render("category", {
-            data: resultGoodsArray,
-            breadArray: resultBreadArray,
+            data: resultGoods,
+            breadArray: breadcrumbs,
             subCategory: resultSubCategories
         })
     });
