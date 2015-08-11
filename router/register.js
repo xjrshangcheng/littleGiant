@@ -27,8 +27,10 @@ router.get('/users', function(req, res) {
         where: {
             username: inputName
         }
-    }).then(function() {
-        message = 'user_false';
+    }).then(function(data) {
+        if (data.length !== 0) {
+            message = 'user_false';
+        }
     }).done(function() {
         res.send({
             status: '',
