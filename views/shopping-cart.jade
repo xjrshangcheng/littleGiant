@@ -32,20 +32,20 @@ html(lang="en")
                         for shoppingCartGoods in data
                             ul.cart-content.cart_goods
                                 li.cart-content-table1
-                                    input(type="checkbox" class="add-goods-tobuy-choose-0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124")
+                                    input(data-id="#{shoppingCartGoods.id}" type="checkbox" class="add-goods-tobuy-choose-0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124")
                                 li.cart-content-table1
                                     a(href="/product-details")
                                     img.img-cursor(src="./images/goods-detail-picture/ym2.jpg")
                                 li.cart-content-table3
                                     = shoppingCartGoods.name
                                 li.cart-content-table4
-                                    input(id="#{shoppingCartGoods.id}" class="price" type="text" name="price" value=shoppingCartGoods.price readonly)
+                                    input(data-id="#{shoppingCartGoods.id}" class="price" type="text" name="price" value=shoppingCartGoods.price readonly)
                                 li.cart-content-table5
-                                    input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="add" value="-")
-                                    input(id="#{shoppingCartGoods.id}" class="#{shoppingCartGoods.id}" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
-                                    input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="reduction" value="+")
+                                    input(data-id="#{shoppingCartGoods.id}" class="changes" type="button" name="add" value="-")
+                                    input(data-id="#{shoppingCartGoods.id}" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
+                                    input(data-id="#{shoppingCartGoods.id}" class="changes" type="button" name="reduction" value="+")
                                 li.cart-content-table6
-                                    input(id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
+                                    input(data-id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
                                 li.cart-content-table7
                                     a(class = "cart_goods_delete" id = shoppingCartGoods.id)  删除
                 .cart-total-box
@@ -61,4 +61,3 @@ html(lang="en")
         include footer.html
         script(src="./javascripts/shopping-cart.js")
         script(src="./jquery/dist/jquery.js")
-                  

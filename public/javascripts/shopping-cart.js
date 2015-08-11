@@ -27,13 +27,15 @@ $(function() {
 });
 
 function changeSubtotal() {
-    var price = $('#' + $(this).prop("id") + '.price').prop('value');
-    var number = $('#' + $(this).prop("id") + '.cart-goods-count').prop('value');
+    $(':input[data-id=' + $(this).data('id') + '].cart-goods-count').prop('value');
+    var price = $(':input[data-id=' + $(this).data('id') + '].price').prop('value');
+    var number = $(':input[data-id=' + $(this).data('id') + '].cart-goods-count').prop('value');
     if (number <= 0) {
         number = 1;
+        $(':input[data-id=' + $(this).data('id') + '].cart-goods-count').prop('value', number);
     }
     var subtotal = price * number;
-    $('#' + $(this).prop("id") + '.subtotal').prop('value', subtotal);
+    $(':input[data-id=' + $(this).data('id') + '].subtotal').prop('value', subtotal);
 }
 
 function preventInvalidKeyDown(event) {
@@ -70,7 +72,7 @@ function deleteCurrentGoods(event) {
 
 function changeCount() {
     var changes = $(this).prop('value');
-    var number = parseInt($("." + $(this).prop("id")).prop('value'));
+    var number = parseInt($(':input[data-id=' + $(this).data('id') + '].cart-goods-count').prop('value'));
     if (changes === '-') {
         number = number - 1;
     }
@@ -80,8 +82,9 @@ function changeCount() {
     if (number <= 0) {
         number = 1;
     }
-    $("." + $(this).prop("id")).prop('value', number);
-    var price = $(':input[id=' + $(this).prop("id") + ']').prop('value');
+    $(':input[data-id=' + $(this).data('id') + '].cart-goods-count').prop('value', number);
+    var price = $(':input[data-id=' + $(this).data('id') + '].price').prop('value');
     var subtotal = price * number;
-    $('#' + $(this).prop("id") + '.subtotal').prop('value', subtotal);
+    console.log(subtotal);
+    $(':input[data-id=' + $(this).data('id') + '].subtotal').prop('value', subtotal);
 }
