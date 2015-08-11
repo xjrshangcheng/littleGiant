@@ -53,8 +53,7 @@ td, th {
     font-size: 16px;
 }
 .form-div input[type="button"], .form-div input[type="submit"] {
-    margin: 10px 20px 0 0;
-    margin-right: 60px;
+    margin: 10px 60px 0 0;
 }
 .form-div table {
     margin: 0 auto;
