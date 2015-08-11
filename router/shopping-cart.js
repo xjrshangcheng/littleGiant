@@ -12,8 +12,7 @@ router.get("/shopping-cart", function(req, res) {
             username: username
         }
     }).then(function(val) {
-        val.forEach(function(name) {
-            array.push(name.dataValues);
+        val.forEach(function(name) {o
         });
     }).done(function() {
         res.render("shopping-cart", {
