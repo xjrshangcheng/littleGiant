@@ -8,56 +8,56 @@ html(lang="en")
     body
         include header.html
         .container
-            .BuyCart_Shops
+            .cart-shop
             .BuyCar_ShopsName
             | 商家:
-        .BuyCart_GoodsBox
-            .buycart_a
-                .buycart_titlebox
-                    ul.buycart_title
-                        li.buy_cart_all
+        .cart-goods-box
+            .cart-a
+                .cart-title-box
+                    ul.cart-title
+                        li.cart-all
                             input( type="checkbox" class="my_all_check" name="all-check" id="add_goods_tobuy_24124")
                             全选
-                        li.buy_cart_goods 商品名称
-                        li.buy_cart_rmb 价格
-                        li.buy_cart_number 数量
-                        li.buy_cart_total 小计
-                        li.buy_cart_operate
-                            ul.buycart_title_leftbg
-                                li.buycart_title_leftbg2 操作
+                        li.cart-goods 商品名称
+                        li.cart-rmb 价格
+                        li.cart-number 数量
+                        li.cart-total 小计
+                        li.cart-operate
+                            ul.cart-title_leftbg
+                                li.cart-title-left-bg2 操作
 
         .shopping-cart_goods
         if data.length === 0
             ="购物车现在没有商品"
         for shoppingCartGoods in data
-            ul.buycart_content.cart_goods
-                li.buycart_content_table1
+            ul.cart-content.cart_goods
+                li.cart-content-table1
                     input(type="checkbox" class="add-goods-tobuy-choose-0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124")
-                li.buycart_content_table2
+                li.cart-content-table1
                     a(href="/product-details")
                         img.img-cursor(src="./images/goods-detail-picture/ym2.jpg")
-                li.buycart_content_table3
+                li.cart-content-table3
                     = shoppingCartGoods.name
-                li.buycart_content_table4
+                li.cart-content-table4
                     input(id="#{shoppingCartGoods.id}" class="price" type="text" name="price" value=shoppingCartGoods.price readonly)
-                li.buycart_content_table5
+                li.cart-content-table5
                     input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="add" value="-")
                     input(id="#{shoppingCartGoods.id}" class="#{shoppingCartGoods.id}" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
                     input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="reduction" value="+")
-                li.buycart_content_table6
+                li.cart-content-table6
                     input(id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
-                li.buycart_content_table7
+                li.cart-content-table7
                     a(class = "cart_goods_delete" id = shoppingCartGoods.id)  删除
-        .BuyCart_TotalBox
-            ul.buycart_content_footer
-                li.footer_center
-                    ul.my_total
-                        span.amount_title
-                            em.amount_title
+        .cart-total-box
+            ul.cart-content-footer
+                li.footer-center
+                    ul.my-total
+                        span.amount-title
+                            em.amount-title
                             input.total
-            .footer_button
-                .continue_cart 继续购物
-                .buy_now 去结算
+            .footer-button
+                .continue-cart 继续购物
+                .buy-now 去结算
         include footer.html
         script(src="./javascripts/shopping-cart.js")
         script(src="./jquery/dist/jquery.js")

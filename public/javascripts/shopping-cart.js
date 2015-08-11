@@ -1,8 +1,8 @@
 $(function() {
-    $('.continue_cart').on('click', function() {
+    $('.continue-cart').on('click', function() {
         $(location).attr('href', '/')
     })
-    $('.buy_now').on('click', function() {
+    $('.buy-now').on('click', function() {
         $(location).attr('href', '/pay')
     })
     $(':input[name = all-check]').on('click', function() {
