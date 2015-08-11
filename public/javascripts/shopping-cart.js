@@ -14,7 +14,7 @@ $(function() {
     });
 
     $('.cart_goods_delete').on('click', function(event) {
-        deleteCurrentGoodInCart(event);
+        deleteCurrentGoods.call(this, event);
     });
 
     $('.cart-goods-count').on('input propertychange', function() {
@@ -50,7 +50,8 @@ function preventInvalidKeyDown(event) {
     }
 }
 
-function deleteCurrentGoodInCart(event) {
+function deleteCurrentGoods(event) {
+    var $current = $(this);
     if (confirm("你确信要删除此条数据吗？")) {
         var id = event.toElement.id;
 
@@ -60,10 +61,8 @@ function deleteCurrentGoodInCart(event) {
             data: {
                 id: id
             },
-            success: function (data) {
-                if (data.data === 'ok') {
-                    window.location.href = window.location.href;
-                }
+            success: function () {
+                $current.closest('ul.cart-content').remove();
             }
         });
     }
