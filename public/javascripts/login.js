@@ -35,7 +35,7 @@ function verificationLength() {
     var MAX = 16;
     var MIN = 6;
     $("[placeholder]").each(function(key,val) {
-        if(val.value.length > max || val.value.length < min) {
+        if(val.value.length > MAX || val.value.length < MIN) {
             flag = false;
         }
     })
