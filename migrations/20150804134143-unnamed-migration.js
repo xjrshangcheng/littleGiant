@@ -33,7 +33,8 @@ module.exports = {
                 img: DataTypes.STRING,
                 recommend: DataTypes.STRING,
                 more_img: DataTypes.STRING,
-                special_img: DataTypes.STRING
+                special_img: DataTypes.STRING,
+                detail_img: DataTypes.STRING
             }
         );
 
