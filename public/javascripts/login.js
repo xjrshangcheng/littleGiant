@@ -1,7 +1,7 @@
 $(function() {
     $('#reg-form').easyform();
     $('#submit').on('click', function() {
-        if(checkRequired()) {
+        if(verificationLength()) {
             var inputName = $('#uid').prop('value');
             var inputPwd = $('#psw1').prop('value');
             $.ajax({
@@ -30,10 +30,10 @@ $(function() {
     })
 })
 
-function checkRequired() {
+function verificationLength() {
     var flag = true;
-    var max = 16;
-    var min = 6;
+    var MAX = 16;
+    var MIN = 6;
     $("[placeholder]").each(function(key,val) {
         if(val.value.length > max || val.value.length < min) {
             flag = false;

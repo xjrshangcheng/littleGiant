@@ -1,4 +1,6 @@
 $(function() {
+    var url = window.location.href;
+    Cookie.setCookie('url',url);
     $('#reg-form').easyform();
 })
 
@@ -14,6 +16,3 @@ function validation() {
         }
     })
 }
-
-var url = window.location.href;
-Cookie.setCookie('url',url);
