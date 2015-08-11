@@ -64,7 +64,7 @@ function deleteCurrentGoods(event) {
         var id = event.toElement.id;
 
         $.ajax({
-            url: '/delete-goods',
+            url: '/',
             type: 'delete',
             data: {
                 id: id
