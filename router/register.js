@@ -20,18 +20,15 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/users', function(req, res) {
-    var inputName = req.body.inputName;
+    var inputName = req.query.inputName;
     var message;
     var status;
-
-    User.findAll().then(function(element) {
-        element.forEach(function(object) {
-            if (object.dataValues.username === inputName) {
-                message = 'user_false';
-            }else {
-                message = 'user_true'
-            }
-        })
+    User.findAll({
+        where: {
+            username: inputName
+        }
+    }).then(function() {
+        message = 'user_false';
     }).done(function() {
         res.send({
             status: '',
