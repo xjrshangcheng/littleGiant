@@ -19,7 +19,7 @@ router.post('/register', function(req, res) {
     res.redirect('login');
 });
 
-router.post('/name', function(req, res) {
+router.get('/users', function(req, res) {
     var inputName = req.body.inputName;
     var message;
     var status;
