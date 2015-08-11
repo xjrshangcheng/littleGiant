@@ -1,51 +1,20 @@
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
+var shoppingCart = require('../service/shopping-cart');
 var Cart = models.cart;
 
 router.get("/shopping-cart", function(req, res) {
-    var username = req.cookies.name;
-    var array = [];
+    var userName = req.cookies.name;
 
-    Cart.findAll({
-        where: {
-            username: username
-        }
-    }).then(function(val) {
-        val.forEach(function(name) {
-            array.push(name.dataValues);
-        });
-    }).done(function() {
-        res.render("shopping-cart", {
-            data: array,
-            status: 200,
-            message: ''
-        });
-    });
+    shoppingCart.shoppingCart(req,res,userName);
 });
 
 router.delete('/', function(req, res) {
-    var username = req.cookies.name;
-    var id = req.body.id;
-    var array = [];
-
-    Cart.destroy({
-        where: {
-            id: id
-        }
-    }).done(function() {
-        Cart.findAll({
-            where: {
-                username: username
-            }
-        }).done(function() {
-            res.send({
-                data: 'ok',
-                status: 200,
-                message: ''
-            });
-        });
-    });
+    var Id = req.body.id;
+    var userName = req.cookies.name;
+    
+    shoppingCart.shoppingCartDelete(req,res,userName,Id);
 });
 
 module.exports = router;
