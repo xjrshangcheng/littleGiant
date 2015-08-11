@@ -13,6 +13,7 @@ router.get("/shopping-cart", function(req, res) {
         }
     }).then(function(val) {
         val.forEach(function(name) {
+            array.push(name.dataValues);
         });
     }).done(function() {
         res.render("shopping-cart", {
@@ -33,13 +34,22 @@ router.delete('/delete-goods', function(req, res) {
             id: id
         }
     }).done(function() {
+        Cart.findAll({
+            where: {
+                username: username
+            }
+        }).then(function(val) {
+            val.forEach(function(name) {
+                array.push(name.dataValues);
+            });
+        }).done(function() {
             res.send({
                 data: 'ok',
                 status: 200,
                 message: ''
             });
         });
+    });
 });
-
 
 module.exports = router;
