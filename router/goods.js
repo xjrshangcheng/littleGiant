@@ -7,6 +7,7 @@ router.get('/', function(req, res) {
     var id = req.query.id;
     var goodsData = [];
     var imgDate;
+    var imgDetail;
 
     Goods.findAll({
         where : {
@@ -19,11 +20,12 @@ router.get('/', function(req, res) {
             data.forEach(function(val) {
                 goodsData.push(val.dataValues);
                 imgDate = val.dataValues.more_img === null ? [] : val.dataValues.more_img.split(" ");
-                console.log(imgDate);
+                imgDetail = val.dataValues.detail_img === null ? [] : val.dataValues.detail_img.split(" ");
             })
             res.render('goods', {
                 goodsData : goodsData,
-                imgDate : imgDate
+                imgDate : imgDate,
+                imgDetail : imgDetail
             });
         }
     })
