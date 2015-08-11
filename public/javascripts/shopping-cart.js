@@ -13,16 +13,16 @@ $(function() {
         changeCount.call(this);
     });
 
-    $('.cart_goods_delete').on('click', function(evt) {
-        deleteCurrentGoodInCart(evt);
+    $('.cart_goods_delete').on('click', function(event) {
+        deleteCurrentGoodInCart(event);
     });
 
     $('.cart-goods-count').on('input propertychange', function() {
         changeSubtotal.call(this);
     });
 
-    $("#cart_goods_count").on("keydown", function(evt) {
-        preventInvalidKeydown(evt);
+    $("#cart_goods_count").on("keydown", function(event) {
+        preventInvalidKeyDown(event);
     });
 });
 
@@ -36,7 +36,7 @@ function changeSubtotal() {
     $('#' + $(this).prop("id") + '.subtotal').prop('value', subtotal);
 }
 
-function preventInvalidKeydown(evt) {
+function preventInvalidKeyDown(event) {
     var NUM1 = 57;
     var NUM2 = 48;
     var NUM3 = 8;
@@ -45,14 +45,14 @@ function preventInvalidKeydown(evt) {
     var NUM6 = 37;
     var NUM7 = 39;
 
-    if (!(evt.keyCode <= NUM1 && evt.keyCode >= NUM2 || evt.keyCode === NUM3 || evt.keyCode === NUM4 || evt.keyCode === NUM5 || evt.keyCode === NUM6 || evt.keyCode === NUM7)) {
-        evt.preventDefault();
+    if (!(event.keyCode <= NUM1 && event.keyCode >= NUM2 || event.keyCode === NUM3 || event.keyCode === NUM4 || event.keyCode === NUM5 || event.keyCode === NUM6 || event.keyCode === NUM7)) {
+        event.preventDefault();
     }
 }
 
-function deleteCurrentGoodInCart(evt) {
+function deleteCurrentGoodInCart(event) {
     if (confirm("你确信要删除此条数据吗？")) {
-        var id = evt.toElement.id;
+        var id = event.toElement.id;
 
         $.ajax({
             url: '/delete-goods',
