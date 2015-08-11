@@ -9,52 +9,52 @@ html(lang="en")
         include header.html
         .container
             .cart-shop
-            .BuyCar_ShopsName
-            | 商家:
-        .cart-goods-box
-            .cart-a
-                .cart-title-box
-                    ul.cart-title
-                        li.cart-all
-                            input( type="checkbox" class="my_all_check" name="all-check" id="add_goods_tobuy_24124")
-                            全选
-                        li.cart-goods 商品名称
-                        li.cart-rmb 价格
-                        li.cart-number 数量
-                        li.cart-total 小计
-                        li.cart-operate
-                            ul.cart-title_leftbg
-                                li.cart-title-left-bg2 操作
+                .cart-shops-name
+                    商家:
+                .cart-goods-box
+                    .cart-a
+                        .cart-title-box
+                            ul.cart-title
+                                li.cart-all
+                                    input( type="checkbox" class="my_all_check" name="all-check" id="add_goods_tobuy_24124")
+                                    全选
+                                li.cart-goods 商品名称
+                                li.cart-rmb 价格
+                                li.cart-number 数量
+                                li.cart-total 小计
+                                li.cart-operate
+                                    ul.cart-title_leftbg
+                                        li.cart-title-left-bg2 操作
 
-        .shopping-cart_goods
-        if data.length === 0
-            ="购物车现在没有商品"
-        for shoppingCartGoods in data
-            ul.cart-content.cart_goods
-                li.cart-content-table1
-                    input(type="checkbox" class="add-goods-tobuy-choose-0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124")
-                li.cart-content-table1
-                    a(href="/product-details")
-                        img.img-cursor(src="./images/goods-detail-picture/ym2.jpg")
-                li.cart-content-table3
-                    = shoppingCartGoods.name
-                li.cart-content-table4
-                    input(id="#{shoppingCartGoods.id}" class="price" type="text" name="price" value=shoppingCartGoods.price readonly)
-                li.cart-content-table5
-                    input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="add" value="-")
-                    input(id="#{shoppingCartGoods.id}" class="#{shoppingCartGoods.id}" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
-                    input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="reduction" value="+")
-                li.cart-content-table6
-                    input(id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
-                li.cart-content-table7
-                    a(class = "cart_goods_delete" id = shoppingCartGoods.id)  删除
-        .cart-total-box
-            ul.cart-content-footer
-                li.footer-center
-                    ul.my-total
-                        span.amount-title
-                            em.amount-title
-                            input.total
+                    .shopping-cart_goods
+                        if data.length === 0
+                            ="购物车现在没有商品"
+                        for shoppingCartGoods in data
+                            ul.cart-content.cart_goods
+                                li.cart-content-table1
+                                    input(type="checkbox" class="add-goods-tobuy-choose-0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124")
+                                li.cart-content-table1
+                                    a(href="/product-details")
+                                    img.img-cursor(src="./images/goods-detail-picture/ym2.jpg")
+                                li.cart-content-table3
+                                    = shoppingCartGoods.name
+                                li.cart-content-table4
+                                    input(id="#{shoppingCartGoods.id}" class="price" type="text" name="price" value=shoppingCartGoods.price readonly)
+                                li.cart-content-table5
+                                    input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="add" value="-")
+                                    input(id="#{shoppingCartGoods.id}" class="#{shoppingCartGoods.id}" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
+                                    input(id="#{shoppingCartGoods.id}" class="changes" type="button" name="reduction" value="+")
+                                li.cart-content-table6
+                                    input(id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
+                                li.cart-content-table7
+                                    a(class = "cart_goods_delete" id = shoppingCartGoods.id)  删除
+                .cart-total-box
+                    ul.cart-content-footer
+                        li.footer-center
+                            ul.my-total
+                                span.amount-title
+                                em.amount-title
+                                    input.total
             .footer-button
                 .continue-cart 继续购物
                 .buy-now 去结算
