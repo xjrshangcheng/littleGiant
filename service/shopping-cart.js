@@ -31,16 +31,10 @@ var shoppingCartDelete =  function(req, res,userName,Id) {
             id: id
         }
     }).done(function() {
-        Cart.findAll({
-            where: {
-                username: username
-            }
-        }).done(function() {
-            res.send({
-                data: 'ok',
-                status: 200,
-                message: ''
-            });
+        res.send({
+            data: 'ok',
+            status: 200,
+            message: ''
         });
     });
 };
