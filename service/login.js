@@ -9,11 +9,13 @@ var login =  function(req, res,inputName,inputPwd) {
             username : inputName
         }
     }).then(function(data) {
-        data.length > 0 ? data.forEach(function(val) {
-                (val.dataValues.password === inputPwd) ?
-                (result = 'ok',status = 200,res.cookie('name', inputName, { expires: new Date(Date.now() + 1000*60*60*24*7)})):
-                (result = 'error',status = 100)
-            }) : result = 'error',status = 100;
+            data.forEach(function(val) {
+                if(val.dataValues.password === inputPwd) {
+                    result = 'ok';
+                    status = 200;
+                    res.cookie('name', inputName, { expires: new Date(Date.now() + 1000*60*60)});
+                }
+            })
     }).done(function() {
         res.send({
            status : status,
