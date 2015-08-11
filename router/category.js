@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
     var breadcrumbs = [];
     var resultSubCategories = [];
     var subCategories = [];
-
+    
     breadcrumbs.push(ALL_CATEGORY);
     req.query.type = req.query.type || ALL_CATEGORY;
 
