@@ -42,6 +42,18 @@ html(lang="en")
                                     -var foo = goodsData[0].price
                                     em.buy-content-state-b#sales-price= foo
                                     em   元
+                            li.buy-content-state1
+                                - var foo = "规   格："
+                                em.buy-content-state-a= foo
+                                .buy-contene-box
+                                    label.select-item
+                                        -var foo = "     移动版       "
+                                        input(type='radio', name='a',checked) 
+                                        = foo
+                                    label.select-item
+                                        -var foo = "     联通版       " 
+                                        input(type='radio', name='a')
+                                        = foo
                     ul.buy-content-text-c
                         li.buy_content_state#buy-goods-num-box
                             - var foo = "数    量："
@@ -63,8 +75,6 @@ html(lang="en")
                     ul.buy_content_button
                         li
                             .button_join_cart.patt_bg_join_cart#add_to_cart   加入购物车
-
-
             br
             br
             .container
