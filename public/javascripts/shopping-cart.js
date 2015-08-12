@@ -23,7 +23,7 @@ $(function() {
         total();
     });
 
-    $("#cart_goods_count").on("keydown", function(event) {
+    $(".cart-goods-count").on("keydown", function(event) {
         preventInvalidKeyDown(event);
     });
 
@@ -45,15 +45,15 @@ function changeSubtotal() {
 }
 
 function preventInvalidKeyDown(event) {
-    var NUM1 = 57;
-    var NUM2 = 48;
-    var NUM3 = 8;
-    var NUM4 = 46;
-    var NUM5 = 9;
-    var NUM6 = 37;
-    var NUM7 = 39;
+    var ASCIININE = 57;
+    var ASCIIZERO = 48;
+    var ASCIIBACKSPACE = 8;
+    var ASCIIPIONT = 46;
+    var ASCIITAB = 9;
+    var ASCIIPRECENT = 37;
+    var ASCIIUPPIONT = 39;
 
-    if (!(event.keyCode <= NUM1 && event.keyCode >= NUM2 || event.keyCode === NUM3 || event.keyCode === NUM4 || event.keyCode === NUM5 || event.keyCode === NUM6 || event.keyCode === NUM7)) {
+    if (!(event.keyCode <= ASCIININE && event.keyCode >= ASCIIZERO || event.keyCode === ASCIIBACKSPACE || event.keyCode === ASCIIPIONT || event.keyCode === ASCIITAB || event.keyCode === ASCIIPRECENT || event.keyCode === ASCIIUPPIONT)) {
         event.preventDefault();
     }
 }
