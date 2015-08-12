@@ -43,17 +43,21 @@ html(lang="en")
                                     em.buy-content-state-b#sales-price= foo
                                     em   元
                             li.buy-content-state1
+                            if goodsData[0].standard_one !== "" || goodsData[0].standard_two !== ""
                                 - var foo = "规   格："
                                 em.buy-content-state-a= foo
                                 .buy-contene-box
-                                    label.select-item
-                                        -var foo = "     移动版       "
-                                        input(type='radio', name='a',checked) 
-                                        = foo
-                                    label.select-item
-                                        -var foo = "     联通版       " 
-                                        input(type='radio', name='a')
-                                        = foo
+                                    if goodsData[0].standard_one !== ""    
+                                        label.select-item
+                                            - var foo = "     " + goodsData[0].standard_one
+                                            input(type='radio', name='approve',value="#{goodsData[0].standard_one}",checked) 
+                                            = foo
+                                        &nbsp;&nbsp;&nbsp;
+                                    if goodsData[0].standard_two !== ""
+                                        label.select-item
+                                            - var foo = "     " + goodsData[0].standard_two
+                                            input(type='radio', name='approve',value="#{goodsData[0].standard_two}")
+                                            = foo
                     ul.buy-content-text-c
                         li.buy_content_state#buy-goods-num-box
                             - var foo = "数    量："
