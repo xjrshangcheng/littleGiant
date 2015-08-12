@@ -14,6 +14,7 @@ app.use(express.static("public"));
 app.use(express.static("bower_components"));
 
 var index = require("./router/index");
+var index = require("./router/index");
 app.get('/', index);
 
 var category = require('./router/category')
