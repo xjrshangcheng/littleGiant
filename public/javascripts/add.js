@@ -45,15 +45,15 @@ $("#goods_number_plus").on("click", function() {
 })
 
 $("#goods-number-input").on("keydown", function(evt) {
-    var NUM1 = 57;
-    var NUM2 = 48;
-    var NUM3 = 8;
-    var NUM4 = 46;
-    var NUM5 = 9;
-    var NUM6 = 37;
-    var NUM7 = 39;
+    var ASCIININE = 57;
+    var ASCIIZERO = 48;
+    var ASCIIBACKSPACE = 8;
+    var ASCIIPIONT = 46;
+    var ASCIITAB = 9;
+    var ASCIIPRECENT = 37;
+    var ASCIIUPPIONT = 39;
 
-    if (!(evt.keyCode <= NUM1 && evt.keyCode >= NUM2 || evt.keyCode === NUM3 || evt.keyCode === NUM4 || evt.keyCode === NUM5 || evt.keyCode === NUM6 || evt.keyCode === NUM7)) {
+    if (!(evt.keyCode <= ASCIININE && evt.keyCode >= ASCIIZERO || evt.keyCode === ASCIIBACKSPACE || evt.keyCode === ASCIIPIONT || evt.keyCode === ASCIITAB || evt.keyCode === ASCIIPRECENT || evt.keyCode === ASCIIUPPIONT)) {
         evt.preventDefault();
     }
 });
