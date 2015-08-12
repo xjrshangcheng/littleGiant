@@ -50,3 +50,4 @@ INSERT INTO `category` VALUES (49, 1, '进口食品', '11.49');
 INSERT INTO `category` VALUES (50, 1, '饮料冲调', '11.50');
 INSERT INTO `category` VALUES (51, 2, '手机', '2.19.51');
 INSERT INTO `category` VALUES (52, 2, '移动电源', '2.17.52');
+INSERT INTO `category` VALUES (53, -1, '所有分类', '');
