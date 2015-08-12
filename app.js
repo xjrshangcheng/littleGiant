@@ -30,7 +30,7 @@ var register = require('./router/register');
 app.use('/',register);
 
 var shoppingCart = require('./router/shopping-cart');
-app.use('/',shoppingCart);
+app.use('/shopping-cart',shoppingCart);
 
 var userShoppingCart = require('./router/add');
 app.use('/add', userShoppingCart);

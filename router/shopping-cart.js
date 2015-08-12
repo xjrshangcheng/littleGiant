@@ -4,7 +4,7 @@ var models = require('../models');
 var shoppingCart = require('../service/shopping-cart');
 var Cart = models.cart;
 
-router.get("/shopping-cart", function(req, res) {
+router.get("/", function(req, res) {
     var userName = req.cookies.name;
 
     shoppingCart.shoppingCart(req,res,userName);
@@ -13,7 +13,7 @@ router.get("/shopping-cart", function(req, res) {
 router.delete('/', function(req, res) {
     var Id = req.body.id;
     var userName = req.cookies.name;
-    
+
     shoppingCart.shoppingCartDelete(req,res,userName,Id);
 });
 
