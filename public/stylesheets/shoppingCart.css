@@ -217,7 +217,7 @@ a {
     width: 990px;
     overflow: hidden;
     margin: 0 auto;
-    border-radius: 0px 0px 5px 5px;
+    border-radius: 5px 5px 9px 9px;
     border: 1px solid #ddd;
     margin-top: 50px;
     margin-bottom: 20px;
@@ -242,7 +242,7 @@ a {
     width: auto;
     text-align: right;
     display: block;
-    float: left;
+    float: right;
 }
 .cart-content-footer .footer-center em {
     color: #c30000;
@@ -258,9 +258,17 @@ a {
     padding: 0 5px;
 }
 .footer-button {
-    width: 990px;
+    padding-top: 34px;
+    width: 207px;
+    height: 60px;
     margin: 0 auto;
     padding: 9px 0 28px 0;
+    float: right;
+}
+.footer-button li{
+    display: table-cell;
+    position: relative;
+    left: -93px;
 }
 .continue-cart {
     background: rgb(0, 197, 177);
@@ -273,7 +281,7 @@ a {
     border-radius: 3px;
     cursor: pointer;
     margin-left: 20px;
-    margin-top: -91px;
+    margin-top: -7px;
 }
 .buy-now {
     background: rgb(197, 27, 0);
@@ -285,15 +293,14 @@ a {
     line-height: 36px;
     border-radius: 3px;
     cursor: pointer;
-    margin-top: -35px;
-    margin-left: 843px;
+    margin-left: 20px;
+    margin-top: 4px;
 }
 .total {
-    width: 168px;
+    width: 100px;
     border: 0px;
     background-color: #EAEAEA;
 }
-.my-total {
-    margin-top: 16px;
-    margin-left: 666px;
+a:hover{
+    text-decoration: none;
 }

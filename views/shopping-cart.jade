@@ -48,17 +48,21 @@ html(lang="en")
                                     input(data-id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
                                 li.cart-content-table7
                                     a(class = "cart_goods_delete" id = shoppingCartGoods.id)  删除
+            .show_buy_cart_price_all
                 .cart-total-box
                     ul.cart-content-footer
                         li.footer-center
-                            ul.my-total
-                                span.amount-title
-                                em.amount-title
-                                    ￥：
-                                    input(class="total" value="0")
-            .footer-button
-                a(class="continue-cart" href="/") 继续购物
-                a(class="buy-now" href="/pay") 去结算
-        include footer.html
+                            span.amount-title
+                            em.amount-title
+                                总价：
+                                input(class="total" value="0")
+                    ul.footer-button
+                        li
+                            a(href="/")
+                                .continue-cart 继续购物
+                        li
+                            a(href="/pay")
+                                .buy-now 去结算
+            include footer.html
         script(src="./javascripts/shopping-cart.js")
         script(src="./jquery/dist/jquery.js")
