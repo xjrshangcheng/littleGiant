@@ -257,3 +257,6 @@ h5 {
 .select-item{
     width: 60px;
 }
+label{
+    display: inline;
+}

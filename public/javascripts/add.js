@@ -6,6 +6,7 @@ $("#add_to_cart").on("click", function() {
     var name = $(".buy-content-text-a1").html();
     var price = $("#sales-price").html();
     var cookieName = Cookie.getCookie('name');
+    var select = $("input[name='approve']:checked").val();
 
     if (cookieName === null) {
         $(location).attr('href', '/login');
@@ -15,7 +16,8 @@ $("#add_to_cart").on("click", function() {
             username: username,
             number: number,
             name: name,
-            price: price
+            price: price,
+            select: select
         }, function(data) {
             if (data.message === "success") {
                 alert("添加购物车成功");
