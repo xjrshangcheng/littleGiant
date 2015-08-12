@@ -71,6 +71,7 @@ function deleteCurrentGoods(event) {
             },
             success: function () {
                 $current.closest('ul.cart-content').remove();
+                total();
             }
         });
     }
