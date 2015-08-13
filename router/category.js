@@ -11,7 +11,14 @@ router.get('/', function(req, res) {
     var breadcrumbs = [];
     var resultSubCategories = [];
     var subCategories = [];
-    
+    var sumPage;
+    var nowPage = 0;
+    var pageSize = 1;
+
+    Goods.count().then(function(i){
+        sumPage = Math.ceil(i / pageSize);
+    });
+
     breadcrumbs.push(ALL_CATEGORY);
     req.query.type = req.query.type || ALL_CATEGORY;
 
@@ -75,18 +82,21 @@ router.get('/', function(req, res) {
                 var whereObj = {
                     where: {
                         type: subCategories
-                    }
+                    },
+                    limit: [nowPage*pageSize, pageSize]
                 };
 
-                findGoods(res, resultGoods, breadcrumbs, resultSubCategories, whereObj);
+                findGoods(res, resultGoods, breadcrumbs, resultSubCategories, nowPage + 1, sumPage, whereObj);
             } else {
-                findGoods(res, resultGoods, breadcrumbs, resultSubCategories, undefined);
+                findGoods(res, resultGoods, breadcrumbs, resultSubCategories, nowPage + 1, sumPage, undefined);
             }
+
+            nowPage++;
         });
     });
 });
 
-function findGoods(res, resultGoods, breadcrumbs, resultSubCategories, whereObj) {
+function findGoods(res, resultGoods, breadcrumbs, resultSubCategories, nowPage, sumPage, whereObj) {
     Goods.findAll(whereObj).then(function(result) {
         resultGoods = result.map(function(categoryRecord) {
             return categoryRecord.dataValues;
@@ -95,7 +105,9 @@ function findGoods(res, resultGoods, breadcrumbs, resultSubCategories, whereObj)
         res.render("category", {
             data: resultGoods,
             breadArray: breadcrumbs,
-            subCategory: resultSubCategories
+            subCategory: resultSubCategories,
+            nowPage : nowPage,
+            sumPage : sumPage
         })
     });
 }
