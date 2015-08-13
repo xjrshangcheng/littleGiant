@@ -64,7 +64,7 @@ function deleteCurrentGoods(event) {
         var id = event.toElement.id;
 
         $.ajax({
-            url: '/',
+            url: '/shopping-cart',
             type: 'delete',
             data: {
                 id: id
