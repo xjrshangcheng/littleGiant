@@ -19,9 +19,9 @@ html(lang="en")
                         a(href="/category?type="+sub).col-md-1.category.text-center.text-cursor #{sub}
                         
                     .col-md-3.pull-right
-                        .btn.btn-danger.col-md-4.text-center
+                        .btn.btn-danger.col-md-4.text-center.disabled
                             span.glyphicon.glyphicon-chevron-left
-                        .col-md-4.text-center.page-detail 23/30
+                        .col-md-4.text-center.page-detail #{nowPage}/#{sumPage}
                         .btn.btn-danger.col-md-4.text-center
                             span.glyphicon.glyphicon-chevron-right.char-style
             .panel.panel-danger
@@ -50,6 +50,6 @@ html(lang="en")
                     a.btn.btn-defaults.color-font 7
                     |···
                     a.btn.btn-defaults.color-font 下一页
-                    | 共有100页
+                    | 共有#{sumPage}页
         include footer.html
         script(src="./javascripts/category.js")
