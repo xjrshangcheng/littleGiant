@@ -1,0 +1,84 @@
+.container {
+    margin: 40px 0px;
+    padding-left: 0px;
+}
+.order-tabal {
+    width: 1000px;
+    margin-left: 70px;
+}
+
+.col-name {
+    height: 45px;
+    background-color: #E8E8E8;
+}
+.line {
+    height: 20px;
+}
+.order-time {
+    height: 40px;
+    padding: 10px;
+}
+.deal-time {
+    width: 90px;
+    height: 20px;
+    padding-top: 3px;
+    float: left;
+}
+.order-item {
+    height: 20px;
+    float: left;
+    padding-left: 20px;
+}
+.a {
+    background-color: #E8E8E8;
+}
+.name {
+    padding: 15px;
+}
+.item-picture {
+    height: 80px;
+    width: 80px;
+    margin: 5px 12px 0 0;
+    background-color: ;
+    float: left;
+}
+.item-name {
+    width: 200px;
+    float: left;
+}
+td {
+    text-align: center;
+    border: 1px solid #E8E8E8;
+}
+th {
+    border: 1px solid #F5F5F5;
+}
+.commodity {
+    width: 400px;
+    text-align: center;
+}
+
+.price {
+    width: 100px;
+    text-align: center;
+}
+
+.quantity {
+    width: 100px;
+    text-align: center;
+}
+
+.amount {
+    width: 150px;
+    text-align: center;
+}
+
+.status {
+    width: 150px;
+    text-align: center;
+}
+
+.operate {
+    width: 100px;
+    text-align: center;
+}
