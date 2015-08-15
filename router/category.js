@@ -5,13 +5,16 @@ var Goods = models.goods;
 var Category = models.category;
 var nowPage = 0;
 var pageSize = 8;
+var subAllCategory = [];
 
 router.get('/', function(req, res) {
     var breadcrumbs = [];
     var subCategories = [];
-    var subAllCategory = [];
     var count = 3;
+
     nowPage = 0;
+    subAllCategory = [];
+    req.query.type=req.query.type || "所有分类";
 
     getBreadcrumbs(req, function(data) {
         breadcrumbs.push("所有分类");
@@ -44,6 +47,27 @@ router.get('/', function(req, res) {
                 getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, sum, res);
             });
         }
+    });
+});
+
+router.get('/previousPage', function(req, res) {
+    nowPage -= 2;
+    getGoodsInfo(subAllCategory, function(data) {
+        nowPage++;
+        res.send({
+            data:data,
+            nowPage:nowPage
+        })
+    });
+});
+
+router.get('/nextPage', function(req, res) {
+    getGoodsInfo(subAllCategory, function(data) {
+        nowPage++;
+        res.send({
+            data:data,
+            nowPage:nowPage
+        })
     });
 });
 

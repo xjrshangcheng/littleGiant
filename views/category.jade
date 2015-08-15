@@ -19,13 +19,16 @@ html(lang="en")
                         a(href="/category?type="+sub).col-md-1.category.text-center.text-cursor #{sub}
                         
                     .col-md-3.pull-right
-                        .btn.btn-danger.col-md-4.text-center.disabled
+                        .btn.btn-danger.col-md-4.text-center#previous-page.active
                             span.glyphicon.glyphicon-chevron-left
-                        .col-md-4.text-center.page-detail #{nowPage}/#{sumPage}
-                        .btn.btn-danger.col-md-4.text-center
+                        .col-md-4.text-center.page-detail 
+                            span#now-page #{nowPage}
+                            span / 
+                            span#sum-page #{sumPage}
+                        .btn.btn-danger.col-md-4.text-center#next-page.active
                             span.glyphicon.glyphicon-chevron-right.char-style
             .panel.panel-danger
-                .panel-body
+                .panel-body#body
                     if data.length !== 0
                         for goodsInfo in data
                             .col-md-3.info-margin-bottom
