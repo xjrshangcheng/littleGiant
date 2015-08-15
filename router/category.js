@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
 
     nowPage = 0;
     subAllCategory = [];
-    req.query.type=req.query.type || "所有分类";
+    req.query.type = req.query.type || "所有分类";
 
     getBreadcrumbs(req, function(data) {
         breadcrumbs.push("所有分类");
@@ -22,7 +22,7 @@ router.get('/', function(req, res) {
             breadcrumbs.push(n);
         });
         count--;
-        if(count === 0) {
+        if (count === 0) {
             getSumPage(subAllCategory, pageSize, function(sum) {
                 getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, sum, res);
             });
@@ -32,7 +32,7 @@ router.get('/', function(req, res) {
     getSubCategories(req, function(data) {
         subCategories = data;
         count--;
-        if(count === 0) {
+        if (count === 0) {
             getSumPage(subAllCategory, pageSize, function(sum) {
                 getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, sum, res);
             });
@@ -42,7 +42,7 @@ router.get('/', function(req, res) {
     getSubAllCategories(req, function(data) {
         subAllCategory = data;
         count--;
-        if(count === 0) {
+        if (count === 0) {
             getSumPage(subAllCategory, pageSize, function(sum) {
                 getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, sum, res);
             });
@@ -55,8 +55,8 @@ router.get('/previousPage', function(req, res) {
     getGoodsInfo(subAllCategory, function(data) {
         nowPage++;
         res.send({
-            data:data,
-            nowPage:nowPage
+            data: data,
+            nowPage: nowPage
         })
     });
 });
@@ -65,43 +65,43 @@ router.get('/nextPage', function(req, res) {
     getGoodsInfo(subAllCategory, function(data) {
         nowPage++;
         res.send({
-            data:data,
-            nowPage:nowPage
+            data: data,
+            nowPage: nowPage
         })
     });
 });
 
 function getSumPage(subAllCategory, pageSize, setSumpage) {
     Goods.count({
-        where : {
-            type : subAllCategory
+        where: {
+            type: subAllCategory
         }
-    }).then(function(count){
+    }).then(function(count) {
         setSumpage(Math.ceil(count / pageSize));
     });
 }
 
 function getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, sumPage, res) {
     getGoodsInfo(subAllCategory, function(data) {
-        if(data.length > 0) {
+        if (data.length > 0) {
             nowPage++;
         }
         res.render("category", {
-            data:data,
-            breadArray:breadcrumbs,
-            subCategory:subCategories,
-            sumPage:sumPage,
-            nowPage:nowPage
+            data: data,
+            breadArray: breadcrumbs,
+            subCategory: subCategories,
+            sumPage: sumPage,
+            nowPage: nowPage
         })
     });
 }
 
 function getGoodsInfo(subAllCategory, setGoodsInfo) {
     Goods.findAll({
-        where : {
-            type : subAllCategory
+        where: {
+            type: subAllCategory
         },
-        limit:[nowPage*pageSize, pageSize]
+        limit: [nowPage * pageSize, pageSize]
     }).then(function(result) {
         resultGoods = result.map(function(categoryRecord) {
             return categoryRecord.dataValues;
@@ -115,7 +115,7 @@ function getSubAllCategories(req, setSubAllCategory) {
     var subAllCategory = [];
     Category.find({
         where: {
-            name:req.query.type
+            name: req.query.type
         }
     }).then(function(resultCurrentCategory) {
         Category.findAll({
@@ -138,7 +138,7 @@ function getSubCategories(req, setSubCategory) {
 
     Category.find({
         where: {
-            name:req.query.type
+            name: req.query.type
         }
     }).then(function(resultCurrentCategory) {
         Category.findAll({
@@ -146,7 +146,7 @@ function getSubCategories(req, setSubCategory) {
                 path: {
                     $like: resultCurrentCategory.dataValues.path + "%"
                 },
-                level : parseInt(resultCurrentCategory.dataValues.level) + 1
+                level: parseInt(resultCurrentCategory.dataValues.level) + 1
             }
         }).then(function(resultCategory) {
             resultCategory.forEach(function(data) {
