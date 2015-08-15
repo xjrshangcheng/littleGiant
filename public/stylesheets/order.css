@@ -15,8 +15,9 @@
     height: 20px;
 }
 .order-time {
-    height: 40px;
-    padding: 10px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
 }
 .deal-time {
     width: 90px;
@@ -52,7 +53,7 @@ td {
     text-align: center;
 }
 .commodity {
-    width: 400px
+    width: 400px;
 }
 
 .price,.quantity,.operate {
