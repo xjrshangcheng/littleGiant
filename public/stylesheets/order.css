@@ -9,7 +9,7 @@
 
 .col-name {
     height: 45px;
-    background-color: #E8E8E8;
+    background-color: #F5F5F5;
 }
 .line {
     height: 20px;
@@ -21,7 +21,6 @@
 .deal-time {
     width: 90px;
     height: 20px;
-    padding-top: 3px;
     float: left;
 }
 .order-item {
@@ -30,7 +29,7 @@
     padding-left: 20px;
 }
 .a {
-    background-color: #E8E8E8;
+    background-color: #F5F5F5;
 }
 .name {
     padding: 15px;
@@ -39,7 +38,6 @@
     height: 80px;
     width: 80px;
     margin: 5px 12px 0 0;
-    background-color: ;
     float: left;
 }
 .item-name {
@@ -48,37 +46,19 @@
 }
 td {
     text-align: center;
-    border: 1px solid #E8E8E8;
-}
-th {
     border: 1px solid #F5F5F5;
 }
+.order-table th {
+    text-align: center;
+}
 .commodity {
-    width: 400px;
-    text-align: center;
+    width: 400px
 }
 
-.price {
+.price,.quantity,.operate {
     width: 100px;
-    text-align: center;
 }
 
-.quantity {
-    width: 100px;
-    text-align: center;
-}
-
-.amount {
+.amount,.status {
     width: 150px;
-    text-align: center;
-}
-
-.status {
-    width: 150px;
-    text-align: center;
-}
-
-.operate {
-    width: 100px;
-    text-align: center;
 }
