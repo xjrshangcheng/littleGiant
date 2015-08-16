@@ -18,17 +18,17 @@ html(lang="en")
                     for sub in subCategory
                         a(href="/category?type="+sub).col-md-1.category.text-center.text-cursor #{sub}
                         
-                    .col-md-3.pull-right
-                        .btn.btn-danger.col-md-4.text-center#previous-page.active
+                    .col-md-3.pull-right#top-page-turning
+                        .btn.btn-danger.col-md-4.text-center#top-previous-page.active
                             span.glyphicon.glyphicon-chevron-left
                         .col-md-4.text-center.page-detail 
                             span#now-page #{nowPage}
                             span / 
                             span#sum-page #{sumPage}
-                        .btn.btn-danger.col-md-4.text-center#next-page.active
+                        .btn.btn-danger.col-md-4.text-center#top-next-page.active
                             span.glyphicon.glyphicon-chevron-right.char-style
             .panel.panel-danger
-                .panel-body#body
+                .panel-body#body.text-center
                     if data.length !== 0
                         for goodsInfo in data
                             .col-md-3.info-margin-bottom
@@ -42,17 +42,10 @@ html(lang="en")
                                         .col-md-12.border.info-div.text-cursor #{goodsInfo.info}
                     else 
                         |此类无商品
-                .panel-heading.text-center
-                    a.btn.btn-defaults.color-font 上一页
-                    a.btn.btn-defaults.color-font 1
-                    a.btn.btn-defaults.color-font 2
-                    a.btn.btn-defaults.color-font 3
-                    a.btn.btn-defaults.color-font 4
-                    a.btn.btn-defaults.color-font 5
-                    a.btn.btn-defaults.color-font 6
-                    a.btn.btn-defaults.color-font 7
-                    |···
-                    a.btn.btn-defaults.color-font 下一页
+                .panel-heading.text-center#bottom-page-turning
+                    a.btn.btn-defaults.color-font#bottom-previous-page.active 上一页
+                    span#numberPageDown
+                    a.btn.btn-defaults.color-font#bottom-next-page.active 下一页
                     | 共有#{sumPage}页
         include footer.html
         script(src="./javascripts/category.js")

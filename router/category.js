@@ -51,7 +51,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/previousPage', function(req, res) {
-    nowPage -= 2;
+    nowPage = req.query.nowPage - 2;
     getGoodsInfo(subAllCategory, function(data) {
         nowPage++;
         res.send({
@@ -62,6 +62,7 @@ router.get('/previousPage', function(req, res) {
 });
 
 router.get('/nextPage', function(req, res) {
+    nowPage = req.query.nowPage;
     getGoodsInfo(subAllCategory, function(data) {
         nowPage++;
         res.send({
