@@ -4,7 +4,6 @@ $(function() {
         if(verificationLength()) {
             var inputName = $('#uid').prop('value');
             var inputPwd = $('#psw1').prop('value');
-
             inputPwd = hex_md5(inputPwd);
             $.ajax({
                 url : '/login',
