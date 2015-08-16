@@ -5,6 +5,7 @@ $(function() {
     $('form').submit(function (evt) {
         var inputValue = $('#psw1').val();
         var encryptedValue = hex_md5(inputValue);
+        
         $('#psw1').prop('value',encryptedValue);
     });
     $('#reg-form').easyform();
