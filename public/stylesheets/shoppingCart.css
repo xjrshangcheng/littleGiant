@@ -306,4 +306,5 @@ a:hover{
 }
 input[type=checkbox] {
     vertical-align: middle;
+    margin-top: -1px;
 }
