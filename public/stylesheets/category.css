@@ -1,5 +1,5 @@
 a {
-    color :#b61d1d;
+    color: #b61d1d;
 }
 .category {
     border: 1px solid #F2DEDE;
@@ -56,16 +56,16 @@ a {
     text-decoration: underline;
 }
 .color-font {
-    margin-left:2px;
+    margin-left: 2px;
 }
 .font-color {
-  color: #B9AAAA;
-  background-color:red;
+    color: #B9AAAA;
+    background-color: red;
 }
-.disabled{
+.disabled {
     color: #B9AAAA;
 }
-.number-page:hover{
-    border-color:red;
+.number-page:hover {
+    border-color: red;
     color: #B9AAAA;
 }

@@ -5,7 +5,7 @@ $(".info-div").each(function(index, element) {
     }
 });
 
-if($("#body").html() === "此类无商品") {
+if ($("#body").html() === "此类无商品") {
     $("#top-page-turning").hide();
     $("#bottom-page-turning").hide();
 }
@@ -13,7 +13,9 @@ if($("#body").html() === "此类无商品") {
 buttonStyle();
 
 function getPreviousPage(nowPage) {
-    $.get("/category/previousPage", {nowPage: nowPage}, function(data) {
+    $.get("/category/previousPage", {
+        nowPage: nowPage
+    }, function(data) {
         $("#now-page").html(data.nowPage);
         $("#body").html("");
         data.data.forEach(function(n) {
@@ -25,7 +27,9 @@ function getPreviousPage(nowPage) {
 }
 
 function getNextPage(nowPage) {
-    $.get("/category/nextPage", {nowPage: nowPage}, function(data) {
+    $.get("/category/nextPage", {
+        nowPage: nowPage
+    }, function(data) {
         $("#now-page").html(data.nowPage);
         $("#body").html("");
         data.data.forEach(function(n) {
@@ -88,9 +92,9 @@ function buttonStyle() {
     }
     $(".number-page").each(function(i, n) {
         $(".number-page").each(function(i, n) {
-            if($(n).html() == $("#now-page").html()) {
+            if ($(n).html() == $("#now-page").html()) {
                 $(n).addClass("font-color");
-            }else{
+            } else {
                 $(n).removeClass("font-color");
             }
         })
@@ -103,29 +107,29 @@ function bottomButtomStyle() {
     var pageCount = parseInt($("#sum-page").html());
     var nowPage = parseInt($("#now-page").html());
     var aString = "";
-    if(pageCount < 8) {
-        for(var i = 0; i < pageCount; i++) {
-            aString += "<a class='btn btn-defaults color-font number-page'>"+(i+1)+"</a>";
+    if (pageCount < 8) {
+        for (var i = 0; i < pageCount; i++) {
+            aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
         }
-    }else {
-        if(nowPage < 6) {
-            for(var i = 0; i < 7; i++) {
-                aString += "<a class='btn btn-defaults color-font number-page'>"+(i+1)+"</a>";
+    } else {
+        if (nowPage < 6) {
+            for (var i = 0; i < 7; i++) {
+                aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
             }
             aString += "···";
-        }else if(pageCount-nowPage < 4){
-            aString += "<a class='btn btn-defaults color-font number-page'>"+ 1 +"</a>";
-            aString += "<a class='btn btn-defaults color-font number-page'>"+ 2 +"</a>";
+        } else if (pageCount - nowPage < 4) {
+            aString += "<a class='btn btn-defaults color-font number-page'>" + 1 + "</a>";
+            aString += "<a class='btn btn-defaults color-font number-page'>" + 2 + "</a>";
             aString += "···";
-            for(var i = pageCount-5; i <= pageCount && i < pageCount; i++) {
-                aString += "<a class='btn btn-defaults color-font number-page'>"+(i+1)+"</a>";
+            for (var i = pageCount - 5; i <= pageCount && i < pageCount; i++) {
+                aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
             }
-        }else {
-            aString += "<a class='btn btn-defaults color-font number-page'>"+ 1 +"</a>";
-            aString += "<a class='btn btn-defaults color-font number-page'>"+ 2 +"</a>";
+        } else {
+            aString += "<a class='btn btn-defaults color-font number-page'>" + 1 + "</a>";
+            aString += "<a class='btn btn-defaults color-font number-page'>" + 2 + "</a>";
             aString += "···";
-            for(var i = nowPage-2; i < nowPage + 3 && i < pageCount; i++) {
-                aString += "<a class='btn btn-defaults color-font number-page'>"+(i+1)+"</a>";
+            for (var i = nowPage - 2; i < nowPage + 3 && i < pageCount; i++) {
+                aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
             }
             aString += "···";
         }
@@ -133,12 +137,12 @@ function bottomButtomStyle() {
     $("#numberPageDown").html(aString);
 
     $(".number-page").on("click", function() {
-        getNextPage($(this).html()-1);
+        getNextPage($(this).html() - 1);
     });
     $(".number-page").each(function(i, n) {
-        if($(n).html() == $("#now-page").html()) {
+        if ($(n).html() == $("#now-page").html()) {
             $(n).addClass("font-color");
-        }else{
+        } else {
             $(n).removeClass("font-color");
         }
     })
