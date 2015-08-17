@@ -17,7 +17,7 @@ html(lang="en")
                             ul.cart-title
                                 li.cart-all
                                     input( type="checkbox" class="my_all_check" name="all-check" id="add_goods_tobuy_24124")
-                                    | 全选
+                                    | &nbsp;&nbsp;全选
                                 li.cart-goods 商品名称
                                 li.cart-rmb 价格
                                 li.cart-number 数量
@@ -47,7 +47,7 @@ html(lang="en")
                                 li.cart-content-table6
                                     input(data-id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
                                 li.cart-content-table7
-                                    a(class = "cart_goods_delete" id = shoppingCartGoods.id)  删除
+                                    a(href="" class = "cart_goods_delete" id = shoppingCartGoods.id )  删除
             .show_buy_cart_price_all
                 .cart-total-box
                     ul.cart-content-footer
@@ -63,6 +63,6 @@ html(lang="en")
                         li
                             a(href="/pay")
                                 .buy-now 去结算
-            include footer.html
+        include footer.html
         script(src="./javascripts/shopping-cart.js")
         script(src="./jquery/dist/jquery.js")
