@@ -308,3 +308,6 @@ input[type=checkbox] {
     vertical-align: middle;
     margin-top: -1px;
 }
+span {
+    margin-left: 5px;
+}
