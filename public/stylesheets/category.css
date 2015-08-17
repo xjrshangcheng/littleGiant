@@ -59,13 +59,20 @@ a {
     margin-left: 2px;
 }
 .font-color {
-    color: #B9AAAA;
-    background-color: red;
+    color: #fff;
+    background-color: #b61d1d;
 }
-.disabled {
-    color: #B9AAAA;
+.number-page.font-color:hover{
+    color: #fff;
+}
+.disabled{
+    color: #8A8A8A;
 }
 .number-page:hover {
-    border-color: red;
-    color: #B9AAAA;
+    border-color: #b61d1d;
+    color: #b61d1d;
+}
+.active:hover {
+    border-color: #b61d1d;
+    color: #b61d1d;
 }
