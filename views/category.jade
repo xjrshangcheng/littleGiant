@@ -11,9 +11,11 @@ html(lang="en")
         .container.title-margin
             .panel.panel-danger
                 .panel-heading
-                    for category in breadArray
-                        a(href="/category?type="+category).text-cursor #{category}
-                        span.glyphicon.glyphicon-chevron-right.char-style
+                    -for (var i = 0; i < breadArray.length; i++) {
+                        a(href="/category?type="+breadArray[i]).text-cursor #{breadArray[i]}
+                        if i !== breadArray.length -1
+                            span.glyphicon.glyphicon-chevron-right.char-style
+                    -}
                 .panel-body
                     for sub in subCategory
                         a(href="/category?type="+sub).col-md-1.category.text-center.text-cursor #{sub}

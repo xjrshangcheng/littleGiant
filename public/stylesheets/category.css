@@ -60,4 +60,12 @@ a {
 }
 .font-color {
   color: #B9AAAA;
+  background-color:red;
+}
+.disabled{
+    color: #B9AAAA;
+}
+.number-page:hover{
+    border-color:red;
+    color: #B9AAAA;
 }
