@@ -1,4 +1,46 @@
-extends ./layout.jade
-
-block content
-    include order.html
+doctype html
+html(lang="en")
+    head
+        title= "category"
+        link(rel="stylesheet" href="./stylesheets/layoutStyle.css")
+        link(rel="stylesheet" href="./stylesheets/order.css")
+        link(rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css")
+    body
+        include header.html
+        div(class="container")
+            table(class="order-table")
+                thead(class="")
+                    tr(class="col-name")
+                        th(class="commodity") 买到的商品
+                        th(class="price") 单价
+                        th(class="quantity") 数量
+                        th(class="amount") 实付金额
+                        th(class="status") 交易状态
+                        th(class="operate") 操作
+                    tr(class="line")
+                tbody
+                for order in array
+                    tr(class="a")
+                        td(class="first" colspan="6")
+                            div(class="order-time")
+                                div(class="deal-time") #{order.time}
+                                div(class="order-item") 订单号:#{order.id}
+                    tr
+                        td(class="name")
+                            div
+                                div(class="item-picture")
+                                    img(src="#{order.img}")
+                                div(class="item-name") #{order.item_name}
+                        td #{order.price}
+                        td #{order.number}
+                        td #{order.amount}
+                        td
+                            div
+                                div() 已发货
+                                div()
+                                    a(href="#") 确认收货
+                        td
+                            a(href="#") 删除
+                    tr(class="line")
+        include footer.html
+    script(src="./jquery/dist/jquery.js")

@@ -63,3 +63,7 @@ td {
 .amount,.status {
     width: 150px;
 }
+img {
+    width: 100%;
+    height: 100%;
+}
