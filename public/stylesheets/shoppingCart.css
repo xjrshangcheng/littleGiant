@@ -304,3 +304,6 @@ a {
 a:hover{
     text-decoration: none;
 }
+input[type=checkbox] {
+    vertical-align: middle;
+}
