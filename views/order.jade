@@ -40,7 +40,7 @@ html(lang="en")
                                 div()
                                     a(href="#") 确认收货
                         td
-                            a(href="#") 删除
+                            a(class="delete" class="#{order.id}" href="#") 删除
                     tr(class="line")
         include footer.html
     script(src="./jquery/dist/jquery.js")

@@ -3,7 +3,7 @@
 module.exports = {
     up: function(migration, DataTypes) {
         migration.createTable(
-            'order', {
+            'user_order', {
                 id: {
                     type: DataTypes.INTEGER,
                     primaryKey: true,

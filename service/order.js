@@ -1,5 +1,5 @@
 var models = require('../models');
-var Order = models.order;
+var Order = models.user_order;
 
 var readOrder = function(req, res, userName) {
     var array = [];
