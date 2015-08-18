@@ -26,36 +26,31 @@ function getPage(path, currentPage) {
     });
 }
 
+function clickToPage(className, url) {
+    $(className).unbind("click");
+    $(className + ".active").on("click", function() {
+        getPage(url, $("#current-page").html());
+    })
+}
+
+function buttonDisableOrActive(pageNumber, className, url) {
+    if($("#current-page").html() == pageNumber) {
+        $(className).removeClass("active").addClass("disabled").unbind("click");
+    }else {
+        $(className).removeClass("disabled").addClass("active");
+        $(className).unbind("click");
+        $(className + ".active").on("click", function() {
+            getPage(url, $("#current-page").html());
+        })
+    }
+}
+
 function topButtonStyleClick() {
-    $(".previous-page").unbind("click");
-    $(".previous-page.active").on("click", function() {
-        getPage("previousPage", $("#current-page").html());
-    })
+    clickToPage(".previous-page", "previousPage");
+    clickToPage(".next-page", "nextPage");
 
-    $(".next-page").unbind("click");
-    $(".next-page.active").on("click", function() {
-        getPage("nextPage", $("#current-page").html());
-    })
-
-    if ($("#current-page").html() == 1) {
-        $(".previous-page").removeClass("active").addClass("disabled").unbind("click");
-    } else {
-        $(".previous-page").removeClass("disabled").addClass("active");
-        $(".previous-page").unbind("click");
-        $(".previous-page.active").on("click", function() {
-            getPage("previousPage", $("#current-page").html());
-        })
-    }
-
-    if ($("#current-page").html() === $("#count-page").html()) {
-        $(".next-page").removeClass("active").addClass("disabled").unbind("click");
-    } else {
-        $(".next-page").removeClass("disabled").addClass("active");
-        $(".next-page").unbind("click");
-        $(".next-page.active").on("click", function() {
-            getPage("nextPage", $("#current-page").html());
-        })
-    }
+    buttonDisableOrActive(1, ".previous-page", "previousPage");
+    buttonDisableOrActive($("#count-page").html(), ".next-page", "nextPage");
 }
 
 function bottomAStyleClick() {
