@@ -13,7 +13,7 @@ topButtonStyleClick();
 bottomAStyleClick();
 
 function getPage(path, currentPage) {
-    $.get("/category/"+path, {
+    $.get("/category/" + path, {
         currentPage: currentPage
     }, function(data) {
         $("#current-page").html(data.currentPage);
@@ -61,36 +61,8 @@ function topButtonStyleClick() {
 function bottomAStyleClick() {
     var pageCount = parseInt($("#count-page").html());
     var currentPage = parseInt($("#current-page").html());
-    var aString = "";
 
-    if (pageCount < 8) {
-        for (var i = 0; i < pageCount; i++) {
-            aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
-        }
-    } else {
-        if (currentPage < 6) {
-            for (var i = 0; i < 7; i++) {
-                aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
-            }
-            aString += "···";
-        } else if (pageCount - currentPage < 4) {
-            aString += "<a class='btn btn-defaults color-font number-page'>" + 1 + "</a>";
-            aString += "<a class='btn btn-defaults color-font number-page'>" + 2 + "</a>";
-            aString += "···";
-            for (var i = pageCount - 5; i <= pageCount && i < pageCount; i++) {
-                aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
-            }
-        } else {
-            aString += "<a class='btn btn-defaults color-font number-page'>" + 1 + "</a>";
-            aString += "<a class='btn btn-defaults color-font number-page'>" + 2 + "</a>";
-            aString += "···";
-            for (var i = currentPage - 2; i < currentPage + 3 && i < pageCount; i++) {
-                aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
-            }
-            aString += "···";
-        }
-    }
-    $("#numberPageDown").html(aString);
+    $("#numberPageDown").html(pagination(pageCount, currentPage));
 
     $(".number-page").on("click", function() {
         getPage("nextPage", $(this).html() - 1);
@@ -103,4 +75,67 @@ function bottomAStyleClick() {
             $(numberPage).removeClass("font-color");
         }
     })
+}
+
+function pageCountLessThan8(pageCount) {
+    var aString = "";
+
+    for (var i = 0; i < pageCount; i++) {
+        aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
+    }
+    return aString;
+}
+
+function pageCountGreaterThan8AndCurrentPageLessThan6() {
+    var aString = "";
+
+    for (var i = 0; i < 7; i++) {
+        aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>"
+    }
+    aString += "···";
+
+    return aString;
+}
+
+function pageCountGreaterThan8AndCurrentPageIsLast4(pageCount) {
+    var aString = "";
+
+    aString += "<a class='btn btn-defaults color-font number-page'>1</a>";
+    aString += "<a class='btn btn-defaults color-font number-page'>2</a>";
+    aString += "···";
+    for (var i = pageCount - 5; i <= pageCount && i < pageCount; i++) {
+        aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
+    }
+
+    return aString;
+}
+
+function pageCountGreaterThan8AndCurrentPageIsMiddle(currentPage, pageCount) {
+    var aString = "";
+
+    aString += "<a class='btn btn-defaults color-font number-page'>1</a>";
+    aString += "<a class='btn btn-defaults color-font number-page'>2</a>";
+    aString += "···";
+    for (var i = currentPage - 2; i < currentPage + 3 && i < pageCount; i++) {
+        aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
+    }
+    aString += "···";
+
+    return aString;
+}
+
+function pagination(pageCount, currentPage) {
+    if (pageCount < 8) {
+        return pageCountLessThan8(pageCount);
+    }
+
+    if (currentPage < 6) {
+        return pageCountGreaterThan8AndCurrentPageLessThan6();
+    }
+
+    if (pageCount - currentPage < 4) {
+        return pageCountGreaterThan8AndCurrentPageIsLast4(pageCount);
+    }
+
+    return pageCountGreaterThan8AndCurrentPageIsMiddle(currentPage, pageCount);
 }
