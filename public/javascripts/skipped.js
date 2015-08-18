@@ -1,5 +1,5 @@
 $(function() {
-    var count = 5;
+    var count = 3;
     var newSpan = document.createElement("span");
 
     document.getElementById('count-down').appendChild(newSpan);
