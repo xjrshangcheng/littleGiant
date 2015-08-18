@@ -1,0 +1,23 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+body {
+    font: 16/180% Arial, Helvetica, sans-serif, "微软雅黑", "黑体";
+    background: #eee;
+    background-image: url(../images/reg-bg.png);
+    background-repeat: no-repeat;
+    text-align: center;
+}
+#congratulation {
+    height: 330px;
+    width: 424px;
+    padding-left: 500px;
+    padding-top: 155px;
+}
+#count-down {
+    height: 10px;
+    width: 10px;
+    margin-left: 138px;
+    margin-top: 25px;
+}
