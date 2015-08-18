@@ -8,7 +8,6 @@ var readOrder = function(req, res, userName) {
             array.push(val.dataValues);
         });
     }).done(function() {
-        console.log(array);
         res.render('order', {
             array: array
         });
