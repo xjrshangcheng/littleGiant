@@ -29,6 +29,9 @@ app.use('/quit',header);
 var register = require('./router/register');
 app.use('/',register);
 
+var skipped = require('./router/skipped');
+app.use('/skipped',skipped);
+
 var shoppingCart = require('./router/shopping-cart');
 app.use('/shopping-cart',shoppingCart);
 
