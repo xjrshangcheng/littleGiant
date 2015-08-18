@@ -11,23 +11,23 @@ html(lang="en")
         .container.title-margin
             .panel.panel-danger
                 .panel-heading
-                    -for (var i = 0; i < breadArray.length; i++) {
-                        a(href="/category?type="+breadArray[i]).text-cursor #{breadArray[i]}
-                        if i !== breadArray.length -1
+                    -for (var i = 0; i < breadcrumbs.length; i++) {
+                        a(href="/category?type="+breadcrumbs[i]).text-cursor #{breadcrumbs[i]}
+                        if i !== breadcrumbs.length -1
                             span.glyphicon.glyphicon-chevron-right.char-style
                     -}
                 .panel-body
                     for sub in subCategory
                         a(href="/category?type="+sub).col-md-1.category.text-center.text-cursor #{sub}
                         
-                    .col-md-3.pull-right#top-page-turning
-                        .btn.btn-danger.col-md-4.text-center#top-previous-page.active
+                    .col-md-3.pull-right.page-turning
+                        .btn.btn-danger.col-md-4.text-center.previous-page.active
                             span.glyphicon.glyphicon-chevron-left
                         .col-md-4.text-center.page-detail 
-                            span#now-page #{nowPage}
+                            span#current-page #{currentPage}
                             span / 
-                            span#sum-page #{sumPage}
-                        .btn.btn-danger.col-md-4.text-center#top-next-page.active
+                            span#count-page #{pageCount}
+                        .btn.btn-danger.col-md-4.text-center.next-page.active
                             span.glyphicon.glyphicon-chevron-right.char-style
             .panel.panel-danger
                 .panel-body#body.text-center
@@ -36,7 +36,7 @@ html(lang="en")
                             .col-md-3.info-margin-bottom
                                 .clearfix
                                     a(href="/goods?id="+ goodsInfo.id)
-                                        img.col-md-12.text-center.img-cursor(src=goodsInfo.img height="224px;")
+                                        img.col-md-12.text-center.img-cursor(src=goodsInfo.img)
                                 .col-md-12
                                     .pull-left.col-md-6.text-center.border $#{goodsInfo.price}
                                     .pull-right.col-md-6.text-center.border 销量：#{goodsInfo.sales}
@@ -44,10 +44,10 @@ html(lang="en")
                                         .col-md-12.border.info-div.text-cursor #{goodsInfo.info}
                     else 
                         |此类无商品
-                .panel-heading.text-center#bottom-page-turning
-                    a.btn.btn-defaults.color-font#bottom-previous-page.active 上一页
+                .panel-heading.text-center.page-turning
+                    a.btn.btn-defaults.color-font.previous-page.active 上一页
                     span#numberPageDown
-                    a.btn.btn-defaults.color-font#bottom-next-page.active 下一页
-                    | 共有【#{sumPage}】页
+                    a.btn.btn-defaults.color-font.next-page.active 下一页
+                    | 共有【#{pageCount}】页
         include footer.html
         script(src="./javascripts/category.js")

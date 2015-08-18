@@ -39,6 +39,9 @@ a {
     padding: 0 20px 1px 45px;
     background: url(/images/category/ellipsis_bg.png) repeat-y;
 }
+.img-cursor{
+    height:224px;
+}
 .img-cursor:hover {
     position: relative;
     cursor: pointer;

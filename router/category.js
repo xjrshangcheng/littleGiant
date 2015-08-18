@@ -3,7 +3,7 @@ var router = express.Router();
 var models = require('../models');
 var Goods = models.goods;
 var Category = models.category;
-var nowPage = 0;
+var currentPage = 0;
 var pageSize = 8;
 var subAllCategory = [];
 
@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
     var subCategories = [];
     var count = 3;
 
-    nowPage = 0;
+    currentPage = 0;
     subAllCategory = [];
     req.query.type = req.query.type || "所有分类";
 
@@ -23,8 +23,8 @@ router.get('/', function(req, res) {
         });
         count--;
         if (count === 0) {
-            getSumPage(subAllCategory, pageSize, function(sum) {
-                getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, sum, res);
+            getPageCount(subAllCategory, pageSize, function(pageCount) {
+                getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, pageCount, res);
             });
         }
     });
@@ -33,8 +33,8 @@ router.get('/', function(req, res) {
         subCategories = data;
         count--;
         if (count === 0) {
-            getSumPage(subAllCategory, pageSize, function(sum) {
-                getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, sum, res);
+            getPageCount(subAllCategory, pageSize, function(pageCount) {
+                getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, pageCount, res);
             });
         }
     });
@@ -43,56 +43,56 @@ router.get('/', function(req, res) {
         subAllCategory = data;
         count--;
         if (count === 0) {
-            getSumPage(subAllCategory, pageSize, function(sum) {
-                getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, sum, res);
+            getPageCount(subAllCategory, pageSize, function(pageCount) {
+                getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, pageCount, res);
             });
         }
     });
 });
 
 router.get('/previousPage', function(req, res) {
-    nowPage = req.query.nowPage - 2;
+    currentPage = req.query.currentPage - 2;
     getGoodsInfo(subAllCategory, function(data) {
-        nowPage++;
+        currentPage++;
         res.send({
             data: data,
-            nowPage: nowPage
+            currentPage: currentPage
         })
     });
 });
 
 router.get('/nextPage', function(req, res) {
-    nowPage = req.query.nowPage;
+    currentPage = req.query.currentPage;
     getGoodsInfo(subAllCategory, function(data) {
-        nowPage++;
+        currentPage++;
         res.send({
             data: data,
-            nowPage: nowPage
+            currentPage: currentPage
         })
     });
 });
 
-function getSumPage(subAllCategory, pageSize, setSumpage) {
+function getPageCount(subAllCategory, pageSize, setPageCount) {
     Goods.count({
         where: {
             type: subAllCategory
         }
-    }).then(function(count) {
-        setSumpage(Math.ceil(count / pageSize));
+    }).then(function(pageCount) {
+        setPageCount(Math.ceil(pageCount / pageSize));
     });
 }
 
-function getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, sumPage, res) {
+function getGoodsAndResponse(subAllCategory, breadcrumbs, subCategories, pageCount, res) {
     getGoodsInfo(subAllCategory, function(data) {
         if (data.length > 0) {
-            nowPage++;
+            currentPage++;
         }
         res.render("category", {
             data: data,
-            breadArray: breadcrumbs,
+            breadcrumbs: breadcrumbs,
             subCategory: subCategories,
-            sumPage: sumPage,
-            nowPage: nowPage
+            pageCount: pageCount,
+            currentPage: currentPage
         })
     });
 }
@@ -102,7 +102,7 @@ function getGoodsInfo(subAllCategory, setGoodsInfo) {
         where: {
             type: subAllCategory
         },
-        limit: [nowPage * pageSize, pageSize]
+        limit: [currentPage * pageSize, pageSize]
     }).then(function(result) {
         resultGoods = result.map(function(categoryRecord) {
             return categoryRecord.dataValues;
