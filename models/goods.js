@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
         standard_one: DataTypes.STRING,
         standard_two: DataTypes.STRING,
         sales: DataTypes.STRING,
-        detail: DataTypes.INTEGER,
+        detail: DataTypes.STRING,
         type: DataTypes.STRING,
         img: DataTypes.STRING,
         recommend: DataTypes.STRING,
