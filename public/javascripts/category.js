@@ -73,50 +73,50 @@ function bottomAStyleClick() {
 }
 
 function pageCountLessThan8(pageCount) {
-    var aString = "";
+    var tabelString = "";
 
     for (var i = 0; i < pageCount; i++) {
-        aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
+        tabelString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
     }
-    return aString;
+    return tabelString;
 }
 
 function pageCountGreaterThan8AndCurrentPageLessThan6() {
-    var aString = "";
+    var tabelString = "";
 
     for (var i = 0; i < 7; i++) {
-        aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>"
+        tabelString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>"
     }
-    aString += "···";
+    tabelString += "···";
 
-    return aString;
+    return tabelString;
 }
 
 function pageCountGreaterThan8AndCurrentPageIsLast4(pageCount) {
-    var aString = "";
+    var tabelString = "";
 
-    aString += "<a class='btn btn-defaults color-font number-page'>1</a>";
-    aString += "<a class='btn btn-defaults color-font number-page'>2</a>";
-    aString += "···";
+    tabelString += "<a class='btn btn-defaults color-font number-page'>1</a>";
+    tabelString += "<a class='btn btn-defaults color-font number-page'>2</a>";
+    tabelString += "···";
     for (var i = pageCount - 5; i <= pageCount && i < pageCount; i++) {
-        aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
+        tabelString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
     }
 
-    return aString;
+    return tabelString;
 }
 
 function pageCountGreaterThan8AndCurrentPageIsMiddle(currentPage, pageCount) {
-    var aString = "";
+    var tabelString = "";
 
-    aString += "<a class='btn btn-defaults color-font number-page'>1</a>";
-    aString += "<a class='btn btn-defaults color-font number-page'>2</a>";
-    aString += "···";
+    tabelString += "<a class='btn btn-defaults color-font number-page'>1</a>";
+    tabelString += "<a class='btn btn-defaults color-font number-page'>2</a>";
+    tabelString += "···";
     for (var i = currentPage - 2; i < currentPage + 3 && i < pageCount; i++) {
-        aString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
+        tabelString += "<a class='btn btn-defaults color-font number-page'>" + (i + 1) + "</a>";
     }
-    aString += "···";
+    tabelString += "···";
 
-    return aString;
+    return tabelString;
 }
 
 function pagination(pageCount, currentPage) {
