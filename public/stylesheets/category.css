@@ -39,8 +39,8 @@ a {
     padding: 0 20px 1px 45px;
     background: url(/images/category/ellipsis_bg.png) repeat-y;
 }
-.img-cursor{
-    height:224px;
+.img-cursor {
+    height: 224px;
 }
 .img-cursor:hover {
     position: relative;
@@ -65,10 +65,10 @@ a {
     color: #fff;
     background-color: #b61d1d;
 }
-.number-page.font-color:hover{
+.number-page.font-color:hover {
     color: #fff;
 }
-.disabled{
+.disabled {
     color: #8A8A8A;
 }
 .number-page:hover {
