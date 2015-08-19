@@ -18,29 +18,35 @@ html(lang="en")
                         th(class="status") 交易状态
                         th(class="operate") 操作
                     tr(class="line")
-                tbody
                 for order in array
-                    tr(class="a")
-                        td(class="first" colspan="6")
-                            div(class="order-time")
-                                div(class="deal-time") #{order.time}
-                                div(class="order-item") 订单号:#{order.id}
-                    tr
-                        td(class="name")
-                            div
-                                div(class="item-picture")
-                                    img(src="#{order.img}")
-                                div(class="item-name") #{order.item_name}
-                        td #{order.price}
-                        td #{order.number}
-                        td #{order.amount}
-                        td
-                            div
-                                div() 已发货
-                                div()
-                                    a(href="#") 确认收货
-                        td
-                            a(class="delete" class="#{order.id}" href="#") 删除
-                    tr(class="line")
+                    if (order.operate_field === "n")
+                        tbody
+                            tr(class="a")
+                                td(class="first" colspan="6")
+                                    div(class="order-time")
+                                        div(class="deal-time") #{order.time}
+                                        div(class="order-item") 订单号: #{order.id}
+                            tr
+                                td(class="name")
+                                    div
+                                        div(class="item-picture")
+                                            img(src="#{order.img}")
+                                        div(class="item-name") #{order.item_name}
+                                td #{order.price}
+                                td #{order.number}
+                                td #{order.amount}
+                                td
+                                    div
+                                        if (order.status === "n")
+                                            div(id="trading" class="#{order.id}") 已发货
+                                            div(id="confirm" class="#{order.id}")
+                                                a(id="status" class="#{order.id}" href="#") 确认收货
+                                        else
+                                            div(id="trading" class="#{order.id}") 交易完成
+                                            div() 已确认收货
+                                td
+                                    a(id="delete" class="#{order.id}" href="#") 删除
+                            tr(class="line")
         include footer.html
     script(src="./jquery/dist/jquery.js")
+    script(src="./javascripts/order.js")

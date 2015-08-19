@@ -18,11 +18,16 @@ var readOrder = function(req, res, userName) {
     });
 };
 
-var deleteOrder = function(req, res, userName, id) {
-
+var alter = function(req, res, id, fiele) {
+    Order.update(fiele, {
+        where: {
+            id: id
+        }
+    });
+    res.end();
 };
 
 module.exports = {
-    readOrder : readOrder,
-    deleteOrder : deleteOrder
+    readOrder: readOrder,
+    alter: alter
 };

@@ -6,8 +6,13 @@ router.get('/', function(req, res) {
     order.readOrder(req, res, userName);
 });
 
-router.delete('/', function(req, res) {
+router.post('/delete', function(req, res) {
     var id = req.body.id;
-    var userName = req.cookies.name;
+    order.alter(req, res, id, {operate_field: 'y'});
+});
+
+router.post('/alterStatus', function(req, res) {
+    var id = req.body.id;
+    order.alter(req, res, id, {status: 'y'});
 });
 module.exports = router;
