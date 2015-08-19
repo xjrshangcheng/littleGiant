@@ -15,7 +15,8 @@ module.exports = function(sequelize, DataTypes) {
         recommend: DataTypes.STRING,
         more_img: DataTypes.STRING,
         special_img: DataTypes.STRING,
-        detail_img: DataTypes.STRING
+        detail_img: DataTypes.STRING,
+        remark: DataTypes.STRING
     }, {
         freezeTableName: true,
         timestamps: false
