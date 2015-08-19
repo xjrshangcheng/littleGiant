@@ -5,7 +5,9 @@ module.exports = {
         migration.changeColumn(
             'goods',
             'detail',
-            DataTypes.STRING(10000)
+            {
+                type: DataTypes.STRING(10000)
+            }
         )
     },
 
