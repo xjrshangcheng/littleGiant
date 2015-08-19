@@ -20,7 +20,7 @@ html(lang="en")
                     for sub in subCategory
                         a(href="/category?type="+sub).col-md-1.category.text-center.text-cursor #{sub}
                         
-                    .col-md-3.pull-right.page-turning
+                    .col-md-3.pull-right.paging
                         .btn.btn-danger.col-md-4.text-center.previous-page.active
                             span.glyphicon.glyphicon-chevron-left
                         .col-md-4.text-center.page-detail 
@@ -44,7 +44,7 @@ html(lang="en")
                                         .col-md-12.border.info-div.text-cursor #{goodsInfo.info}
                     else 
                         |此类无商品
-                .panel-heading.text-center.page-turning
+                .panel-heading.text-center.paging
                     a.btn.btn-defaults.color-font.previous-page.active 上一页
                     span#numberPageDown
                     a.btn.btn-defaults.color-font.next-page.active 下一页

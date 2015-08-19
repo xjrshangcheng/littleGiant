@@ -6,7 +6,7 @@ $(".info-div").each(function(index, element) {
 });
 
 if ($("#body").html() === "此类无商品") {
-    $(".page-turning").hide();
+    $(".paging").hide();
 }
 
 topButtonStyleClick();
