@@ -21,7 +21,7 @@ $("#add_to_cart").on("click", function() {
         }, function(data) {
             if (data.message === "success") {
                 $("#add_to_cart").popover('show');
-                window.setTimeout(function() { $("#add_to_cart").popover('destroy') }, 2000);
+                window.setTimeout(function() { $("#add_to_cart").popover('destroy') }, 1000);
             } else {
                 alert("添加数据失败");
             }

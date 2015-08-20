@@ -194,6 +194,11 @@ ul, ol {
     color: #fff;
     font-size: 16px;
 }
+.patt_bg_join_cart:hover {
+    background: #D9534F;
+    color: #fff;
+    font-size: 16px;
+}
 .left{
     float: left;
     width: 200px;
