@@ -25,7 +25,6 @@ $(function() {
                             window.history.back(-1) ? window.history.back(-1) : $(location).attr('href', '/');
                         }
                     } else {
-                        // alert('用户名或密码错误');
                         $('#myModal').modal({
                             keyboard: false
                         })
