@@ -10,20 +10,20 @@ $(function() {
 
 function statusChange(event) {
     var $current = $(this);
-    var id = $(this).prop('class');
+    var id = $(this).data('id');
     if (confirm("已经确定收货了吗?")) {
         $.post("/order/alterStatus", {
             id: id
         }, function() {
-            $(' #trading.' + id + '').html('交易完成');
-            $(' #confirm.' +id).html('已确认收货');
+            $('div[data-id=' + id + '].trading').html('交易完成');
+            $('div[data-id=' + id + '].confirm').html('已确认收货');
         });
     }
 }
 
 function orderDelete(event) {
     var $current = $(this);
-    var id = $(this).prop('class');
+    var id = $(this).data('id');
     if (confirm("你确信要删除此条数据吗？")) {
         $.post("/order/delete", {
             id: id

@@ -1,24 +1,24 @@
 var models = require('../models');
 var Order = models.user_order;
 
-var readOrder = function(req, res, userName) {
-    var array = [];
+var read = function(req, res, userName) {
+    var orders = [];
     Order.findAll({
         where: {
             user_name: userName
         }
     }).then(function(data) {
         data.forEach(function(val) {
-            array.push(val.dataValues);
+            orders.push(val.dataValues);
         });
     }).done(function() {
         res.render('order', {
-            array: array
+            orders: orders
         });
     });
 };
 
-var alter = function(req, res, id, fiele) {
+var update = function(req, res, id, fiele) {
     Order.update(fiele, {
         where: {
             id: id
@@ -28,6 +28,6 @@ var alter = function(req, res, id, fiele) {
 };
 
 module.exports = {
-    readOrder: readOrder,
-    alter: alter
+    read: read,
+    update: update
 };

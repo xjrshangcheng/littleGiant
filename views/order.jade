@@ -7,7 +7,7 @@ html(lang="en")
         link(rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css")
     body
         include header.html
-        div(class="container")
+        .container
             table(class="order-table")
                 thead(class="")
                     tr(class="col-name")
@@ -18,34 +18,33 @@ html(lang="en")
                         th(class="status") 交易状态
                         th(class="operate") 操作
                     tr(class="line")
-                for order in array
-                    if (order.operate_field === "n")
+                for order in orders
+                    if (order.operate_field === "N")
                         tbody
-                            tr(class="a")
+                            tr
                                 td(class="first" colspan="6")
-                                    div(class="order-time")
-                                        div(class="deal-time") #{order.time}
-                                        div(class="order-item") 订单号: #{order.id}
+                                    .order-time
+                                        .deal-time #{order.time}
+                                        .order-item 订单号: #{order.id}
                             tr
                                 td(class="name")
                                     div
-                                        div(class="item-picture")
+                                        .item-picture
                                             img(src="#{order.img}")
-                                        div(class="item-name") #{order.item_name}
+                                        .item-name #{order.item_name}
                                 td #{order.price}
                                 td #{order.number}
                                 td #{order.amount}
                                 td
-                                    div
-                                        if (order.status === "n")
-                                            div(id="trading" class="#{order.id}") 已发货
-                                            div(id="confirm" class="#{order.id}")
-                                                a(id="status" class="#{order.id}" href="#") 确认收货
-                                        else
-                                            div(id="trading" class="#{order.id}") 交易完成
-                                            div() 已确认收货
+                                    if (order.status === "N")
+                                        div(id="trading" class="trading" data-id="#{order.id}") 已发货
+                                        div(id="confirm" class="confirm" data-id="#{order.id}")
+                                            a(id="status" class="status" data-id="#{order.id}" href="#") 确认收货
+                                    else
+                                        div(id="trading" class="trading" data-id="#{order.id}") 交易完成
+                                        div 已确认收货
                                 td
-                                    a(id="delete" class="#{order.id}" href="#") 删除
+                                    a(id="delete" class="delete" data-id="#{order.id}" href="#") 删除
                             tr(class="line")
         include footer.html
     script(src="./jquery/dist/jquery.js")

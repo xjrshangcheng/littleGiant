@@ -4,9 +4,10 @@
 }
 .order-tabal {
     width: 1000px;
-    margin-left: 70px;
 }
-
+table.order-table {
+    margin: 0 auto;
+}
 .col-name {
     height: 45px;
     background-color: #F5F5F5;
@@ -29,7 +30,7 @@
     float: left;
     padding-left: 20px;
 }
-.a {
+.first {
     background-color: #F5F5F5;
 }
 .name {
@@ -55,12 +56,10 @@ td {
 .commodity {
     width: 400px;
 }
-
-.price,.quantity,.operate {
+.price, .quantity, .operate {
     width: 100px;
 }
-
-.amount,.status {
+.amount, .status {
     width: 150px;
 }
 img {
