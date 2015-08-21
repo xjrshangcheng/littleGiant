@@ -25,9 +25,9 @@ var shoppingCart = function(req, res, userName) {
                     if (cartId === goodsId.dataValues.id) {
                         collection.push(goodsId.dataValues.img)
                     }
-                })
-            })
-        })
+                });
+            });
+        });
     }).done(function() {
         res.render("shopping-cart", {
             data: collection,
