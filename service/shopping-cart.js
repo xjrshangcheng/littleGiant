@@ -1,8 +1,10 @@
 var models = require('../models');
 var Cart = models.cart;
+var Goods = models.goods;
 var shoppingCart = function(req, res,userName) {
     var username = userName;
     var array = [];
+    var collection = [];
 
     Cart.findAll({
         where: {
@@ -10,11 +12,25 @@ var shoppingCart = function(req, res,userName) {
         }
     }).then(function(val) {
         val.forEach(function(name) {
-            array.push(name.dataValues);
+            collection.push(name.dataValues);
+            array.push(name.dataValues.id);
         });
+        Goods.findAll({
+            where: {
+                id:array
+            }
+        }).then(function(data) {
+            data.forEach(function(goodsId) {
+                array.forEach(function(cartId){
+                    if(cartId === goodsId.dataValues.id) {
+                        collection.push(goodsId.dataValues.img)
+                    }
+                })
+            })
+        })
     }).done(function() {
         res.render("shopping-cart", {
-            data: array,
+            data: collection,
             status: 200,
             message: ''
         });

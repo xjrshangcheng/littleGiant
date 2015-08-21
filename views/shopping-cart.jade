@@ -17,7 +17,7 @@ html(lang="en")
                             ul.cart-title
                                 li.cart-all
                                     input( type="checkbox" class="my_all_check" name="all-check" id="add_goods_tobuy_24124")
-                                    span(class="alls-check")全选
+                                    span(class="alls-check") 全选
                                 li.cart-goods 商品名称
                                 li.cart-rmb 价格
                                 li.cart-number 数量
@@ -35,7 +35,7 @@ html(lang="en")
                                     input(data-id="#{shoppingCartGoods.id}" type="checkbox" class="add-goods-tobuy-choose-0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124")
                                 li.cart-content-table1
                                     a(href="/product-details")
-                                    img.img-cursor(src="./images/goods/piao.jpg")
+                                    img.img-cursor(src=shoppingCartGoods.img)
                                 li.cart-content-table3
                                     = shoppingCartGoods.name
                                 li.cart-content-table4
