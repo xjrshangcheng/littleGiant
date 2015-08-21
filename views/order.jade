@@ -50,22 +50,26 @@ html(lang="en")
                                 div.modal-dialog
                                     div.modal-content
                                         div.modal-header
-                                            请确认
+                                            |请确认
                                         div.modal-body
-                                            确认删除该记录吗？
+                                            |确认删除该记录吗？
                                         div.modal-footer
-                                            button(type="button" class="btn btn-default" data-dismiss="modal")    取消
-                                            a(class="btn btn-danger btn-ok" data-dismiss="modal" id="deleteit")    删除记录
+                                            button(type="button" class="btn btn-default" data-dismiss="modal")    
+                                                |取消
+                                            a(class="btn btn-danger btn-ok" data-dismiss="modal" id="confirm-deleteit")    
+                                                |删除记录
                             div.modal.fade#confirm-goods
                                 div.modal-dialog
                                     div.modal-content
                                         div.modal-header
-                                            请确认
+                                            |请确认
                                         div.modal-body
-                                            确认收货吗？
+                                            |确认收货吗？
                                         div.modal-footer
-                                            button(type="button" class="btn btn-default" data-dismiss="modal")    取消
-                                            a(class="btn btn-danger btn-ok" data-dismiss="modal" id="goods")    确认收货
+                                            button(type="button" class="btn btn-default" data-dismiss="modal")   
+                                                | 取消
+                                            a(class="btn btn-danger btn-ok" data-dismiss="modal" id="confirm-goods")    
+                                                |确认收货
         include footer.html
     script(src="./jquery/dist/jquery.js")
     script(src="./bootstrap/dist/js/bootstrap.js")
