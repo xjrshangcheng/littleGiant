@@ -39,7 +39,7 @@ html(lang="en")
                                     if (order.status === "N")
                                         div(id="trading" class="trading" data-id="#{order.id}") 卖家已发货
                                         div(id="confirm" class="confirm" data-id="#{order.id}")
-                                            a(id="status" class="status" data-id="#{order.id}" href="#") 确认收货
+                                            a(id="status" class="status" data-id="#{order.id}" href="#" data-toggle="modal" data-target="#confirm-goods") 确认收货
                                     else
                                         div(id="trading" class="trading" data-id="#{order.id}") 交易成功
                                         div 已确认收货
@@ -56,6 +56,16 @@ html(lang="en")
                                         div.modal-footer
                                             button(type="button" class="btn btn-default" data-dismiss="modal")    取消
                                             a(class="btn btn-danger btn-ok" data-dismiss="modal" id="deleteit")    删除记录
+                            div.modal.fade#confirm-goods
+                                div.modal-dialog
+                                    div.modal-content
+                                        div.modal-header
+                                            请确认
+                                        div.modal-body
+                                            确认收货吗？
+                                        div.modal-footer
+                                            button(type="button" class="btn btn-default" data-dismiss="modal")    取消
+                                            a(class="btn btn-danger btn-ok" data-dismiss="modal" id="goods")    确认收货
         include footer.html
     script(src="./jquery/dist/jquery.js")
     script(src="./bootstrap/dist/js/bootstrap.js")
