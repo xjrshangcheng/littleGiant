@@ -3,8 +3,8 @@ var Cart = models.cart;
 var Goods = models.goods;
 var shoppingCart = function(req, res, userName) {
     var username = userName;
-    var array = [];
-    var collection = [];
+    var idStore = [];
+    var allInformation = [];
 
     Cart.findAll({
         where: {
@@ -12,25 +12,25 @@ var shoppingCart = function(req, res, userName) {
         }
     }).then(function(val) {
         val.forEach(function(name) {
-            collection.push(name.dataValues);
-            array.push(name.dataValues.id);
+            allInformation.push(name.dataValues);
+            idStore.push(name.dataValues.id);
         });
         Goods.findAll({
             where: {
-                id: array
+                id: idStore
             }
         }).then(function(data) {
             data.forEach(function(goodsId) {
-                array.forEach(function(cartId) {
+                idStore.forEach(function(cartId) {
                     if (cartId === goodsId.dataValues.id) {
-                        collection.push(goodsId.dataValues.img)
+                        allInformation.push(goodsId.dataValues.img)
                     }
                 });
             });
         });
     }).done(function() {
         res.render("shopping-cart", {
-            data: collection,
+            data: allInformation,
             status: 200,
             message: ''
         });
@@ -39,8 +39,8 @@ var shoppingCart = function(req, res, userName) {
 
 var shoppingCartDelete = function(req, res, userName, Id) {
     var username = userName;
-    var id = Id;
     var array = [];
+    var id = Id;
 
     Cart.destroy({
         where: {
