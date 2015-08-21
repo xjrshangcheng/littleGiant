@@ -44,8 +44,19 @@ html(lang="en")
                                         div(id="trading" class="trading" data-id="#{order.id}") 交易成功
                                         div 已确认收货
                                 td
-                                    a(id="delete" class="delete" data-id="#{order.id}" href="#") 删除
+                                    a(id="delete" class="delete" data-id="#{order.id}" href="#" data-toggle="modal" data-target="#confirm-delete") 删除
                             tr(class="line")
+                            div.modal.fade#confirm-delete
+                                div.modal-dialog
+                                    div.modal-content
+                                        div.modal-header
+                                            请确认
+                                        div.modal-body
+                                            确认删除该记录吗？
+                                        div.modal-footer
+                                            button(type="button" class="btn btn-default" data-dismiss="modal")    取消
+                                            a(class="btn btn-danger btn-ok" data-dismiss="modal" id="deleteit")    删除记录
         include footer.html
     script(src="./jquery/dist/jquery.js")
+    script(src="./bootstrap/dist/js/bootstrap.js")
     script(src="./javascripts/order.js")

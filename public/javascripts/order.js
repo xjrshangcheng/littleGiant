@@ -24,11 +24,13 @@ function statusChange(event) {
 function orderDelete(event) {
     var $current = $(this);
     var id = $(this).data('id');
-    if (confirm("你确信要删除此条数据吗？")) {
+    $('#deleteit').on('click', function(){
+
         $.post("/order/delete", {
             id: id
         }, function() {
             $current.closest('tbody').remove();
         });
-    }
+    })
+
 }
