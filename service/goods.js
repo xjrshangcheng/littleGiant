@@ -16,11 +16,9 @@ var goods = function(req, res,id) {
         } else {
             data.forEach(function(val) {
                 goodsData.push(val.dataValues);
-                // console.log(val.dataValues);
                 imgDate = val.dataValues.more_img === null ? [] : val.dataValues.more_img.split(" ");
                 imgDetail = val.dataValues.detail_img === null ? [] : val.dataValues.detail_img.split(" ");
             })
-            console.log(goodsData);
             res.render('goods', {
                 goodsData : goodsData,
                 imgDate : imgDate,

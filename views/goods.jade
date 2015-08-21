@@ -96,24 +96,8 @@ html(lang="en")
                             ul.nav.nav-tabs
                                 li(role="presentation",class="active")
                                     a(href="#")  商品详情
-                        //- - var detail =  #{goodsData[0].detail}
                         .jumbotron 
                             !{goodsData[0].detail}
-                            //- if goodsData[0].name !== null
-                            //-     p.
-                            //-         产品名称: #{goodsData[0].name}
-                            //- if goodsData[0].detail !== null
-                            //-     p.
-                            //-         #{goodsData[0].detail}
-                            //- if goodsData[0].type !== null
-                            //-     p.
-                            //-         产品类型：#{goodsData[0].type}         
-                            //- if imgDetail.length === 0
-                            //-     p.
-                            //- else
-                            //-     - for (var x = 0; x < imgDetail.length; x++)
-                            //-         img(src="#{imgDetail[x]}")     
-
         include footer.html
     script(src="./javascripts/cookie.js")    
     script(src="./jquery/dist/jquery.js")
