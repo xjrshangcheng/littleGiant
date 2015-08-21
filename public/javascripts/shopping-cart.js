@@ -60,7 +60,7 @@ function preventInvalidKeyDown(event) {
 
 function deleteCurrentGoods(event) {
     var $current = $(this);
-    $('#delete').on('click', function() {
+    $('#confirm-delete').on('click', function() {
         var id = event.toElement.id;
         $.ajax({
             url: '/shopping-cart',
