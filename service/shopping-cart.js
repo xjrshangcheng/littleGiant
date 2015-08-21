@@ -1,7 +1,7 @@
 var models = require('../models');
 var Cart = models.cart;
 var Goods = models.goods;
-var shoppingCart = function(req, res,userName) {
+var shoppingCart = function(req, res, userName) {
     var username = userName;
     var array = [];
     var collection = [];
@@ -17,12 +17,12 @@ var shoppingCart = function(req, res,userName) {
         });
         Goods.findAll({
             where: {
-                id:array
+                id: array
             }
         }).then(function(data) {
             data.forEach(function(goodsId) {
-                array.forEach(function(cartId){
-                    if(cartId === goodsId.dataValues.id) {
+                array.forEach(function(cartId) {
+                    if (cartId === goodsId.dataValues.id) {
                         collection.push(goodsId.dataValues.img)
                     }
                 })
@@ -37,7 +37,7 @@ var shoppingCart = function(req, res,userName) {
     });
 };
 
-var shoppingCartDelete =  function(req, res,userName,Id) {
+var shoppingCartDelete = function(req, res, userName, Id) {
     var username = userName;
     var id = Id;
     var array = [];
@@ -56,7 +56,7 @@ var shoppingCartDelete =  function(req, res,userName,Id) {
 };
 
 module.exports = {
-    shoppingCartDelete : shoppingCartDelete,
-    shoppingCart : shoppingCart
+    shoppingCartDelete: shoppingCartDelete,
+    shoppingCart: shoppingCart
 
 };

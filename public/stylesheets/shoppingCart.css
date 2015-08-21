@@ -264,7 +264,7 @@ a {
     padding: 9px 0 28px 0;
     float: right;
 }
-.footer-button li{
+.footer-button li {
     display: table-cell;
     position: relative;
     left: -93px;
@@ -300,7 +300,7 @@ a {
     border: 0px;
     background-color: #EAEAEA;
 }
-a:hover{
+a:hover {
     text-decoration: none;
 }
 input[type=checkbox] {
@@ -310,7 +310,7 @@ input[type=checkbox] {
 .alls-check {
     margin-left: 5px;
 }
- .img-cursor{
+.img-cursor {
     width: 40px;
     height: 40px;
 }
