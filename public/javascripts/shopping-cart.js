@@ -60,21 +60,20 @@ function preventInvalidKeyDown(event) {
 
 function deleteCurrentGoods(event) {
     var $current = $(this);
-    if (confirm("你确信要删除此条数据吗？")) {
+    $('#delete').on('click', function() {
         var id = event.toElement.id;
-
         $.ajax({
             url: '/shopping-cart',
             type: 'delete',
             data: {
                 id: id
             },
-            success: function () {
+            success: function() {
                 $current.closest('ul.cart-content').remove();
                 total();
             }
         });
-    }
+    })
 }
 
 function changeCount() {
@@ -101,8 +100,8 @@ function total() {
     for (var i = 0; i < n; i++) {
         if ($('.add-goods-tobuy-choose-0')[i].checked === true) {
             id = $($('.add-goods-tobuy-choose-0')[i]).data('id');
-            number += $('input[data-id=' + id + '].subtotal').prop('value')*1;
+            number += $('input[data-id=' + id + '].subtotal').prop('value') * 1;
         }
     }
-     $('.total').prop('value', number);
+    $('.total').prop('value', number);
 }
