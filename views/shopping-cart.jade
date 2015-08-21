@@ -47,7 +47,7 @@ html(lang="en")
                                 li.cart-content-table6
                                     input(data-id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
                                 li.cart-content-table7
-                                    a(href="" class = "cart_goods_delete" id = shoppingCartGoods.id )  删除
+                                    a(href="" class = "cart_goods_delete" id = shoppingCartGoods.id data-toggle="modal" data-target="#confirm-delete" )  删除
             .show_buy_cart_price_all
                 .cart-total-box
                     ul.cart-content-footer
@@ -63,6 +63,19 @@ html(lang="en")
                         li
                             a(href="/pay")
                                 .buy-now 去结算
+        div.modal.fade#confirm-delete
+            div.modal-dialog
+                div.modal-content
+                    div.modal-header
+                        请确认
+                    div.modal-body
+                        确认删除该记录吗？
+                    div.modal-footer
+                        button(type="button" class="btn btn-default" data-dismiss="modal")    取消
+                        a(class="btn btn-danger btn-ok")    删除记录
+        
         include footer.html
         script(src="./javascripts/shopping-cart.js")
         script(src="./jquery/dist/jquery.js")
+        script(src="./bootstrap/dist/js/bootstrap.js")
+        
