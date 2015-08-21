@@ -11,7 +11,7 @@ $(function() {
 function statusChange(event) {
     var $current = $(this);
     var id = $(this).data('id');
-    $('#confirm-goods').on('click', function() {
+    $('#goods').on('click', function() {
         $.post("/order/alterStatus", {
             id: id
         }, function() {
@@ -24,7 +24,7 @@ function statusChange(event) {
 function orderDelete(event) {
     var $current = $(this);
     var id = $(this).data('id');
-    $('#confirm-deleteit').on('click', function() {
+    $('#deleteit').on('click', function() {
         $.post("/order/delete", {
             id: id
         }, function() {
