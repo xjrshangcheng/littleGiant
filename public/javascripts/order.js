@@ -15,7 +15,7 @@ function statusChange(event) {
         $.post("/order/alterStatus", {
             id: id
         }, function() {
-            $('div[data-id=' + id + '].trading').html('交易完成');
+            $('div[data-id=' + id + '].trading').html('交易成功');
             $('div[data-id=' + id + '].confirm').html('已确认收货');
         });
     }

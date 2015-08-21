@@ -37,11 +37,11 @@ html(lang="en")
                                 td #{order.amount}
                                 td
                                     if (order.status === "N")
-                                        div(id="trading" class="trading" data-id="#{order.id}") 已发货
+                                        div(id="trading" class="trading" data-id="#{order.id}") 卖家已发货
                                         div(id="confirm" class="confirm" data-id="#{order.id}")
                                             a(id="status" class="status" data-id="#{order.id}" href="#") 确认收货
                                     else
-                                        div(id="trading" class="trading" data-id="#{order.id}") 交易完成
+                                        div(id="trading" class="trading" data-id="#{order.id}") 交易成功
                                         div 已确认收货
                                 td
                                     a(id="delete" class="delete" data-id="#{order.id}" href="#") 删除
