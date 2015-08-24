@@ -14,16 +14,17 @@ var shoppingCart = function(req, res, userName) {
         val.forEach(function(name) {
             allInformation.push(name.dataValues);
             idStore.push(name.dataValues.id);
+
         });
         Goods.findAll({
             where: {
                 id: idStore
             }
         }).then(function(data) {
-            data.forEach(function(goodsId) {
+            data.forEach(function(goodsId, i) {
                 idStore.forEach(function(cartId) {
                     if (cartId === goodsId.dataValues.id) {
-                        allInformation.push(goodsId.dataValues.img)
+                        allInformation[i].img = goodsId.dataValues.img;
                     }
                 });
             });

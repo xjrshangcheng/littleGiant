@@ -1,6 +1,6 @@
- doctype html
+doctype html
 html(lang="en")
-    head
+    headf
         title= "category"
         link(rel="stylesheet" href="./stylesheets/layoutStyle.css")
         link(rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css")
@@ -35,7 +35,7 @@ html(lang="en")
                                     input(data-id="#{shoppingCartGoods.id}" type="checkbox" class="add-goods-tobuy-choose-0" name="add_goods_tobuy_choose_0" id="add_goods_tobuy_24124")
                                 li.cart-content-table1
                                     a(href="/product-details")
-                                    img.img-cursor(src=shoppingCartGoods.img)
+                                    img(class="img-cursor" src=shoppingCartGoods.img)
                                 li.cart-content-table3
                                     = shoppingCartGoods.name
                                 li.cart-content-table4
@@ -79,3 +79,4 @@ html(lang="en")
         script(src="./jquery/dist/jquery.js")
         script(src="./bootstrap/dist/js/bootstrap.js")
         
+cd
