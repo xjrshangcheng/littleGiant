@@ -16,7 +16,6 @@ router.post('/register', function(req, res) {
         password: inputPwd,
         email: inputEmail
     });
-    res.redirect('skipped');
 });
 
 router.get('/users', function(req, res) {

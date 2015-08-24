@@ -8,7 +8,16 @@ $(function() {
         
         $('#psw1').prop('value',encryptedValue);
     });
-    $('#reg-form').easyform();
+    $('#reg-form').easyform().success = function() {
+        $('#register').on('click', function() {
+            $('#myModal').modal({
+                keyboard: false
+            })
+        })
+        window.setTimeout(function() {
+            location.href = "login";
+        }, 3000);
+    }
 })
 
 function validation() {
