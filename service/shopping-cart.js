@@ -58,5 +58,4 @@ var shoppingCartDelete = function(req, res, userName, Id) {
 module.exports = {
     shoppingCartDelete: shoppingCartDelete,
     shoppingCart: shoppingCart
-
 };
