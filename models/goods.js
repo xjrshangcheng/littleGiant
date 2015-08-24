@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
         remark: DataTypes.STRING,
         barcode: DataTypes.STRING,
         status: DataTypes.STRING,
-        DataTypes.INTEGER
+        inventory: DataTypes.INTEGER
     }, {
         freezeTableName: true,
         timestamps: false
