@@ -17,6 +17,7 @@ module.exports = function(sequelize, DataTypes) {
         special_img: DataTypes.STRING,
         detail_img: DataTypes.STRING,
         remark: DataTypes.STRING,
+        barcode: DataTypes.STRING,
         status: DataTypes.STRING,
         DataTypes.INTEGER
     }, {
