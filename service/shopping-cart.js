@@ -37,7 +37,6 @@ var shoppingCart = function(req, res, userName) {
         });
     });
 };
-
 var shoppingCartDelete = function(req, res, userName, Id) {
     var username = userName;
     var array = [];
