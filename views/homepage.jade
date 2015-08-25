@@ -1,4 +1,8 @@
 extends ./layout.jade
 
+block styles
+    <link rel="stylesheet" href="./stylesheets/search.css">
+
 block content
+    include search.html
     include index.jade

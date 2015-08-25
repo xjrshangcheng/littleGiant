@@ -1,0 +1,38 @@
+.header-down {
+    width: 1210px;
+    margin: 0 auto;
+    margin-top: 20px;
+    height: auto;
+}
+.form {
+    width: 576px;
+    height: 60px;
+    margin: 0 auto;
+}
+#key {
+    float: left;
+    width: 446px;
+    height: 40px;
+    line-height: 24px;
+    color: #666;
+    padding: 4px;
+    margin-bottom: 4px;
+    border-width: 2px 0 2px 2px;
+    border-color: #B61D1D;
+    border-style: solid;
+    outline: 0;
+    font-size: 14px;
+    font-family: "microsoft yahei";
+}
+.search-button {
+    float: left;
+    width: 82px;
+    height: 40px;
+    background: #B61D1D;
+    border: none    ;
+    line-height: 1;
+    color: #fff;
+    font-family: "Microsoft YaHei";
+    font-size: 16px;
+    cursor: pointer;
+}
