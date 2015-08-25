@@ -1,19 +1,19 @@
 var models = require('../models');
 var User = models.user;
-var login = function(req, res, inputName, inputPwd) {
+var login = function(req, res) {
     var result;
     var status;
 
     User.findAll({
         where: {
-            username: inputName
+            username: req.body.inputName
         }
     }).then(function(data) {
         if (data.length > 0) {
-            if (data[0].dataValues.password === inputPwd) {
+            if (data[0].dataValues.password === req.body.inputPwd) {
                 result = 'ok';
                 status = 200;
-                res.cookie('name', inputName, {
+                res.cookie('name', req.body.inputName, {
                     expires: new Date(Date.now() + 1000 * 60 * 60)
                 });
             }

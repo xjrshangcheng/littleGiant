@@ -9,9 +9,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/',function(req,res) {
-    var inputName = req.body.inputName;
-    var inputPwd = req.body.inputPwd;
-    login(req,res,inputName,inputPwd);
+    login(req,res);
 });
 
 module.exports = router;
