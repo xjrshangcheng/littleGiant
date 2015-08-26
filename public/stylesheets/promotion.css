@@ -14,7 +14,6 @@
 .crumb-up-slide {
     height: 30px;
     margin: 3px 180px 0 25px;
-    /*_margin-top: 5px;*/
     position: relative;
 }
 .crumb-up-clip {
@@ -31,7 +30,6 @@ ul {
 }
 .crumb-up-list li {
     padding-left: 9px;
-    /*color: #fff;*/
     float: left;
 }
 .crumb-up-list a {
@@ -159,8 +157,10 @@ a:hover {
     border: 1px solid #f5f5f5;
     border-radius: 3px;
 }
+.product-wrap:hover {
+    border: #ff0000 solid 1px;
+}
 .product-img {
-    display: table-cell;
     width: 100%;
     text-align: center;
     vertical-align: middle;
