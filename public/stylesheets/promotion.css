@@ -1,0 +1,224 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Microsoft YaHei, SimSun, Arial;
+    font-size: 12px;
+}
+.crumb-up-title {
+    height: 100%;
+    margin: 0 auto;
+    line-height: 27px;
+    position: relative;
+    border-top: 1px solid #e5e5e5;
+}
+.crumb-up-slide {
+    height: 30px;
+    margin: 3px 180px 0 25px;
+    /*_margin-top: 5px;*/
+    position: relative;
+}
+.crumb-up-clip {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+ul {
+    list-style: none;
+}
+.crumb-up-list {
+    position: absolute;
+    width: 999px;
+}
+.crumb-up-list li {
+    padding-left: 9px;
+    /*color: #fff;*/
+    float: left;
+}
+.crumb-up-list a {
+    color: #666;
+}
+.bracket {
+    margin-left: 3px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    color: #989898;
+}
+.promotion-type {
+    border: 2px solid #D1CCC7;
+    margin-top: -1px;
+    height: 49px;
+}
+.promotion-type-box .attr {
+    border: 2px solid #D1CCC7;
+    margin-top: -1px;
+}
+.attr {
+    background-color: #F7F5F5;
+    border-color: #E6E2E1 #E6E2E1 #D1CCC7;
+    border-style: solid solid dotted;
+    border-width: 0 1px 1px;
+}
+.attr-type {
+    display: block;
+    height: 29px;
+    line-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    float: left;
+    padding: 7px 0 0;
+    width: 10%;
+    color: #B0A59F;
+    text-indent: 13px;
+}
+.attr-values {
+    position: relative;
+    float: left;
+    background-color: #FFF;
+    width: 90%;
+    padding: 4px 0 0;
+    overflow: hidden;
+}
+.promotion-list {
+    overflow: hidden;
+}
+.promotion-list ul {
+    position: relative;
+    margin-right: 105px;
+    margin-left: 25px;
+}
+.promotion-type li {
+    margin: 0 8px 8px 0;
+}
+.attr-values li {
+    float: left;
+    height: 31px;
+    line-height: 22px;
+    margin: 0 5px;
+}
+a:hover {
+    color: #B61D1D;
+}
+.attr-values li a {
+    position: relative;
+    color: #806F66;
+    display: inline-block;
+    padding: 1px 20px 1px 4px;
+    line-height: 20px;
+    height: 20px;
+}
+.attr-values li a:hover{
+    color: #B61D1D;
+}
+.attr-extra {
+    display: block;
+    height: 29px;
+    top: -1px;
+}
+.attr-extra-border {
+    background: #EFEBEA;
+    border: 1px solid #EBE4DE;
+    border-top: 0;
+    display: block;
+    font-size: 0;
+    height: 4px;
+    line-height: 2px;
+    overflow: hidden;
+}
+@media (min-width: 1210px) {
+    .promotion-box {
+        width: 1210px;
+        padding-left: 24px;
+    }
+    .product {
+        width: 220px;
+        margin-right: 20px;
+    }
+}
+.product {
+    position: relative;
+    height: 277px;
+    float: left;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 5px;
+    line-height: 1.5;
+    overflow: visible;
+    z-index: 1;
+}
+.product-wrap {
+    width: 210px;
+    position: absolute;
+    background-color: #fff;
+    margin: 0;
+    padding: 4px;
+    padding-bottom: 0;
+    font-size: 0;
+    border: 1px solid #f5f5f5;
+    border-radius: 3px;
+}
+.product-img {
+    display: table-cell;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+.product-img img {
+    display: block;
+    margin: 0 auto;
+    height: 210px;
+    width: 204px;
+}
+.product-img-price {
+    font-family: arial,verdana,sans-serif!important;
+    color: #C00;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 0 5px;
+    letter-spacing: normal;
+}
+.product-img-price em {
+    float: left;
+    font-family: arial;
+    font-weight: 400;
+    font-size: 20px;
+    font-style: normal;
+}
+.product-img-price em b {
+    margin-right: 2px;
+    font-weight: 700;
+    font-size: 14px;
+}
+.product-title {
+    display: block;
+    color: #666;
+    height: 12px;
+    line-height: 12px;
+    margin-bottom: 3px;
+    word-break: break-all;
+    position: relative;
+    overflow: hidden;
+}
+.panel-heading {
+    padding: 33px 66px;
+    border-bottom: 18px solid #B61D1D;
+}
+.text-center {
+    text-align: center;
+}
+.color-font {
+    margin-left: 2px;
+}
+.btn-defaults {
+    border-color: #ccc;
+}
+.disabled {
+    color: #8A8A8A;
+}
+.number-page:hover {
+    border-color: #b61d1d;
+    color: #b61d1d;
+}
