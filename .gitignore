@@ -4,3 +4,4 @@ bower_components
 .idea
 all.sql
 t
+npm-debug.log
