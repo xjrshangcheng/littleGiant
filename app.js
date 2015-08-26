@@ -47,6 +47,9 @@ app.use('/pay',pay);
 var goods = require('./router/goods');
 app.use('/goods',goods);
 
+var promotion = require('./router/promotion');
+app.use('/promotion', promotion);
+
 var error = require('./router/error');
 app.use('/error',error);
 
