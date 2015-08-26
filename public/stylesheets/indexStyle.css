@@ -112,3 +112,7 @@ h5 {
 a {
     color:black;
 }
+a:hover {
+    color: red;
+    text-decoration: none;
+}
