@@ -2,11 +2,10 @@ doctype html
 html(lang="en")
     head
         title= "category"
-        link(rel="stylesheet" href="./stylesheets/layoutStyle.css")
-        link(rel="stylesheet" href="./bootstrap/dist/css/bootstrap.min.css")
-        link(rel="stylesheet" href="./stylesheets/category.css")
-        link(rel="stylesheet" href="./stylesheets/search.css")
-        script(src="./jquery/dist/jquery.js")
+        link(rel="stylesheet" href="/stylesheets/layoutStyle.css")
+        link(rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/stylesheets/category.css")
+        link(rel="stylesheet" href="/stylesheets/search.css")
     body
         include header.html
         include search.html
@@ -14,13 +13,13 @@ html(lang="en")
             .panel.panel-danger
                 .panel-heading
                     -for (var i = 0; i < breadcrumbs.length; i++) {
-                        a(href="/category?type="+breadcrumbs[i]).text-cursor #{breadcrumbs[i]}
+                        a(href="/category/"+breadcrumbs[i]).text-cursor #{breadcrumbs[i]}
                         if i !== breadcrumbs.length -1
                             span.glyphicon.glyphicon-chevron-right.char-style
                     -}
                 .panel-body
                     for sub in subCategory
-                        a(href="/category?type="+sub).col-md-1.category.text-center.text-cursor #{sub}
+                        a(href="/category/"+sub).col-md-1.category.text-center.text-cursor #{sub}
                         
                     .col-md-3.pull-right.paging
                         .btn.btn-danger.col-md-4.text-center.previous-page.active
@@ -52,4 +51,4 @@ html(lang="en")
                     a.btn.btn-defaults.color-font.next-page.active 下一页
                     | 共有【#{pageCount}】页
         include footer.html
-        script(src="./javascripts/category.js")
+        script(src="/javascripts/category.js")

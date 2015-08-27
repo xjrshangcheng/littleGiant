@@ -7,14 +7,14 @@ var currentPage = 0;
 var pageSize = 8;
 var subAllCategory = [];
 
-router.get('/', function(req, res) {
+router.get('/:type', function(req, res) {
     var breadcrumbs = [];
     var subCategories = [];
     var count = 3;
 
     currentPage = 0;
     subAllCategory = [];
-    req.query.type = req.query.type || "所有分类";
+    req.params.type = req.params.type || "所有分类";
 
     getBreadcrumbs(req, function(data) {
         breadcrumbs.push("所有分类");
@@ -50,7 +50,7 @@ router.get('/', function(req, res) {
     });
 });
 
-router.get('/previousPage', function(req, res) {
+router.get('/:type/previousPage', function(req, res) {
     currentPage = req.query.currentPage - 2;
     getGoodsInfo(subAllCategory, function(data) {
         currentPage++;
@@ -61,7 +61,7 @@ router.get('/previousPage', function(req, res) {
     });
 });
 
-router.get('/nextPage', function(req, res) {
+router.get('/:type/nextPage', function(req, res) {
     currentPage = req.query.currentPage;
     getGoodsInfo(subAllCategory, function(data) {
         currentPage++;
@@ -116,7 +116,7 @@ function getSubAllCategories(req, setSubAllCategory) {
     var subAllCategory = [];
     Category.find({
         where: {
-            name: req.query.type
+            name: req.params.type
         }
     }).then(function(resultCurrentCategory) {
         Category.findAll({
@@ -139,7 +139,7 @@ function getSubCategories(req, setSubCategory) {
 
     Category.find({
         where: {
-            name: req.query.type
+            name: req.params.type
         }
     }).then(function(resultCurrentCategory) {
         Category.findAll({
@@ -162,7 +162,7 @@ function getBreadcrumbs(req, setBreadcrumbs) {
     var breadcrumbs = [];
     Category.find({
         where: {
-            name: req.query.type
+            name: req.params.type
         }
     }).then(function(resultCurrentCategory) {
         if (resultCurrentCategory !== null) {

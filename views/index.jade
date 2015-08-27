@@ -15,12 +15,12 @@ html
                         ul.nav-one
                             each val, index in navigation.primaryClassification
                                 li.li-one
-                                    a(href='/category?type=#{val}') #{val}
+                                    a(href='/category/#{val}') #{val}
                                     if navigation.secondaryClassification[index] !== undefined
                                         ul.nav-two
                                             each ele, x in navigation.secondaryClassification[index]
                                                 li.li-two
-                                                    a(href='/category?type=#{ele}') #{ele}
+                                                    a(href='/category/#{ele}') #{ele}
                     else
                         li.li-one 没有分类信息
                 #slides
