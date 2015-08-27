@@ -224,7 +224,7 @@ em {
 .save {
     margin-left: 67px;
 }
-button, input, select, textarea {
+ input, select, textarea {
     text-align: center;
     width: 12px;
 }
