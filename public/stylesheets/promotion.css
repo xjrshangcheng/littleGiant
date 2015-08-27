@@ -2,6 +2,8 @@
     margin: 0px;
     padding: 0px;
     font-family: Microsoft YaHei, SimSun, Arial;
+}
+.container * {
     font-size: 12px;
 }
 .crumb-up-title {
@@ -60,8 +62,8 @@ ul {
 }
 .attr-type {
     display: block;
-    height: 29px;
-    line-height: 16px;
+    height: 37px;
+    line-height: 33px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -69,15 +71,17 @@ ul {
     padding: 7px 0 0;
     width: 10%;
     color: #B0A59F;
-    text-indent: 13px;
+    text-indent: 9px;
 }
 .attr-values {
     position: relative;
     float: left;
     background-color: #FFF;
     width: 90%;
-    padding: 4px 0 0;
+    padding: 13px 0 0;
+    height: 45px;
     overflow: hidden;
+    vertical-align: middle;
 }
 .promotion-list {
     overflow: hidden;
@@ -205,6 +209,9 @@ a:hover {
 .panel-heading {
     padding: 33px 66px;
     border-bottom: 18px solid #B61D1D;
+}
+.panel-heading * {
+    font-size: 12px;
 }
 .text-center {
     text-align: center;
