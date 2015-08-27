@@ -21,6 +21,7 @@ html(lang="en")
                                     input( type="checkbox" class="my_all_check" name="all-check" id="add_goods_tobuy_24124")
                                     span(class="alls-check") 全选
                                 li.cart-goods 商品名称
+                                li.cart-promotion 优惠金额
                                 li.cart-rmb 价格
                                 li.cart-number 数量
                                 li.cart-total 小计
@@ -41,14 +42,16 @@ html(lang="en")
                                 li.cart-content-table3
                                     = shoppingCartGoods.name
                                 li.cart-content-table4
-                                    input(data-id="#{shoppingCartGoods.id}" class="price" type="text" name="price" value=shoppingCartGoods.price readonly)
+                                    | 20:00
                                 li.cart-content-table5
-                                    input(data-id="#{shoppingCartGoods.id}" class="changes" type="button" name="add" value="-")
-                                    input(data-id="#{shoppingCartGoods.id}" class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
-                                    input(data-id="#{shoppingCartGoods.id}" class="changes" type="button" name="reduction" value="+")
+                                    input(data-id="#{shoppingCartGoods.id}" class="price" type="text" name="price" value=shoppingCartGoods.price readonly)
                                 li.cart-content-table6
-                                    input(data-id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
+                                    input(data-id="#{shoppingCartGoods.id}" class="changes" type="button" name="add" value="-")
+                                    input(data-id="#{shoppingCartGoods.id}" size='2' class="cart-goods-count" name="number" type="text" value=shoppingCartGoods.number)
+                                    input(data-id="#{shoppingCartGoods.id}" class="changes" type="button" name="reduction" value="+")
                                 li.cart-content-table7
+                                    input(data-id="#{shoppingCartGoods.id}" class="subtotal" type="text" value=shoppingCartGoods.price * shoppingCartGoods.number readonly)
+                                li.cart-content-table8
                                     a(href="" class = "cart_goods_delete" id = shoppingCartGoods.id data-toggle="modal" data-target="#confirm-delete" )  删除
             .show_buy_cart_price_all
                 .cart-total-box
@@ -56,6 +59,8 @@ html(lang="en")
                         li.footer-center
                             span.amount-title
                             em.amount-title
+                                | 共节省: 100
+                                span(class="save")
                                 | 总价：
                                 input(class="total" value="0" readonly)
                     ul.footer-button

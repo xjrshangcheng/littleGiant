@@ -1,27 +1,12 @@
-* {
-    margin: 0;
-    padding: 0;
-    font-family: Microsoft YaHei, SimSun, Arial;
-}
-.cart-shop {
-    width: 100%;
-    margin-bottom: 20px;
-}
 .cart-shops-name {
     width: 975px;
-    overflow: hidden;
     font-size: 14px;
     margin: 0 auto;
-    line-height: 20px;
     margin-top: 10px;
     margin-bottom: 15px;
     color: #666;
     border-left: 5px solid #c30000;
     padding-left: 10px;
-}
-.cart-shops-name span {
-    color: #222;
-    font-weight: bold;
 }
 .cart-goods-box {
     width: 990px;
@@ -30,19 +15,21 @@
     border: 1px solid #ddd;
     border-radius: 0px 0px 5px 5px;
 }
-.cart-a {
-    width: 990px;
-    overflow: hidden;
-}
-.cart-a .cart-title-box {
-    width: 100%;
-    overflow: hidden;
-}
 .cart-a .cart-title-box .cart-title {
-    width: 990px;
     overflow: hidden;
     border-bottom: 1px solid #dddddd;
     font-size: 12px;
+}
+.cart-title .cart-promotion,
+.cart-title .cart-rmb,
+.cart-title .cart-total,
+.cart-title .cart-number {
+    width: 128px;
+    height: 35px;
+    background: #ebebeb;
+    border-right: 1px solid white;
+    line-height: 37px;
+    text-align: center;
 }
 .cart-a .cart-title-box .cart-title .cart-all {
     width: 67px;
@@ -54,58 +41,26 @@
     color: #666;
 }
 .cart-a .cart-title-box .cart-title .cart-goods {
-    width: 380px;
+    width: 281px;
     height: 35px;
     background: #ebebeb;
     border-right: 1px solid white;
     line-height: 37px;
     text-align: center;
-    color: #666;
-    font-size: 12px;
 }
+
 .cart-a .cart-title-box .cart-title li {
     float: left;
 }
 li {
     list-style: none;
 }
-.cart-a .cart-title-box .cart-title .cart-rmb {
+.cart-operate .cart-title-left-bg2 {
     width: 128px;
     height: 35px;
     background: #ebebeb;
-    border-right: 1px solid white;
-    line-height: 37px;
-    text-align: center;
-    color: #666;
-}
-.cart-a .cart-title-box .cart-title .cart-number {
-    width: 164px;
-    height: 35px;
-    background: #ebebeb;
-    border-right: 1px solid white;
-    line-height: 37px;
-    text-align: center;
-    color: #666;
-}
-.cart-a .cart-title-box .cart-title .cart-total {
-    width: 154px;
-    height: 35px;
-    background: #ebebeb;
-    border-right: 1px solid white;
-    line-height: 37px;
-    text-align: center;
-    color: #666;
-}
-.cart-a .cart-title-box .cart-title .cart-operate {
-    width: 90px;
-}
-.cart-operate .cart-title-left-bg2 {
-    width: 100px;
-    height: 35px;
-    background: #ebebeb;
     text-align: center;
     line-height: 37px;
-    color: #666;
 }
 .cart-content {
     width: 988px;
@@ -114,12 +69,6 @@ li {
     overflow: hidden;
     background: #f7f7f7;
     margin-top: -10px;
-}
-.cart-content .cart-content-table1 {
-    overflow: hidden;
-    padding-left: 13px;
-    padding-right: 40px;
-    padding-top: 30px;
 }
 .cart-content li {
     float: left;
@@ -137,15 +86,6 @@ li {
     border: 1px solid #ddd;
     cursor: pointer;
 }
-img {
-    border: none 0;
-}
-.cart-content .cart-content-table3 {
-    width: 311px;
-    height: 48px;
-    padding: 14px;
-    font-size: 12px;
-}
 .cart-content .cart-content-table3 em {
     color: #c30000;
     font-size: 12px;
@@ -153,54 +93,44 @@ img {
 em {
     font-style: normal;
 }
-.cart-content .cart-content-table4, .cart-content .cart-content-table6 {
+.cart-content .cart-content-table4, .cart-content .cart-content-table5 {
     width: 128px;
     line-height: 77px;
     text-align: center;
-    color: #666;
     font-size: 12px;
 }
-.cart-content .cart-content-table5 {
-    width: 165px;
-    height: 77px;
-    padding-top: 26px;
-    padding-left: 50px;
-}
-.cart-content-table5 input {
-    width: 40px;
-    height: 20px;
-    color: #666;
-    border: none 0;
-    text-align: center;
-    line-height: 19px;
-}
-.cart-content-table5 .changes {
-    width: 20px;
-}
-.cart-content-table5 * {
-    float: left;
-}
-.cart-content .cart-content-table6 {
-    width: 152px;
-    color: #c30000;
-    font-weight: bold;
-}
-.cart-content .cart-content-table4 {
-    width: 128px;
+.cart-content .cart-content-table3 {
+    width: 206px;
     line-height: 77px;
     text-align: center;
     font-size: 12px;
 }
 .price, .subtotal {
-    width: 80px;
+    width: 128px;
     border: 0px;
     padding: 0px;
+    text-align: center;
     background-color: #F7F7F7;
+    height: 80px;
 }
-.cart-content .cart-content-table7 {
-    width: 90px;
+.cart-content .cart-content-table6 {
+    width: 128px;
     height: 77px;
     text-align: center;
+    margin-top: 32px;
+}
+.cart-content .cart-content-table7 {
+    width: 128px;
+    border: 0px;
+    padding: 0px;
+    text-align: center;
+    background-color: #F7F7F7;
+}
+.cart-content .cart-content-table8 {
+    width: 128px;
+    height: 77px;
+    text-align: center;
+    margin-top: 32px;
 }
 .cart-content-table7 a {
     color: #005ea7;
@@ -208,19 +138,7 @@ em {
     text-align: center;
     font-size: 12px;
 }
-a {
-    text-decoration: none;
-    outline: 0;
-}
-.cart-total-box {
-    width: 990px;
-    overflow: hidden;
-    margin: 0 auto;
-    border-radius: 5px 5px 9px 9px;
-    border: 1px solid #ddd;
-    margin-top: 50px;
-    margin-bottom: 20px;
-}
+
 .cart-content-footer {
     width: 990px;
     overflow: hidden;
@@ -245,7 +163,6 @@ a {
 }
 .cart-content-footer .footer-center em {
     color: #c30000;
-    font-size: 25px;
     padding-right: 5px;
     font-weight: bold;
 }
@@ -274,38 +191,24 @@ a {
     font-size: 16px;
     color: rgb(255, 255, 255);
     width: 125px;
-    height: 36px;
     text-align: center;
     line-height: 36px;
     border-radius: 3px;
-    cursor: pointer;
-    margin-left: 20px;
-    margin-top: -7px;
+    margin-left: -47px;
 }
 .buy-now {
     background: rgb(197, 27, 0);
     font-size: 16px;
     color: rgb(255, 255, 255);
     width: 125px;
-    height: 36px;
     text-align: center;
     line-height: 36px;
-    border-radius: 3px;
-    cursor: pointer;
     margin-left: 20px;
-    margin-top: 4px;
 }
 .total {
     width: 100px;
     border: 0px;
     background-color: #EAEAEA;
-}
-a:hover {
-    text-decoration: none;
-}
-input[type=checkbox] {
-    vertical-align: middle;
-    margin-top: -1px;
 }
 .alls-check {
     margin-left: 5px;
@@ -313,4 +216,21 @@ input[type=checkbox] {
 .img-cursor {
     width: 40px;
     height: 40px;
+}
+.cart_goods_delete {
+    width: 50px;
+    height: 50px;
+}
+.save {
+    margin-left: 67px;
+}
+button, input, select, textarea {
+    text-align: center;
+    width: 12px;
+}
+ a:hover {
+    text-decoration: none;
+}
+.cart-goods-count {
+    width:33px;
 }
