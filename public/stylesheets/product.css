@@ -265,3 +265,14 @@ h5 {
 label{
     display: inline;
 }
+.content-list {
+    margin-left: 11px;
+    margin-top: 2px;
+}
+.content-list a {
+    color: #000;
+}
+.content-list a:hover {
+    color: #B61D1D;
+    text-decoration: none;
+}

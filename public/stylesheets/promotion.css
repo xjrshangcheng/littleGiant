@@ -110,6 +110,7 @@ a:hover {
     padding: 1px 20px 1px 4px;
     line-height: 20px;
     height: 20px;
+    cursor: pointer;
 }
 .attr-values li a:hover{
     color: #B61D1D;
