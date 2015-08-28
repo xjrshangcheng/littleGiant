@@ -21,7 +21,7 @@ module.exports = {
     migration.addColumn(
         'goods',
         'promotion',
-        DataTypes.STRING
+        DataTypes.INTEGER
     )
   },
 
