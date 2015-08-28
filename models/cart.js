@@ -6,7 +6,9 @@ module.exports = function(sequelize, DataTypes) {
         username : DataTypes.STRING,
         number : DataTypes.INTEGER,
         name : DataTypes.STRING,
-        price : DataTypes.STRING
+        price : DataTypes.STRING,
+        total : DataTypes.STRING,
+        save_money : DataTypes.STRING,
     }, {
         freezeTableName : true,
         timestamps : false

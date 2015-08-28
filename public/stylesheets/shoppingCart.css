@@ -224,8 +224,7 @@ em {
 .save {
     margin-left: 67px;
 }
- input, select, textarea {
-    text-align: center;
+.cart-goods-count input, select, textarea {
     width: 12px;
 }
  a:hover {
@@ -233,4 +232,5 @@ em {
 }
 .cart-goods-count {
     width:33px;
+    text-align: center;
 }
