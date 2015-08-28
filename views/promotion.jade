@@ -24,7 +24,7 @@ block content
                         ul.promotion-list
                             - for (var j = 0; j < promotionTypes.length; j ++)
                                 li
-                                    a(href="#" data-id="#{promotionTypes[j].id}" class="promotion-label") #{promotionTypes[j].rule}
+                                    a(data-id="#{promotionTypes[j].id}" class="promotion-label") #{promotionTypes[j].rule}
             .attr-extra
                 .attr-extra-border
             .promotion-box
@@ -33,14 +33,14 @@ block content
                         .product
                             .product-wrap
                                 .product-img-wrap
-                                    a(href="/goods?id="+ promotionGoods[i].id class="product-img")
+                                    a(href="/goods/"+ promotionGoods[i].id class="product-img")
                                         img(src="#{promotionGoods[i].img}")
                                 .product-img-price
                                     em
                                         b ¥
                                         | #{promotionGoods[i].price}
                                 .product-title
-                                    a(href="/goods?id="+ promotionGoods[i].id class="product-title")
+                                    a(href="/goods/"+ promotionGoods[i].id class="product-title")
                                         | #{promotionGoods[i].info}
                 else
                     | 暂无促销商品
