@@ -7,7 +7,24 @@ var currentPage = 0;
 var pageSize = 8;
 var subAllCategory = [];
 
+router.get('/', function(req, res) {
+    res.render("error");
+})
+
+function parameterVerify(req, res) {
+    Category.find({
+        where: {
+            name: req.params.type
+        }
+    }).then(function(value) {
+        if(value === null) {
+            res.render("error");
+        }
+    });
+}
+
 router.get('/:type', function(req, res) {
+    parameterVerify(req, res);
     var breadcrumbs = [];
     var subCategories = [];
     var count = 3;
