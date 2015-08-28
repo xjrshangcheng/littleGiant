@@ -29,19 +29,13 @@ var shoppingCart = function(req, res, userName) {
                         }
                     });
                 });
+            }).done(function() {
+                res.render("shopping-cart", {
+                    data: allInformation,
+                    status: 200,
+                    message: ''
+                });
             });
-            Promotion.findAll({
-                where: {
-                    id: 
-                }
-            })
-            // done(function() {
-            //     res.render("shopping-cart", {
-            //         data: allInformation,
-            //         status: 200,
-            //         message: ''
-            //     });
-            // });
     });
 };
 var shoppingCartDelete = function(req, res, userName, Id) {
