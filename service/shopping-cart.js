@@ -1,6 +1,7 @@
 var models = require('../models');
 var Cart = models.cart;
 var Goods = models.goods;
+var Promotion = models.promotion;
 var shoppingCart = function(req, res, userName) {
     var username = userName;
     var idStore = [];
@@ -21,22 +22,28 @@ var shoppingCart = function(req, res, userName) {
                 id: idStore
             }
         }).then(function(data) {
-            data.forEach(function(goodsId, i) {
-                idStore.forEach(function(cartId) {
-                    if (cartId === goodsId.dataValues.id) {
-                        allInformation[i].img = goodsId.dataValues.img;
-                    }
+                data.forEach(function(goodsId, i) {
+                    idStore.forEach(function(cartId) {
+                        if (cartId === goodsId.dataValues.id) {
+                            allInformation[i].img = goodsId.dataValues.img;
+                        }
+                    });
                 });
             });
-            }).done(function() {
-                res.render("shopping-cart", {
-                    data: allInformation,
-                    status: 200,
-                    message: ''
-                });
-            });
-        });
-    };
+            Promotion.findAll({
+                where: {
+                    id: 
+                }
+            })
+            // done(function() {
+            //     res.render("shopping-cart", {
+            //         data: allInformation,
+            //         status: 200,
+            //         message: ''
+            //     });
+            // });
+    });
+};
 var shoppingCartDelete = function(req, res, userName, Id) {
     var username = userName;
     var array = [];
