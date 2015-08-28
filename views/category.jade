@@ -36,12 +36,12 @@ html(lang="en")
                         for goodsInfo in data
                             .col-md-3.info-margin-bottom
                                 .clearfix
-                                    a(href="/goods?id="+ goodsInfo.id)
+                                    a(href="/goods/"+ goodsInfo.id)
                                         img.col-md-12.text-center.img-cursor(src=goodsInfo.img)
                                 .col-md-12
                                     .pull-left.col-md-6.text-center.border $#{goodsInfo.price}
                                     .pull-right.col-md-6.text-center.border 销量：#{goodsInfo.sales}
-                                    a(href="/goods?id="+ goodsInfo.id)
+                                    a(href="/goods/"+ goodsInfo.id)
                                         .col-md-12.border.info-div.text-cursor #{goodsInfo.info}
                     else 
                         |此类无商品

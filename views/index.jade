@@ -26,7 +26,7 @@ html
                 #slides
                     if goods.roll.length !== 0
                         each x in goods.roll
-                            a(href='/goods?id=#{x.id}')
+                            a(href='/goods/#{x.id}')
                                 img(src="#{x.special_img}")
                     else
                         | 目前没有推荐商品
@@ -67,15 +67,15 @@ html
 
                                     if i === 0
                                         li#list
-                                            a(href='/goods?id=#{val.id}')
+                                            a(href='/goods/#{val.id}')
                                                 img(src="#{val.img}").big-list
                                     else 
                                         li#list
                                             .picture
-                                                a(href='/goods?id=#{val.id}')
+                                                a(href='/goods/#{val.id}')
                                                     img(src="#{val.img}")
                                             .word
-                                                a(href='/goods?id=#{val.id}') #{val.name}
+                                                a(href='/goods/#{val.id}') #{val.name}
                                             .price ￥#{val.price}
                     else
                         | 没有新款产品
@@ -94,15 +94,15 @@ html
 
                                     if i === 0
                                         li#list
-                                            a(href='/goods?id=#{val.id}')
+                                            a(href='/goods/#{val.id}')
                                                 img(src="#{val.img}").big-list
                                     else 
                                         li#list
                                             .picture
-                                                a(href='/goods?id=#{val.id}')
+                                                a(href='/goods/#{val.id}')
                                                     img(src="#{val.img}")
                                             .word
-                                                a(href='/goods?id=#{val.id}') #{val.name}
+                                                a(href='/goods/#{val.id}') #{val.name}
                                             .price ￥#{val.price}
                     else
                         | 没有新款产品

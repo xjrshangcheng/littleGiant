@@ -1,9 +1,9 @@
 extends ./layout.jade
 block styles
-    link(rel="stylesheet" href="./stylesheets/search.css")
-    link(rel="stylesheet" href="./stylesheets/layoutStyle.css")
-    link(rel="stylesheet" href="./lib/bootstrap/bootstrap.css")
-    link(rel="stylesheet" href="./stylesheets/product.css")
+    link(rel="stylesheet" href="/stylesheets/search.css")
+    link(rel="stylesheet" href="/stylesheets/layoutStyle.css")
+    link(rel="stylesheet" href="/lib/bootstrap/bootstrap.css")
+    link(rel="stylesheet" href="/stylesheets/product.css")
 
 block content
     include search.html
@@ -13,7 +13,7 @@ block content
                 .product-imgbox
                     .product-bigimg-box
                         if imgDate.length === 0
-                            img(src="./images/goods/yang.jpg" class="big-picture")
+                            img(src="/images/goods/yang.jpg" class="big-picture")
                         else
                             img(src="#{imgDate[0]}" class="big-picture")
                     ul.product-small-img
@@ -52,7 +52,7 @@ block content
                                         - var foo = "     " + goodsData[0].standard_one
                                         input(type='radio', name='approve',value="#{goodsData[0].standard_one}",checked)
                                         = foo
-                                    &nbsp;&nbsp;&nbsp;
+                                    |&nbsp;&nbsp;&nbsp;
                                 if goodsData[0].standard_two !== ""
                                     label.select-item
                                         - var foo = "     " + goodsData[0].standard_two
@@ -78,7 +78,7 @@ block content
                         a.jiathis_counter_style
                 ul.buy_content_button
                     li
-                        div(class="button_join_cart patt_bg_join_cart" id="add_to_cart" title="~~~亲" data-toggle="popover" data-placement="right" data-content="添加购物车成功")添加购物车
+                        div(class="button_join_cart patt_bg_join_cart" id="add_to_cart" title="~~~亲" data-toggle="popover" data-placement="right" data-content="添加购物车成功")|添加购物车
         br
         br
         .container
@@ -97,8 +97,8 @@ block content
                             li(role="presentation",class="active")
                                 a(href="#")  商品详情
                     .jumbotron
-                        !{goodsData[0].detail}
-    script(src="./javascripts/cookie.js")    
-    script(src="./jquery/dist/jquery.js")
-    script(src="./bootstrap/dist/js/bootstrap.js")
-    script(src="./javascripts/add.js")
+                        |!{goodsData[0].detail}
+    script(src="/javascripts/cookie.js")
+    script(src="/jquery/dist/jquery.js")
+    script(src="/bootstrap/dist/js/bootstrap.js")
+    script(src="/javascripts/add.js")
