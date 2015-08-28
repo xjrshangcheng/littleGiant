@@ -19,7 +19,6 @@ function getPage(path, currentPage) {
         $("#current-page").html(data.currentPage);
         $("#body").html("");
         data.data.forEach(function(n) {
-            console.log(n.id);
             $("#body").prepend("<div class='col-md-3 info-margin-bottom'><div class='clearfix'><a href='/goods?id=" + n.id + "'><img height='224px' src=" + n.img + " class='col-md-12 text-center img-cursor'></a></div><div class='col-md-12'><div class='pull-left col-md-6 text-center border'>$" + n.price + "</div><div class='pull-right col-md-6 text-center border'>销量：" + n.sales + "</div><a href='/goods?id=" + n.id + "'><div class='col-md-12 border info-div text-cursor'>" + n.info + "</div></a></div></div>");
         });
         topButtonStyleClick();
