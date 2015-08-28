@@ -29,13 +29,25 @@ var shoppingCart = function(req, res, userName) {
                         }
                     });
                 });
-            }).done(function() {
-                res.render("shopping-cart", {
-                    data: allInformation,
-                    status: 200,
-                    message: ''
-                });
-            });
+                Promotion.findAll({
+                    where: {
+                        id: idStore
+                    }
+                }).then(function(data) {
+                    data.forEach(function(promotion,i) {
+                        idStore.forEach(function(cartId) {
+                            if(cartId === promotion.dataValues.id) {
+                                allInformation[i].type = promotion.dataValues.type;
+                            }
+                        })
+                    })
+                        res.render("shopping-cart", {
+                            data: allInformation,
+                            status: 200,
+                            message: ''
+                        });
+                })
+            })
     });
 };
 var shoppingCartDelete = function(req, res, userName, Id) {
