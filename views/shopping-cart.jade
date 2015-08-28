@@ -42,7 +42,7 @@ html(lang="en")
                                 li.cart-content-table3
                                     = shoppingCartGoods.name
                                 li.cart-content-table4
-                                    | 20:00
+                                    = shoppingCartGoods.type
                                 li.cart-content-table5
                                     input(data-id="#{shoppingCartGoods.id}" class="price" type="text" name="price" value=shoppingCartGoods.price readonly)
                                 li.cart-content-table6
