@@ -9,7 +9,7 @@ Promotion.prototype.renderPromotion = function(req, res) {
 
     Goods.findAll().then(function(data) {
         for(var i = 0; i < data.length; i ++) {
-            if(typeof(data[i].dataValues.promotion) === "string") {
+            if(typeof(data[i].dataValues.promotion) === "number") {
                 promotionGoods.push(data[i].dataValues);
             }
         }
@@ -26,4 +26,37 @@ Promotion.prototype.renderPromotion = function(req, res) {
     })
 }
 
+Promotion.prototype.lablePromotion = function(req, res) {
+    var id = Number(req.params.promotionId);
+
+    Goods.findAll({
+        where: {
+            promotion: id
+        }
+    }).then(function(data) {
+        return data.map(function(val) {
+            return val.dataValues;
+        })
+    }).done(function(data) {
+        res.send({
+            status: 200,
+            data: data
+        })
+    })
+}
+
 module.exports = Promotion;
+
+//Goods.findAll({
+//    where : {
+//        id : 1
+//    },
+//    include:[
+//        {model: Goods,
+//         where : {id : 1}
+//        }
+//    ]
+//}).then(function(data) {
+//    console.log(data);
+//    res.render('promotion');
+//})

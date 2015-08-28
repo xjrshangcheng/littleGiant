@@ -1,5 +1,3 @@
-var sequelize = require('../db-connection/connection');
-
 module.exports = function(sequelize, DataTypes) {
     var Goods = sequelize.define('goods', {
         id: DataTypes.INTEGER,
@@ -20,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
         barcode: DataTypes.STRING,
         status: DataTypes.STRING,
         inventory: DataTypes.INTEGER,
-        promotion: DataTypes.STRING
+        promotion: DataTypes.INTEGER
     }, {
         freezeTableName: true,
         timestamps: false

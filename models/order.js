@@ -1,5 +1,3 @@
-var sequelize = require('../db-connection/connection');
-
 module.exports = function(sequelize, DataTypes) {
     var Order = sequelize.define('user_order', {
         id: DataTypes.INTEGER,

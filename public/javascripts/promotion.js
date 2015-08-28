@@ -22,6 +22,7 @@ var init = function(data) {
                     "<div class='product-img-wrap'>" +
                         "<a href='/goods?id=" + promotions[i].id + "'"+ "class='product-img'" +">" +
                             '<img src=' + promotions[i].img +">" +
+                        "</a>" +
                     "</div>" +
                     "<div class='product-img-price'>" +
                         "<em>" +
@@ -30,6 +31,7 @@ var init = function(data) {
                     "</div>" +
                     "<div class='product-title'>" +
                         "<a href='/goods?id=" + promotions[i].id + "'"+ "class='product-title'" +">" + promotions[i].info +
+                        "</a>" +
                     "</div>" +
                 "</div>" +
             "</div>").appendTo(".promotion-box");

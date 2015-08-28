@@ -1,5 +1,3 @@
-var sequelize = require('../db-connection/connection');
-
 module.exports = function (sequelize, DataTypes) {
     var Promotion = sequelize.define('promotion', {
         id: {
