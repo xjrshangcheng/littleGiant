@@ -12,42 +12,44 @@ var shoppingCart = function(req, res, userName) {
             username: username
         }
     }).then(function(val) {
-        val.forEach(function(name) {
+        return val.forEach(function(name) {
             allInformation.push(name.dataValues);
             idStore.push(name.dataValues.id);
-
         });
-        Goods.findAll({
+    }).then(function(data) {
+        return Goods.findAll({
             where: {
                 id: idStore
             }
-        }).then(function(data) {
-            data.forEach(function(goodsId, i) {
-                idStore.forEach(function(cartId) {
-                    if (cartId === goodsId.dataValues.id) {
-                        allInformation[i].img = goodsId.dataValues.img;
-                    }
-                });
-            });
-            Promotion.findAll({
-                where: {
-                    id: idStore
+        })
+    }).then(function(data) {
+        return data.forEach(function(goodsId, i) {
+            idStore.forEach(function(cartId) {
+                if (cartId === goodsId.dataValues.id) {
+                    allInformation[i].img = goodsId.dataValues.img;
                 }
-            }).then(function(data) {
-                data.forEach(function(promotion, i) {
-                    idStore.forEach(function(cartId) {
-                        if (cartId === promotion.dataValues.id) {
-                            allInformation[i].type = promotion.dataValues.type;
-                        }
-                    })
-                })
-                res.render("shopping-cart", {
-                    data: allInformation,
-                    status: 200,
-                    message: ''
-                });
+            });
+        });
+    }).then(function(data) {
+        return Promotion.findAll({
+            where: {
+                id: idStore
+            }
+        })
+    }).then(function(data) {
+        return data.forEach(function(promotion, i) {
+            idStore.forEach(function(cartId) {
+                if (cartId === promotion.dataValues.id) {
+                    allInformation[i].type = promotion.dataValues.type;
+                }
             })
         })
+    }).then(function(data) {
+        res.render("shopping-cart", {
+            data: allInformation,
+            status: 200,
+            message: ''
+        });
     });
 };
 var shoppingCartDelete = function(req, res, userName, Id) {
