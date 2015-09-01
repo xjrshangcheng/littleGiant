@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Promotion = require('../controller/promotion-controller');
-var pro = new Promotion();
+var pro = require('../controller/promotion-controller');
 
 router.get('/', pro.renderPromotion);
 
