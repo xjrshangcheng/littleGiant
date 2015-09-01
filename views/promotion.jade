@@ -47,15 +47,11 @@ block content
     .panel-heading.text-center.paging
         a(href class="btn btn-defaults color-font previous-page disabled") 上一页
         span#number-page-down
-            a(class="btn btn-defaults color-font number-page font-color") 1
-            a(class="btn btn-defaults color-font number-page font-color") 2
-            a(class="btn btn-defaults color-font number-page font-color") 3
-            a(class="btn btn-defaults color-font number-page font-color") 4
-            a(class="btn btn-defaults color-font number-page font-color") 5
-            a(class="btn btn-defaults color-font number-page font-color") 6
+            - for (var p = 0; p < pageCount; p ++)
+                a(class="btn btn-defaults color-font number-page font-color")= p+1
             | ...
         a(class="btn btn-defaults color-font next-page active") 下一页
-        | 共有【10】页
+        | 共有【#{pageCount}】页
     script(src="./jquery/dist/jquery.js")
     script(src="./bootstrap/dist/js/bootstrap.js")
     script(src="./javascripts/promotion.js")
